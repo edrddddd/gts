@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>GenomicsTrack Solutions</title>
+  <link rel="stylesheet" href="estilos.css" />
+  <link rel="stylesheet" href="contacto.CSS" />
+  <link rel="stylesheet" href="services.css" />
+  <script src="menu.js" defer></script> 
+  <script src="contacto.js" defer></script>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <script src="contact-button.js"></script>
+  <link rel="stylesheet" href="contact-button.css">
+  <link rel="icon" href="/gts.ico" type="image/x-icon">
+  <link rel="shortcut icon" href="/gts.ico" type="image/x-icon">
+</head>
+
+<body>
+  <header id="main-header" class="transparent">
+    <div class="header-contenido">
+      <div class="header-col left">
+        <a href="index.html" class="logo">
+          <img id="logo-img" src="media/logos/load2.png" alt="Logo GenomicsTrack" class="logo" />
+        </a>
+      </div>
+      <div class="header-col center">
+        <nav id="main-nav">
+          <ul>
+            <li><a href="index.html">Inicio</a></li>
+            <li><a href="posts.html">Noticias</a></li>
+            <li><a href="cursos.html">Cursos</a></li>
+            <li><a href="contacto.html">Contacto</a></li>
+            <li><a href="acercade.html">Acerca</a></li>
+          </ul>
+        </nav>
+      </div>
+      <div class="header-col right">
+        <button id="menu-toggle" class="menu-toggle"><i class="fas fa-bars"></i></button>
+      </div>
+    </div>
+  </header>
+  <section class="contenedor-frase">
+    <img src="media/logos/axy.png" alt="Fondo con frase" class="imagen-fondo2" />
+    <div class="frase-superpuesta2">
+      <font color="#ff8c00">CONTACTO</font>
+    </div>
+  </section>
+  <main>
+    <section id="contacto" class="contacto-seccion">
+      <div class="contacto-contenedor">
+        <div class="contacto-formulario">
+          <h2>Contáctanos</h2>
+          <div id="mensajes-error" style="margin-top: 1em;"></div>
+          <p><i class="fa-solid fa-address-card"></i></p>
+    
+          <form id="formContacto">
+            <label for="nombre">Nombre completo*</label>
+            <input type="text" id="nombre" name="nombre" required>
+    
+            <label for="correo">Correo electrónico*</label>
+            <input type="email" id="correo" name="correo" required>
+
+            <label for="telefono">Teléfono</label>
+            <input type="tel" id="telefono" name="telefono" pattern="[0-9]+" title="Solo números">
+            <label for="pais">País*</label>
+            <select name="pais" id="pais" required>
+              <option value="">-- Selecciona tu país --</option>
+              <option value="México">México</option>
+              <option value="Estados Unidos">Estados Unidos</option>
+              <option value="Canadá">Canadá</option>
+              <option value="Guatemala">Guatemala</option>
+              <option value="El Salvador">El Salvador</option>
+              <option value="Honduras">Honduras</option>
+              <option value="Nicaragua">Nicaragua</option>
+              <option value="Costa Rica">Costa Rica</option>
+              <option value="Panamá">Panamá</option>
+              <option value="Cuba">Cuba</option>
+              <option value="República Dominicana">República Dominicana</option>
+              <option value="Puerto Rico">Puerto Rico</option>
+              <option value="Colombia">Colombia</option>
+              <option value="Venezuela">Venezuela</option>
+              <option value="Ecuador">Ecuador</option>
+              <option value="Perú">Perú</option>
+              <option value="Bolivia">Bolivia</option>
+              <option value="Paraguay">Paraguay</option>
+              <option value="Chile">Chile</option>
+              <option value="Argentina">Argentina</option>
+              <option value="Uruguay">Uruguay</option>
+              <option value="España">España</option>
+              <option value="Andorra">Andorra</option>
+            </select>
+
+            <label for="institucion">Institución de procedencia</label>
+            <input type="text" id="institucion" name="institucion" required>
+            <label for="cargo">Cargo actual</label>
+            <input type="text" id="cargo" name="cargo" required>
+            <label for="area">¿Con cuál de estas áreas se relaciona tu proyecto?*</label>
+            <select name="area" id="area" required>
+              <option value="">-- Selecciona una opción --</option>
+              <option value="Transcriptómica">Transcriptómica</option>
+              <option value="Genómica">Genómica</option>
+              <option value="Proteómica">Proteómica</option>
+              <option value="Epigenómica">Epigenómica</option>
+              <option value="Metagenómica">Metagenómica</option>
+              <option value="Docking molecular">Docking molecular</option>
+              <option value="Otros">Otros</option>
+            </select>
+
+            <label for="tiempo">Tiempo estimado para requerir el servicio*</label>
+            <select name="tiempo" id="tiempo" required>
+              <option value="">-- Selecciona una opción --</option>
+              <option value="1 a 2 semanas">De 1 a 2 semanas</option>
+              <option value="2 a 4 semanas">De 2 a 4 semanas</option>
+              <option value="1 mes o más">1 mes o más</option>
+            </select>
+
+            <label for="asunto">Asunto</label>
+            <input type="text" id="asunto" name="asunto" required>
+            <label for="servicio">Selecciona el servicio*</label>
+            <select name="servicio" id="servicio" required>
+              <option value="">-- Selecciona un servicio --</option>
+              <option value="Consultoría">Consultoría bioinformática</option>
+              <option value="Análisis de datos">Análisis de datos</option>
+              <option value="Cursos">Cursos personalizados</option>
+              <option value="Pipelines">Desarrollo de pipelines</option>
+              <option value="Servicios webs">Desarrollo de páginas web</option>
+              <option value="Capacitaciones">Capacitación personalizada</option>
+              <option value="Otro">Otro</option>
+            </select>
+
+            <label for="mensaje">Mensaje*</label>
+            <textarea name="mensaje" id="mensaje" rows="5" required placeholder="Por favor, detalla el servicio que requieres con la mayor precisión posible..."></textarea>
+
+            <div class="botones-contacto">
+              <button type="button" onclick="enviarCorreo()">Enviar por Correo</button>
+              <button type="button" onclick="enviarWhatsApp()">Enviar por WhatsApp</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </section>
+     <section class="services-section">
+  <h2 class="services-title">Servicios Principales</h2>
+
+  <div class="services-container" id="servicesTrack">
+
+    <div class="service-box">
+      <div class="service-icon"><i class="fas fa-dna fa-2x"></i></div>
+      <div class="service-title">Consultoría Bioinformática</div>
+      <div class="service-desc">Asesoramiento especializado en bioinformática para resolver retos específicos en proyectos de investigación o desarrollo.</div>
+      <div class="boton2"><button onclick="openModal('consultoria')"> Más información</button></div>
+    </div>
+
+    <div class="service-box">
+      <div class="service-icon"><i class="fas fa-school fa-2x"></i></div>
+      <div class="service-title">Cursos Abiertos</div>
+      <div class="service-desc">Formaciones grupales en línea sobre temas generales de bioinformática, organizadas y calendarizadas por la empresa.</div>
+      <div class="boton2"><button onclick="openModal('cursos')"> Más información</button></div>
+    </div>
+
+    <div class="service-box">
+      <div class="service-icon"><i class="fas fa-chalkboard-teacher fa-2x"></i></div>
+      <div class="service-title">Capacitaciones Personalizadas</div>
+      <div class="service-desc">Entrenamiento individual o grupal enfocado en un tema específico elegido por el cliente, ajustado al nivel y objetivos del participante.</div>
+      <div class="boton2"><button onclick="openModal('capacitaciones')"> Más información</button></div>
+    </div>
+
+    <div class="service-box">
+      <div class="service-icon"><i class="fas fa-code fa-2x"></i></div>
+      <div class="service-title">Desarrollo de Scripts y Pipelines</div>
+      <div class="service-desc">Diseño y creación de scripts o pipelines bioinformáticos automatizados para análisis de datos ómicos adaptados a sus necesidades.</div>
+      <div class="boton2"><button onclick="openModal('pipelines')"> Más información</button></div>
+    </div>
+
+    <div class="service-box">
+      <div class="service-icon"><i class="fas fa-project-diagram fa-2x"></i></div>
+      <div class="service-title">Proyectos Bioinformáticos</div>
+      <div class="service-desc">Acompañamiento completo en el diseño, ejecución y análisis de un proyecto bioinformático, desde la concepción hasta la interpretación.</div>
+      <div class="boton2"><button onclick="openModal('proyectos')"> Más información</button></div>
+    </div>
+
+  </div>
+</section>
+<div class="modal-overlay" id="modal-consultoria" onclick="closeOnOverlay(event, 'consultoria')">
+  <div class="modal-box" style="max-height: 90vh; overflow-y: auto;">
+    <button class="modal-close" onclick="closeModal('consultoria')"><i class="fas fa-times"></i></button>
+    
+    <div class="modal-header">
+      <i class="fas fa-dna modal-header-icon"></i>
+      <h3>Consultoría Bioinformática</h3>
+    </div>
+
+    <p style="font-size:0.7rem; text-transform:uppercase; letter-spacing:0.08em; color:#7aaa95; font-weight:700; margin-bottom:6px;">Beneficios</p>
+    <ul class="modal-features" style="margin-bottom:14px;">
+      <li>Sesión virtual 1:1 de 45 a 60 minutos (Google Meet o Zoom)</li>
+      <li>Grabación de la videollamada</li>
+      <li>Notas generadas por IA con resumen de la sesión</li>
+      <li>Revisión previa de scripts y comentarios técnicos (si se envían antes de la cita)</li>
+      <li>Recomendaciones sobre herramientas, lenguajes, flujos de trabajo y recursos</li>
+    </ul>
+
+    <p style="font-size:0.7rem; text-transform:uppercase; letter-spacing:0.08em; color:#e87722; font-weight:700; margin-bottom:6px;">¿Qué no incluye?</p>
+    <ul class="modal-features" style="margin-bottom:14px;">
+      <li style="color:#f4a87c;">Creación o edición de código en tiempo real</li>
+      <li style="color:#f4a87c;">Automatización avanzada (Nextflow, Snakemake, etc.)</li>
+      <li style="color:#f4a87c;">Interpretación biológica de resultados</li>
+      <li style="color:#f4a87c;">Desarrollo de interfaces o sitios web</li>
+    </ul>
+
+    <div class="modal-info-grid">
+      <div class="modal-info-item"><label>Duración</label><span>45 min – 1 hora</span></div>
+      <div class="modal-info-item"><label>Costo</label><span>$650 MXN</span></div>
+      <div class="modal-info-item full"><label>Modalidad</label><span>100% en línea · Grabación y notas en máx. 24 hrs</span></div>
+    </div>
+      <button class="btn-wsp" onclick="openWSP('Consultoría Bioinformática')"><i class="fab fa-whatsapp"></i> Consultar por WhatsApp</button>
+  </div>
+</div>
+<div class="modal-overlay" id="modal-cursos" onclick="closeOnOverlay(event, 'cursos')">
+  <div class="modal-box" style="max-height: 90vh; overflow-y: auto;">
+    <button class="modal-close" onclick="closeModal('cursos')"><i class="fas fa-times"></i></button>
+
+    <div class="modal-header">
+      <i class="fas fa-school modal-header-icon"></i>
+      <h3>Cursos Abiertos</h3>
+    </div>
+
+    <p style="font-size:0.7rem; text-transform:uppercase; letter-spacing:0.08em; color:#7aaa95; font-weight:700; margin-bottom:6px;">¿Qué es?</p>
+    <p class="modal-desc">Formaciones grupales en línea sobre temas generales de bioinformática, organizadas y calendarizadas por el equipo de GenomicsTrack. Están orientadas a estudiantes, investigadores y técnicos.</p>
+
+    <p style="font-size:0.7rem; text-transform:uppercase; letter-spacing:0.08em; color:#7aaa95; font-weight:700; margin-bottom:6px;">Beneficios</p>
+    <ul class="modal-features" style="margin-bottom:14px;">
+      <li>Acceso a clases en vivo o grabadas</li>
+      <li>Material didáctico y datasets de práctica</li>
+      <li>Certificado de participación</li>
+      <li>Foro o canal de soporte durante el curso</li>
+      <li>Acceso a grabaciones por 30 días</li>
+    </ul>
+
+    <p style="font-size:0.7rem; text-transform:uppercase; letter-spacing:0.08em; color:#e87722; font-weight:700; margin-bottom:6px;">¿Qué no incluye?</p>
+    <ul class="modal-features" style="margin-bottom:14px;">
+      <li style="color:#f4a87c;">Personalización del contenido para casos particulares</li>
+      <li style="color:#f4a87c;">Soporte técnico individual</li>
+      <li style="color:#f4a87c;">Evaluación o revisión de proyectos personales</li>
+    </ul>
+
+    <div class="modal-info-grid">
+      <div class="modal-info-item"><label>Duración</label><span>4 sesiones de 2 hrs</span></div>
+      <div class="modal-info-item"><label>Costo</label><span>$999 MXN</span></div>
+      <div class="modal-info-item full"><label>Modalidad</label><span>En línea</span></div>
+    </div>
+
+    <button class="modal-cta" onclick="openWSP('Cursos Abiertos')">Consultar por WhatsApp</button>
+  </div>
+</div>
+<div class="modal-overlay" id="modal-capacitaciones" onclick="closeOnOverlay(event, 'capacitaciones')">
+  <div class="modal-box" style="max-height: 90vh; overflow-y: auto;">
+    <button class="modal-close" onclick="closeModal('capacitaciones')"><i class="fas fa-times"></i></button>
+
+    <div class="modal-header">
+      <i class="fas fa-chalkboard-teacher modal-header-icon"></i>
+      <h3>Capacitaciones Personalizadas</h3>
+    </div>
+
+    <p style="font-size:0.7rem; text-transform:uppercase; letter-spacing:0.08em; color:#7aaa95; font-weight:700; margin-bottom:6px;">¿Qué es?</p>
+    <p class="modal-desc">Entrenamiento individual o grupal enfocado en un tema específico elegido por el cliente (e.g., análisis de RNAseq, manejo de Galaxy, diseño experimental, R/Bioconductor, etc.), ajustado al nivel y objetivos del participante.</p>
+
+    <p style="font-size:0.7rem; text-transform:uppercase; letter-spacing:0.08em; color:#7aaa95; font-weight:700; margin-bottom:6px;">Beneficios</p>
+    <ul class="modal-features" style="margin-bottom:14px;">
+      <li>Diagnóstico inicial de necesidades y nivel del participante</li>
+      <li>Diseño de un programa a medida según el tema elegido</li>
+      <li>Sesiones en vivo 1:1 o en grupo cerrado</li>
+      <li>Resolución de dudas aplicadas al entorno del cliente</li>
+      <li>Grabaciones disponibles (opcional)</li>
+    </ul>
+
+    <p style="font-size:0.7rem; text-transform:uppercase; letter-spacing:0.08em; color:#e87722; font-weight:700; margin-bottom:6px;">¿Qué no incluye?</p>
+    <ul class="modal-features" style="margin-bottom:14px;">
+      <li style="color:#f4a87c;">Análisis de datos propios como parte del servicio</li>
+      <li style="color:#f4a87c;">Garantía de aprendizaje si no se completan todas las sesiones pactadas</li>
+    </ul>
+
+    <div class="modal-info-grid">
+      <div class="modal-info-item"><label>Duración</label><span>Sesiones de 2 hrs</span></div>
+      <div class="modal-info-item"><label>Costo</label><span>$400 MXN / sesión</span></div>
+      <div class="modal-info-item full"><label>Sesiones</label><span>El número total lo define el cliente</span></div>
+    </div>
+
+    <button class="modal-cta" onclick="openWSP('Capacitaciones Personalizadas')"><i class="fab fa-whatsapp"></i> Consultar por WhatsApp</button>
+  </div>
+</div>
+<div class="modal-overlay" id="modal-pipelines" onclick="closeOnOverlay(event, 'pipelines')">
+  <div class="modal-box" style="max-height: 90vh; overflow-y: auto;">
+    <button class="modal-close" onclick="closeModal('pipelines')"><i class="fas fa-times"></i></button>
+
+    <div class="modal-header">
+      <i class="fas fa-code modal-header-icon"></i>
+      <h3>Desarrollo de Scripts y Pipelines</h3>
+    </div>
+
+    <p style="font-size:0.7rem; text-transform:uppercase; letter-spacing:0.08em; color:#7aaa95; font-weight:700; margin-bottom:6px;">¿Qué es?</p>
+    <p class="modal-desc">Diseño y creación de scripts o pipelines bioinformáticos automatizados para análisis de datos ómicos (NGS, transcriptómica, metagenómica, variantes, etc.) adaptados a las necesidades específicas del laboratorio o proyecto.</p>
+
+    <p style="font-size:0.7rem; text-transform:uppercase; letter-spacing:0.08em; color:#7aaa95; font-weight:700; margin-bottom:6px;">Beneficios</p>
+    <ul class="modal-features" style="margin-bottom:14px;">
+      <li>Reunión inicial de soporte para definir necesidades</li>
+      <li>Desarrollo de scripts personalizados en R, Python, Bash u otros</li>
+      <li>Pruebas con datasets propios o de ejemplo</li>
+      <li>Documentación clara para uso y reproducción del pipeline</li>
+      <li>Soporte técnico por 15 días después de la entrega</li>
+    </ul>
+
+    <p style="font-size:0.7rem; text-transform:uppercase; letter-spacing:0.08em; color:#e87722; font-weight:700; margin-bottom:6px;">¿Qué no incluye?</p>
+    <ul class="modal-features" style="margin-bottom:14px;">
+      <li style="color:#f4a87c;">Automatización con gestores de flujo como Nextflow o Snakemake</li>
+      <li style="color:#f4a87c;">Desarrollo de interfaces gráficas o aplicaciones web</li>
+      <li style="color:#f4a87c;">Interpretación o análisis de los resultados generados</li>
+    </ul>
+
+    <div class="modal-info-grid">
+      <div class="modal-info-item"><label>Costo</label><span>Variable</span></div>
+      <div class="modal-info-item"><label>Modalidad</label><span>Remoto</span></div>
+      <div class="modal-info-item full"><label>Duración</label><span>Según alcance del proyecto · Cotización previa requerida</span></div>
+    </div>
+
+    <button class="modal-cta" onclick="openWSP('Desarrollo de Scripts y Pipelines')"><i class="fab fa-whatsapp"></i> Consultar por WhatsApp</button>
+  </div>
+</div>
+<div class="modal-overlay" id="modal-proyectos" onclick="closeOnOverlay(event, 'proyectos')">
+  <div class="modal-box" style="max-height: 90vh; overflow-y: auto;">
+    <button class="modal-close" onclick="closeModal('proyectos')"><i class="fas fa-times"></i></button>
+
+    <div class="modal-header">
+      <i class="fas fa-project-diagram modal-header-icon"></i>
+      <h3>Proyectos Bioinformáticos</h3>
+    </div>
+    <p style="font-size:0.7rem; text-transform:uppercase; letter-spacing:0.08em; color:#7aaa95; font-weight:700; margin-bottom:6px;">Beneficios</p>
+    <ul class="modal-features" style="margin-bottom:14px;">
+      <li>Reunión de planificación y diseño del proyecto (objetivos, tecnologías, tiempos, entregables)</li>
+      <li>Búsqueda y curación de datos públicos (GEO, TCGA, ENA, SRA, etc.)</li>
+      <li>Procesamiento y análisis de datos nuevos (preprocesamiento, QC, análisis estadístico y visualización)</li>
+      <li>Desarrollo de scripts y pipelines personalizados para asegurar reproducibilidad</li>
+      <li>Soporte técnico durante todo el proceso</li>
+      <li>Informe final con resultados, gráficas y conclusiones</li>
+      <li>Revisión opcional orientada a publicación científica</li>
+    </ul>
+
+    <p style="font-size:0.7rem; text-transform:uppercase; letter-spacing:0.08em; color:#e87722; font-weight:700; margin-bottom:6px;">¿Qué no incluye?</p>
+    <ul class="modal-features" style="margin-bottom:14px;">
+      <li style="color:#f4a87c;">Generación experimental de datos en laboratorio (se asesora, pero no se realiza directamente)</li>
+      <li style="color:#f4a87c;">Servicios de secuenciación (se orienta al cliente en la contratación externa si es necesario)</li>
+      <li style="color:#f4a87c;">Acceso a software propietario (se emplean herramientas open source; si se requiere licencia, se informará)</li>
+    </ul>
+
+    <div class="modal-info-grid">
+      <div class="modal-info-item"><label>Datos públicos</label><span>$6,000 – $10,000 MXN</span></div>
+      <div class="modal-info-item"><label>Datos nuevos</label><span>$12,000 – $18,000 MXN</span></div>
+      <div class="modal-info-item full"><label>Duración</label><span>Variable según la complejidad del proyecto</span></div>
+    </div>
+
+    <button class="modal-cta" onclick="openWSP('Proyectos Bioinformáticos')"><i class="fab fa-whatsapp"></i> Consultar por WhatsApp</button>
+  </div>
+</div>
+<div class="contact-icon" id="contactBtn" role="button" aria-label="Ir a contacto" tabindex="0">
+  <span class="tooltip-contacto" id="tooltipContacto">¿Necesitas ayuda?</span>
+  <i class="fa-solid fa-phone fa-shake"></i>
+</div>
+  </main>
+  <footer>
+    <p>&copy; 2026 GenomicsTrack Solutions. Todos los derechos reservados.</p>
+    <div class="redes">
+      <a href="https://www.facebook.com/profile.php?id=61574893912022" target="_blank">
+        <i class="fa-brands fa-facebook"></i>
+      </a>
+      <a href="https://api.whatsapp.com/send?phone=%2B5215643236165&context=AffIR-qZ85KCQ-WQyJYthoqDW9X3a7QLGbCI3ZKR_ueger4SFzB6Fp0-BK6Kuq63gA1DMaQaivnvAFDDPiYgySaP-AXqrXriYjXkCawVjNZ1f107IOGNc2uwovRnyxldJeoVKU22uUT6wp6YJVCkfMiIeA&source=FB_Page&app=facebook&entry_point=page_cta&fbclid=IwY2xjawKQa2dleHRuA2FlbQIxMABicmlkETFxWG1DUFNPZWF2UE13NnV3AR7ngPdb3R60TfUKg-UZMyev0pNxMnfAvRc_xD85NZUtqodSbcaell6nK1mBDw_aem_HbKKU1F7v38Jhio9C_ezSA" target="_blank">
+        <i class="fa-brands fa-whatsapp"></i>
+      </a>
+      <a href="https://www.instagram.com/genomicstracksolutions/" target="_blank">
+        <i class="fa-brands fa-instagram"></i>
+      </a>
+            <a href="https://www.linkedin.com/company/genomicstrack-solutions/" target="_blank">
+        <i class="fa-brands fa-linkedin"></i>
+      </a>
+    </div>
+  </footer>
+  <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+<script>
+  AOS.init();
+</script>
+<script>
+  function irA(id) {
+    const seccion = document.getElementById(id);
+    if (seccion) {
+      seccion.scrollIntoView({ behavior: 'smooth' });
+      seccion.classList.add('seccion-activa');
+      setTimeout(() => {
+        seccion.classList.remove('seccion-activa');
+      }, 1500); // igual al tiempo de animación
+    }
+  }
+  </script>
+  <script src="services.js"></script>
+</body>
+</html>
+

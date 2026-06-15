@@ -1,0 +1,100 @@
+.landing-curso {
+  font-family: 'Segoe UI', sans-serif;
+  line-height: 1.6;
+  color: #1f3c56;
+  background: #fff;
+}
+
+.landing-curso section {
+  padding: 60px 20px;
+}
+
+.landing-curso h1, 
+.landing-curso h2 {
+  color: #2c6b47;
+  margin-bottom: 20px;
+}
+
+.landing-curso .contenedor {
+  max-width: 1000px;
+  margin: auto;
+  text-align: center;
+}
+
+.landing-curso .subtitulo {
+  font-size: 1.2em;
+  margin-bottom: 20px;
+}
+
+.landing-curso ul, 
+.landing-curso ol {
+  text-align: left;
+  max-width: 600px;
+  margin: auto;
+  padding-left: 20px;
+}
+
+.landing-curso .grid-detalles {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 10px;
+  margin-top: 20px;
+  text-align: left;
+}
+
+.landing-curso table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+.landing-curso th, 
+.landing-curso td {
+  border: 1px solid #d1d1d1;
+  padding: 12px;
+  text-align: center;
+}
+
+.landing-curso .promocion {
+  margin-top: 15px;
+  color: #ff8c00;
+  font-weight: bold;
+}
+
+.landing-curso .boton-inscripcion {
+  display: inline-block;
+  padding: 12px 24px;
+  background: #ff8c00;
+  color: white;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+}
+
+.landing-curso .boton-inscripcion:hover {
+  background-color: #e67700;
+}
+
+.landing-curso .boton-secundario {
+  display: inline-block;
+  margin-top: 10px;
+  color: #1f3c56;
+  border: 1px solid #1f3c56;
+  padding: 8px 16px;
+  border-radius: 6px;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.landing-curso .boton-secundario:hover {
+  background: #1f3c56;
+  color: white;
+}
+.aviso-finalizado {
+  background: #ff8c00;
+  color: #fff;
+  text-align: center;
+  padding: 10px;
+  font-weight: bold;
+}

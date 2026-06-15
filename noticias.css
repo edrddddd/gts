@@ -1,0 +1,272 @@
+:root {
+    --gt-bg: #ffffff;
+    --gt-card: #ffffff;
+    --gt-accent: #1f3c56;
+    --gt-accent2: #1f3c56;
+    --gt-text: #1f3c56;
+    --gt-muted: #1f3c56;
+    --gt-border: #1f3c56;
+    --gt-radius: 16px;
+    --gt-shadow: 0 4px 24px rgba(45,106,79,0.08);
+    --gt-font-title: 'Syne', sans-serif;
+    --gt-font-body: 'DM Sans', sans-serif;
+  }
+
+  /* ── Sección principal ── */
+  #gt-feed {
+    background: var(--gt-bg);
+    padding: 60px 20px 80px;
+    font-family: var(--gt-font-body);
+  }
+
+  .gt-feed-header {
+    text-align: center;
+    margin-bottom: 48px;
+  }
+
+  .gt-feed-header h2 {
+    font-family: var(--gt-font-title);
+    font-size: clamp(1.8rem, 4vw, 2.8rem);
+    font-weight: 800;
+    color: var(--gt-text);
+    margin: 0 0 10px;
+    letter-spacing: -0.02em;
+  }
+
+  .gt-feed-header p {
+    color: var(--gt-muted);
+    font-size: 1rem;
+    font-weight: 300;
+    margin: 0;
+  }
+
+  .gt-accent-line {
+    display: inline-block;
+    width: 48px;
+    height: 4px;
+    background: linear-gradient(90deg, var(--gt-accent), var(--gt-accent2));
+    border-radius: 2px;
+    margin: 12px auto 0;
+  }
+
+  /* ── Grid de tarjetas ── */
+  .gt-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 24px;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  /* ── Tarjeta individual ── */
+  .gt-card {
+    background: var(--gt-card);
+    border-radius: var(--gt-radius);
+    border: 1px solid var(--gt-border);
+    box-shadow: var(--gt-shadow);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+    animation: gt-fadein 0.5s ease both;
+  }
+
+  .gt-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 40px rgba(45,106,79,0.14);
+  }
+
+  @keyframes gt-fadein {
+    from { opacity: 0; transform: translateY(16px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  /* stagger de animación */
+  .gt-card:nth-child(1) { animation-delay: 0.05s; }
+  .gt-card:nth-child(2) { animation-delay: 0.12s; }
+  .gt-card:nth-child(3) { animation-delay: 0.19s; }
+  .gt-card:nth-child(4) { animation-delay: 0.26s; }
+  .gt-card:nth-child(5) { animation-delay: 0.33s; }
+  .gt-card:nth-child(6) { animation-delay: 0.40s; }
+
+  /* ── Imagen de la tarjeta ── */
+  .gt-card-img {
+    width: 100%;
+    aspect-ratio: 16/9;
+    object-fit: cover;
+    display: block;
+    background: var(--gt-border);
+  }
+
+  .gt-card-img-placeholder {
+    width: 100%;
+    aspect-ratio: 16/9;
+    background: linear-gradient(135deg, #e8f4ed 0%, #d1e8d9 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .gt-card-img-placeholder svg {
+    opacity: 0.3;
+    width: 48px;
+    height: 48px;
+  }
+
+  /* ── Cuerpo de la tarjeta ── */
+  .gt-card-body {
+    padding: 20px 22px 24px;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    gap: 10px;
+  }
+
+  .gt-card-meta {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.75rem;
+    color: var(--gt-muted);
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+
+  .gt-card-meta span {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+  }
+
+  .gt-badge {
+    background: linear-gradient(90deg, var(--gt-accent), var(--gt-accent2));
+    color: white;
+    font-size: 0.65rem;
+    font-weight: 700;
+    padding: 2px 8px;
+    border-radius: 20px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+
+  .gt-card-text {
+    color: var(--gt-text);
+    font-size: 0.92rem;
+    line-height: 1.65;
+    font-weight: 300;
+    display: -webkit-box;
+    -webkit-line-clamp: 4;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    flex: 1;
+  }
+
+  .gt-card-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    color: var(--gt-accent);
+    font-size: 0.82rem;
+    font-weight: 600;
+    text-decoration: none;
+    margin-top: 4px;
+    transition: gap 0.2s ease, color 0.2s ease;
+  }
+
+  .gt-card-link:hover {
+    color: var(--gt-accent2);
+    gap: 10px;
+  }
+
+  .gt-card-link svg {
+    width: 14px;
+    height: 14px;
+    transition: transform 0.2s ease;
+  }
+
+  .gt-card-link:hover svg {
+    transform: translateX(2px);
+  }
+
+  /* ── Botón ver todas ── */
+  .gt-ver-todas {
+    text-align: center;
+    margin-top: 44px;
+  }
+
+  .gt-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: var(--gt-accent);
+    color: white;
+    text-decoration: none;
+    padding: 14px 32px;
+    border-radius: 50px;
+    font-family: var(--gt-font-title);
+    font-size: 0.9rem;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    transition: background 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+    box-shadow: 0 4px 16px rgba(45,106,79,0.25);
+  }
+
+  .gt-btn:hover {
+    background: var(--gt-accent2);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(45,106,79,0.3);
+  }
+
+  /* ── Estado de carga ── */
+  .gt-loading {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 60px 20px;
+    gap: 16px;
+    color: var(--gt-muted);
+    font-size: 0.9rem;
+  }
+
+  .gt-spinner {
+    width: 36px;
+    height: 36px;
+    border: 3px solid var(--gt-border);
+    border-top-color: var(--gt-accent);
+    border-radius: 50%;
+    animation: gt-spin 0.8s linear infinite;
+  }
+
+  @keyframes gt-spin {
+    to { transform: rotate(360deg); }
+  }
+
+  /* ── Estado de error ── */
+  .gt-error {
+    text-align: center;
+    padding: 40px 20px;
+    color: var(--gt-muted);
+    font-size: 0.9rem;
+    max-width: 500px;
+    margin: 0 auto;
+    line-height: 1.6;
+  }
+
+  .gt-error strong {
+    display: block;
+    color: var(--gt-text);
+    font-size: 1rem;
+    margin-bottom: 8px;
+  }
+
+  /* ── Responsivo ── */
+  @media (max-width: 640px) {
+    .gt-grid {
+      grid-template-columns: 1fr;
+    }
+    #gt-feed {
+      padding: 40px 16px 60px;
+    }
+  }

@@ -1,0 +1,217 @@
+.abono-seccion,
+.sabias-seccion,
+.beneficios-seccion,
+.precios-seccion,
+.compra-seccion {
+  padding: 4rem 1rem;
+  text-align: center;
+}
+
+.titulo-seccion {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  text-transform: uppercase;
+  color: #2c6b47;
+}
+
+.descripcion-abono,
+.texto-sabias,
+.contenedor-compra p {
+  font-size: 1.1rem;
+  max-width: 700px;
+  margin: 0 auto 2rem;
+  color: #f8f8f8;
+}
+
+.botones-abono {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.boton-abono,
+.boton-compra {
+  background-color: #2c6b47;
+  color: white;
+  padding: 0.8rem 1.5rem;
+  text-decoration: none;
+  font-weight: bold;
+  border-radius: 5px;
+  transition: background 0.3s;
+}
+
+.boton-abono:hover,
+.boton-compra:hover {
+  background-color: #1f3c56;
+}
+
+.sabias-seccion {
+  background: url('media/logos/ax.png') no-repeat center center;
+  background-size: cover;
+  color: white;
+}
+
+.lista-beneficios {
+  list-style: none;
+  padding: 0;
+  max-width: 600px;
+  margin: 0 auto;
+  text-align: left;
+}
+
+.lista-beneficios li {
+  margin: 0.5rem 0;
+  position: relative;
+  padding-left: 1.5rem;
+}
+
+.lista-beneficios li::before {
+  content: "✔";
+  color: #2c6b47;
+  position: absolute;
+  left: 0;
+}
+
+.lista-beneficios li {
+  margin: 0.5rem 0;
+  position: relative;
+  padding-left: 1.5rem;
+}
+
+.lista-beneficios li::before {
+  content: "✔";
+  color: #2c6b47;
+  position: absolute;
+  left: 0;
+}
+
+.lista-beneficios {
+  list-style: none;
+  padding: 0;
+  max-width: 600px;
+  margin: 0 auto;
+  text-align: left;
+}
+
+.lista-beneficios li {
+  margin: 0.5rem 0;
+  position: relative;
+  padding-left: 1.5rem;
+}
+
+.lista-beneficios li::before {
+  content: "✔";
+  color: #2c6b47;
+  position: absolute;
+  left: 0;
+}
+
+.lista-beneficios li {
+  margin: 0.5rem 0;
+  position: relative;
+  padding-left: 1.5rem;
+}
+
+.lista-beneficios li::before {
+  content: "✔";
+  color: #2c6b47;
+  position: absolute;
+  left: 0;
+}
+/**/
+
+.lista-beneficios2 {
+  list-style: none;
+  padding: 0;
+  max-width: 600px;
+  margin: 0 auto;
+  text-align: left;
+}
+
+.lista-beneficios2 li {
+  margin: 0.5rem 0;
+  position: relative;
+  padding-left: 1.5rem;
+}
+
+.lista-beneficios2 li::before {
+  content: "❌";
+  color: #2c6b47;
+  position: absolute;
+  left: 0;
+}
+
+.lista-beneficios2 li {
+  margin: 0.5rem 0;
+  position: relative;
+  padding-left: 1.5rem;
+}
+
+.lista-beneficios2 li::before {
+  content: "❌";
+  color: #2c6b47;
+  position: absolute;
+  left: 0;
+}
+  /**/
+.precios-seccion {
+  background-color: #f8f8f8;
+}
+
+.tarjeta-precio {
+  max-width: 800px;
+  margin: 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 1rem;
+  background: white;
+  padding: 1rem;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.imagen-precio {
+  max-width: 300px;
+  width: 100%;
+  border-radius: 10px;
+}
+
+.precio-info {
+  flex: 1;
+  text-align: left;
+}
+
+.monto-precio {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #2c6b47;
+  margin-top: 0.5rem;
+}
+
+.compra-seccion {
+  background: url('media/logos/axz.png') no-repeat center center;
+  background-size: cover;
+  color: white;
+}
+
+.boton-compra {
+  display: inline-block;
+  margin-top: 1rem;
+}
+.listas-beneficios-flex {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 2rem;
+    margin-top: 2rem;
+  }
+  
+  .lista-beneficios,
+  .lista-beneficios2 {
+    width: 100%;
+    max-width: 400px;
+    text-align: left;
+  }

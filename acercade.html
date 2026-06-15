@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>GenomicsTrack Solutions</title>
+  <link rel="stylesheet" href="estilos.css" />
+  <script src="menu.js" defer></script> 
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <script src="contact-button.js"></script>
+  <link rel="stylesheet" href="contact-button.css">
+  <link rel="icon" href="/gts.ico" type="image/x-icon">
+  <link rel="shortcut icon" href="/gts.ico" type="image/x-icon">
+
+</head>
+
+<body>
+<div id="loader">
+  <img src="media/logos/load.png" alt="Logo GenomicsTrack" />
+</div>
+  <header id="main-header" class="transparent">
+    <div class="header-contenido">
+      <div class="header-col left">
+        <a href="index.html" class="logo">
+          <img id="logo-img" src="media/logos/load2.png" alt="Logo GenomicsTrack" class="logo" />
+        </a>
+      </div>
+      <div class="header-col center">
+        <nav id="main-nav">
+          <ul>
+            <li><a href="index.html">Inicio</a></li>
+            <li><a href="posts.html">Noticias</a></li>
+            <li><a href="cursos.html">Cursos</a></li>
+            <li><a href="contacto.html">Contacto</a></li>
+            <li><a href="acercade.html">Acerca</a></li>
+          </ul>
+        </nav>
+      </div>
+      <div class="header-col right">
+        <button id="menu-toggle" class="menu-toggle"><i class="fas fa-bars"></i></button>
+      </div>
+    </div>
+  </header>
+  <section class="contenedor-frase">
+    <img src="media/acercade/fondo frase.png" alt="Fondo con frase" class="imagen-fondo2" />
+    <div class="frase-superpuesta2">
+        ACERCA DE NOSOTROS
+    </div>
+  </section>
+  <main>
+    <div class="botones-nav">
+       <!-- <button onclick="irA('equipo')" class="acercadeboton">NUESTRO EQUIPO</button> -->
+        <button onclick="irA('mision')" class="acercadeboton">MISIÓN</button>
+        <button onclick="irA('quienes-somos')" class="acercadeboton">¿QUIÉN SOMOS?</button>
+        <button onclick="irA('vision')" class="acercadeboton">VISIÓN</button>
+        <button onclick="irA('distincion')" class="acercadeboton">DISTINCIÓN</button>
+        <button onclick="irA('marca-grafica')" class="acercadeboton">MARCA GRÁFICA</button>
+      
+        
+      </div>
+<!-- 
+      <section id="equipo" class="equipo">
+        <div class="contenedor">
+          <h2 class="titulo-seccion">Nuestro Equipo</h2>
+          <div class="equipo-grid">
+            <div class="miembro">
+              <img src="media/equipodetrabajo/ceo.jpg" alt="José">
+              <h3>José A. Ovando R.</h3>
+              <p>Lic. en Genómica</p>
+            </div>
+            <div class="miembro">
+              <img src="media/equipodetrabajo/jared.jpg" alt="Jared">
+              <h3>Jared Ortega</h3>
+              <p>Financial Growth Manager</p>
+            </div>
+            <div class="miembro">
+              <img src="media/equipodetrabajo/EDUARDOROMERO.JPEG" alt="Eduardo">
+              <h3>Eduardo Romero</h3>
+              <p>Ing. en Diseño de Software y Redes.</p>
+            </div>
+            <div class="miembro">
+              <img src="media/equipodetrabajo/Yessica_Pérez.jpg" alt="Yessica">
+              <h3>Yessica Pérez Francisco</h3>
+              <p>Lic. en Ciencias Genómicas.</p>
+            </div>
+            <div class="miembro">
+              <img src="media/equipodetrabajo/Anette Roxana Gastelum Quiroz.jpeg" alt="Anette">
+              <h3>Anette Roxana Gastelum Quiroz</h3>
+              <p>Lic. en Ciencias Biomédicas</p>
+            </div>
+            <div class="miembro">
+              <img src="media/equipodetrabajo/Josué Guzmán Linares.jpg" alt="Josue">
+              <h3>Josué Guzmán Linares</h3>
+              <p>Lic. en Biotecnología</p>
+            </div>
+            <div class="miembro">
+              <img src="media/equipodetrabajo/Alejandro Ruiz Diego.jpeg" alt= "Alejandro">
+              <h3>Alejandro Ruiz Diego</h3>
+              <P>Lic. en Biotecnología</P>
+            </div>
+          </div>
+        </div>
+      </section> 
+        -->
+      
+      <section id="mision" class="lavision">
+        <div class="contenido-vision">
+          <div class="texto-vision">
+            <h2>LA MISIÓN</h2>
+            <p>
+                Brindar servicios bioinformáticos accesibles y personalizados a laboratorios de investigación, clínicas y centros
+                académicos. Nos enfocamos en optimizar el análisis genómico mediante el uso de data mining y herramientas
+                avanzadas, maximizando el valor de los datos existentes y reduciendo la necesidad de experimentos costosos,
+                incluso para aquellos con presupuestos limitados.
+            </p>
+          </div>
+          <div class="imagen-vision">
+            <i class="fa-solid fa-bullseye fa-10x"></i>
+          </div>
+        </div>
+      </section>
+      <section id="quienes-somos" class="lavision2">
+        <div class="contenido-vision2">
+          <div class="imagen-vision2">
+            <i class="fa-solid fa-people-group fa-10x"></i>
+          </div>
+          <div class="texto-vision2">
+            <h2>¿Quiénes somos?</h2>
+            <p>
+                Somos una empresa especializada en ofrecer servicios bioinformáticos accesibles y personalizados en
+                Latinoamérica, diseñados especialmente para laboratorios de investigación, clínicas y centros académicos,
+                independientemente de su acceso a tecnologías de alto rendimiento.
+            </p>
+          </div>
+        </div>
+      </section>
+      <section id="vision" class="lavision">
+        <div class="contenido-vision">
+          <div class="texto-vision">
+            <h2>LA VISIÓN</h2>
+            <p>
+                Empoderar a los laboratorios de investigación y centros académicos con soluciones bioinformáticas accesibles,
+                promoviendo el uso de data mining para maximizar el valor de los datos existentes, reducir la dependencia de
+                experimentos costosos y permitir análisis genómicos de alta calidad, incluso con presupuestos limitados.
+            </p>
+          </div>
+          <div class="imagen-vision">
+            <i class="fa-solid fa-binoculars fa-10x"></i>
+          </div>
+        </div>
+      </section>
+      <section id="distincion" class="lavision2">
+        <div class="contenido-vision2">
+          <div class="imagen-vision2">
+            <i class="fa-solid fa-medal fa-10x"></i>
+          </div>
+          <div class="texto-vision2">
+            <h2>¿Qué nos distingue?</h2>
+            <p>
+                • Accesibilidad y personalización: Ofrecemos soluciones bioinformáticas adaptadas a las necesidades y
+                presupuestos de cada laboratorio, sin comprometer la calidad de los resultados.<br>
+            
+                • Optimización de recursos: Utilizamos técnicas avanzadas de data mining para extraer el máximo valor
+                de los datos existentes, reduciendo la necesidad de experimentos costosos y acelerando los tiempos de
+                investigación.<br>
+
+                • Enfoque colaborativo: Trabajamos mano a mano con nuestros clientes, proporcionando soporte técnico
+                experto en todas las etapas del proyecto, desde el diseño hasta la interpretación de los resultados.<br>
+
+                • Tecnología avanzada, sin barreras: Hacemos accesibles las herramientas bioinformáticas de vanguardia
+                a laboratorios con recursos limitados, nivelando el campo de juego para todos.
+            </p>
+          </div>
+        </div>
+      </section>
+      <section id="marca-grafica" class="marca-grafica">
+        <div class="contenedor-marca">
+          <div class="descripcion-marca">
+            <h2>MARCA GRÁFICA</h2>
+            <p>Estos son los colores y logotipos que representan nuestra identidad visual. Reflejan nuestros valores de innovación, confianza y accesibilidad en la bioinformática.</p>
+            
+            <h3>Colores Institucionales</h3>
+            <div class="colores">
+              <div class="color" style="background-color: #2c6b47;">#2c6b47</div>
+              <div class="color" style="background-color: #1f3c56;">#1f3c56</div>
+              <div class="color" style="background-color: #ff8c00;">#ff8c00</div>
+              <div class="color" style="background-color: #d1d1d1;">#d1d1d1</div>
+              <div class="color" style="background-color: #a7c7e7;">#a7c7e7</div>
+              <div class="color" style="background-color: #ffffff; color: #000;">#ffffff</div>
+              <div class="color" style="background-color: #000;">#000</div>
+            </div>
+          </div>
+      
+          <div class="logos-marca">
+            <img src="media/logos 150x150/1.png" alt="Logo principal" />
+            <img src="media/logos 150x150/2.png" alt="Isotipo" />
+            <img src="media/logos 150x150/3.png" alt="Isotipo" />
+            <img src="media/logos 150x150/5.png" alt="Logo principal" />
+            <img src="media/logos 150x150/4.png" alt="Isotipo" />
+            <img src="media/logos 150x150/6.png" alt="Isotipo" />
+          </div>
+        </div>
+      </section>
+<div class="contact-icon" id="contactBtn" role="button" aria-label="Ir a contacto" tabindex="0">
+  <span class="tooltip-contacto" id="tooltipContacto">¿Necesitas ayuda?</span>
+  <i class="fa-solid fa-phone fa-shake"></i>
+</div>
+  </main>
+  <footer>
+    <p>&copy; 2026 GenomicsTrack Solutions. Todos los derechos reservados.</p>
+    <div class="redes">
+      <a href="https://www.facebook.com/profile.php?id=61574893912022" target="_blank">
+        <i class="fa-brands fa-facebook"></i>
+      </a>
+      <a href="https://api.whatsapp.com/send?phone=%2B5215643236165&context=AffIR-qZ85KCQ-WQyJYthoqDW9X3a7QLGbCI3ZKR_ueger4SFzB6Fp0-BK6Kuq63gA1DMaQaivnvAFDDPiYgySaP-AXqrXriYjXkCawVjNZ1f107IOGNc2uwovRnyxldJeoVKU22uUT6wp6YJVCkfMiIeA&source=FB_Page&app=facebook&entry_point=page_cta&fbclid=IwY2xjawKQa2dleHRuA2FlbQIxMABicmlkETFxWG1DUFNPZWF2UE13NnV3AR7ngPdb3R60TfUKg-UZMyev0pNxMnfAvRc_xD85NZUtqodSbcaell6nK1mBDw_aem_HbKKU1F7v38Jhio9C_ezSA" target="_blank">
+        <i class="fa-brands fa-whatsapp"></i>
+      </a>
+      <a href="https://www.instagram.com/genomicstracksolutions/" target="_blank">
+        <i class="fa-brands fa-instagram"></i>
+      </a>
+            <a href="https://www.linkedin.com/company/genomicstrack-solutions/" target="_blank">
+        <i class="fa-brands fa-linkedin"></i>
+      </a>
+    </div>
+  </footer>
+  <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+<script>
+  AOS.init();
+</script>
+<script>
+  function irA(id) {
+    const seccion = document.getElementById(id);
+    if (seccion) {
+      seccion.scrollIntoView({ behavior: 'smooth' });
+      seccion.classList.add('seccion-activa');
+      setTimeout(() => {
+        seccion.classList.remove('seccion-activa');
+      }, 1500); // igual al tiempo de animación
+    }
+  }
+  </script>
+</body>
+</html>
+

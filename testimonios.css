@@ -1,0 +1,125 @@
+/* === TESTIMONIOS === */
+.testimonios {
+  text-align: center;
+  padding: 80px 20px;
+  background: #f9fafc;
+  position: relative;
+}
+
+.testimonios h2 {
+  font-size: 2.4rem;
+  color: #1f3c56; /* Azul institucional */
+  margin-bottom: 30px;
+  font-weight: 700;
+}
+
+/* Contador */
+.contador-clientes {
+  margin-bottom: 50px;
+}
+
+.contador-clientes #contador {
+  font-size: 3rem;
+  font-weight: bold;
+  color: #2c6b47; /* Verde institucional */
+  display: block;
+}
+
+.contador-clientes p {
+  font-size: 1.1rem;
+  color: #1f3c56;
+  font-weight: 500;
+}
+
+/* Carrusel */
+.carrusel {
+  overflow: hidden;
+  max-width: 850px;
+  margin: 0 auto;
+  position: relative;
+}
+
+.carrusel-inner {
+  display: flex;
+  transition: transform 0.8s ease-in-out;
+  gap: 20px; /* espacio entre testimonios */
+}
+
+.testimonio {
+  flex: 0 0 100%;
+  box-sizing: border-box;
+  padding: 30px;
+  background: #ffffff;
+  border-radius: 15px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+  border-top: 5px solid #ff8c00; /* Naranja institucional */
+  transition: all 0.3s ease;
+}
+
+.testimonio .texto {
+  font-style: italic;
+  color: #000;
+  margin-bottom: 20px;
+  line-height: 1.6;
+  font-size: 1.05rem;
+}
+
+.cliente h4 {
+  margin: 0;
+  color: #2c6b47; /* Verde institucional */
+  font-weight: 600;
+  font-size: 1.1rem;
+}
+
+.cliente span {
+  font-size: 0.9rem;
+  color: #1f3c56;
+}
+
+/* Hover */
+.testimonio:hover {
+  transform: scale(1.02);
+}
+
+/* ===== Responsivo ===== */
+@media (max-width: 1024px) {
+  .carrusel-inner {
+    flex-wrap: wrap; /* permite que los testimonios se acomoden */
+    justify-content: center;
+  }
+  .testimonio {
+    flex: 0 0 48%; /* dos testimonios por fila */
+    margin-bottom: 20px;
+  }
+}
+
+@media (max-width: 768px) {
+  .testimonio {
+    flex: 0 0 100%; /* un testimonio por fila en tablets */
+    padding: 25px;
+  }
+  .contador-clientes #contador {
+    font-size: 2.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .testimonio {
+    padding: 20px;
+  }
+  .contador-clientes #contador {
+    font-size: 2.2rem;
+  }
+  .testimonios h2 {
+    font-size: 2rem;
+  }
+  .testimonio .texto {
+    font-size: 1rem;
+  }
+  .cliente h4 {
+    font-size: 1rem;
+  }
+  .cliente span {
+    font-size: 0.85rem;
+  }
+}

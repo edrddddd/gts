@@ -1,0 +1,152 @@
+.tarjeta-curso {
+  width: 300px;
+  border-radius: 12px;
+  overflow: hidden;
+  background-color: #ffffff;
+  border: 1px solid #d1d1d1;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.08);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.tarjeta-curso:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 16px rgba(0,0,0,0.15);
+}
+
+.tarjeta-curso img {
+  width: 100%;
+  object-fit: contain;
+  background-color: #f9f9f9;
+  display: block;
+}
+
+.contenido-curso {
+  padding: 16px;
+  text-align: left;
+}
+
+.contenido-curso h3 {
+  color: #1f3c56;
+  font-size: 1.1em;
+  margin-bottom: 8px;
+}
+
+.contenido-curso p {
+  color: #555;
+  font-size: 0.95em;
+  margin-bottom: 12px;
+}
+
+.boton-curso {
+  display: inline-block;
+  padding: 8px 16px;
+  background-color: #ff8c00;
+  color: #fff;
+  border-radius: 6px;
+  text-decoration: none;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+}
+
+.boton-curso:hover {
+  background-color: #e67700;
+}
+
+.tarjeta-curso.finalizado {
+  opacity: 0.8;
+  filter: grayscale(20%);
+}
+
+.carrusel-cursos {
+  display: flex;
+  overflow-x: auto;
+  gap: 20px;
+  padding: 20px 0;
+  scroll-snap-type: x mandatory;
+  scroll-padding: 20px;
+}
+
+.tarjeta-curso {
+  flex: 0 0 auto;
+  scroll-snap-align: center;
+  width: 300px;
+  border-radius: 12px;
+  overflow: hidden;
+  background-color: #ffffff;
+  border: 1px solid #d1d1d1;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.08);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.carrusel-cursos::-webkit-scrollbar {
+  height: 8px;
+}
+
+.carrusel-cursos::-webkit-scrollbar-thumb {
+  background-color: #ff8c00;
+  border-radius: 4px;
+}
+
+/* Centrado si hay solo una tarjeta */
+.carrusel-cursos:has(.tarjeta-curso:nth-child(1):nth-last-child(1)) {
+  justify-content: center;
+}
+/* Contenedor horizontal */
+.carrusel-cursos {
+  display: flex;
+  overflow-x: auto;
+  gap: 20px;
+  padding: 20px 0;
+  scroll-snap-type: x mandatory;
+  scroll-padding: 20px;
+}
+
+.carrusel-cursos::-webkit-scrollbar {
+  height: 6px;
+}
+
+.carrusel-cursos::-webkit-scrollbar-thumb {
+  background-color: #ff8c00;
+  border-radius: 4px;
+}
+
+/* Centrado si hay solo una tarjeta */
+.carrusel-cursos:has(.tarjeta-curso:nth-child(1):nth-last-child(1)) {
+  justify-content: center;
+}
+
+/* Botones de navegación */
+.navegacion-cursos {
+  margin-top: 10px;
+  text-align: center;
+}
+
+.navegacion-cursos button {
+  background-color: #1f3c56;
+  color: white;
+  border: none;
+  padding: 10px 16px;
+  font-size: 18px;
+  margin: 0 10px;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
+}
+
+.navegacion-cursos button:hover {
+  background-color: #2c6b47;
+}
+
+.navegacion-cursos i {
+  pointer-events: none;
+}
+.tarjeta-curso {
+  border: 2px solid #d1d1d1;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.tarjeta-curso:hover {
+  border-color: #ff8c00;
+  box-shadow: 0 0 10px rgba(255, 140, 0, 0.3);
+}

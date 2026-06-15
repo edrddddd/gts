@@ -1,0 +1,22 @@
+Desarrollado y diseñado por Eduardo R. · GenomicsTrack Solutions · Todos los derechos reservados v02.05.2026
+Eduardo R. contacto @e.drddddd on instagram.
+
+Changelog – Versión 02.05.2026  Actualización Global
+
+Actualización de "Servicios"
+    -Se elimino del header el apartado de Servicios
+    -Se creo un nuevo diseño de la informacion de "Servicios Principales"
+    -Se modifico el costo de "Consultoria Bioinformatica"
+Actualización de "Noticias"
+    -Se elimino la app externa (daba muchos fallos)
+    -Se agrego un API propio para traer los datos de FB a la seccion "Noticias"
+Actualización "Programa tu Consultoria"
+    -Se modificoel costo de "Programa tu Consultoria"
+Desactivacion de Testimonios
+    -Se desactivo el apartado "Testimonios" ya que no se le daba uso por parte de los recopiladores de datos.
+Actualización de "Cursos"
+    -Se re diseño todo el apartado de Cursos
+        -Se eliminan las landing pages y se conserva con un hover (ayuda a reducir archivos y optimiza el funcionamiento e interaccion)
+        -Se agrego un filtro para ver los cursos abiertos y finalizados
+        
+
