@@ -1,12 +1,27 @@
 document.addEventListener("DOMContentLoaded", () => {
   const dataDestacados = [
       {
-      imagen: "media/cursos/2026/c20.jpg",
-      fecha: "06, 07, 13 y 14 de junio 2026",
-      titulo: "Metagenómica 16S paso a paso con datos reales, sin necesidad de experiencia previa.",
+      imagen: "media/cursos/2026/c29.png",
+      fecha: "8, 10, 15 y 17 de Septiembre de 2026",
+      titulo: "Metagenómica desde cero: análisis de 16S / 18S / ITS",
+      link: "https://api.whatsapp.com/send/?phone=5215643236165&text&type=phone_number&app_absent=0",
+      destacado: null
+    },
+         {
+      imagen: "media/cursos/2026/c31.png",
+      fecha: "22, 24 y 29 de Septiembre, y 1 de Octubre de 2026",
+      titulo: "Bioestadística en R para datos biológicos y ómicos",
       link: "https://api.whatsapp.com/send/?phone=5215643236165&text&type=phone_number&app_absent=0",
       destacado: true
-    }
+    },
+          {
+      imagen: "media/cursos/2026/c30.png",
+      fecha: "16, 18, 23, 25 y 30 de Septiembre de 2026",
+      titulo: "Análisis bioinformático del epigenoma desde cero",
+      link: "https://api.whatsapp.com/send/?phone=5215643236165&text&type=phone_number&app_absent=0",
+      destacado: null
+    },
+
   ];
 
   const contenedor = document.getElementById("contenedorTarjetas");

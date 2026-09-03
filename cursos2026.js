@@ -8,11 +8,318 @@ const INSTRUCTOR_JOSE = {
   nombre: 'José A. Ovando-Ricardez',
   cv: 'https://sites.google.com/view/joseantonioovandoricardez'
 };
+const INSTRUCTOR_JOSUE = {
+  nombre: 'Josué Guzmán Linares',
+  cv: 'https://drive.google.com/file/d/1ssk3K8dxYXWjtlS_KNMSCFnbsWYiWhID/view?usp=sharing'
+};
 
 const CURSOS = [
   {
-  id: 'c22',
+  id: 'c31',
   estado: 'activo',
+  titulo: 'Bioestadística en R para datos biológicos y ómicos',
+  img: 'media/cursos/2026/c31.png',
+  descripcion: 'Este curso teórico-práctico está diseñado para estudiantes, tesistas, investigadores y profesionales que desean aprender paso a paso el análisis bioinformático de datos de secuenciación de amplicones, desde los archivos crudos hasta la caracterización e interpretación de comunidades microbianas. No es necesario contar con experiencia avanzada previa. Durante las sesiones abordaremos el flujo de análisis combinando fundamentos teóricos con ejercicios prácticos y herramientas ampliamente utilizadas en investigación.',
+  instructor: { ...INSTRUCTOR_JOSE, desc: 'Bioinformático, instructor y consultor especializado en análisis metagenómicos y datos ómicos.' },
+  fechas: ' 22, 24 y 29 de Septiembre, y 1 de Octubre de 2026',
+  horario: ' 5:00 PM – 8:00 PM (CDMX)',
+  duracion: '12 horas · 4 sesiones de 3 hrs',
+  modalidad: 'En línea · Zoom',
+  incluye: [
+    'Constancia digital de participación.', 
+    'Sesiones grabadas', 
+    'Recursos y material didáctico', 
+    'Ejercicios prácticos guiados en R',
+    'Visualización de datos biológicos',
+    'Aplicaciones en datos ómicos'
+  ],
+
+  temario: [
+    ''
+  ],
+  precios: {
+    columnas: ['Perfil', '🟢 1ª Preventa ', '🟡 Precio regular ', '🔴 Últimos días'],
+    filas: [
+      ['Licenciatura*', '--', '--', '--'],
+      ['Posgrado*', '--', '--', '--'],
+      ['Público general', '--', '--', '--']
+    ]
+  },
+  pago: PAGO_ESTANDAR,
+  listaInteres: null
+},
+  {
+  id: 'c30',
+  estado: 'activo',
+  titulo: 'Análisis bioinformático del epigenoma desde cero',
+  img: 'media/cursos/2026/c30.png',
+  descripcion: '¿Quieres aprender a analizar el epigenoma desde cero con un enfoque práctico? En 5 sesiones verás desde los fundamentos hasta el uso de Linux y R para trabajar con datos de ATAC-seq, ChIP-seq, CUT&RUN y microarreglos de metilación.',
+  instructor: { ...INSTRUCTOR_JOSUE, desc: 'Ingeniero en Biotecnología y bioinformático con experiencia en el análisis de datos NGS, particularmente RNA-seq, ChIP-seq y ATAC-seq.' },
+  fechas: '16, 18, 23, 25 y 30 de Septiembre de 2026',
+  horario: ' 5:00 PM – 7:00 PM (CDMX)',
+  duracion: '10 horas · 5 sesiones de 2 hrs',
+  modalidad: 'En línea · Zoom',
+  incluye: [
+    'Constancia digital de participación.', 
+    'Grabaciones completas', 
+    'Recursos didácticos', 
+    'Actividades prácticas'
+  ],
+
+  temario: [
+    'Fundamentos de epigenómica',
+    'Herramientas computacionales (Linux y R)',
+    'Análisis de accesibilidad de la cromatina (ATAC-seq)',
+    'Mapeo de interacciones proteina-ADN (ChIP-seq y CUT&RUN)',
+    'Perfil global de metilación del ADN (microarreglos de metilación)'
+  ],
+  precios: {
+    columnas: ['Perfil', '🟢 1ª Preventa (20–31 ago) ', '🟡 2ª Preventa (1–10 sep)', '🔴 Últimos días (11–15 sep)','Promoción en pareja (licenciatura)'],
+    filas: [
+      ['Licenciatura*', '$699 MXN / ~$37 USD', '	$799 MXN / ~$42 USD', '$949 MXN / ~$50 USD','$1,199 MXN / ~$63 USD Valido (20–31 ago)'],
+      ['Posgrado*', '$799 MXN / ~$42 USD', '$899 MXN / ~$47 USD', '$1,099 MXN / ~$58 USD'],
+      ['Público general', '$1,099 MXN / ~$58 USD', '	$1,199 MXN / ~$63 USD', '$1,399 MXN / ~$74 USD']
+    ]
+  },
+  pago: PAGO_ESTANDAR,
+  listaInteres: null
+},
+     {
+  id: 'c29',
+  estado: 'activo',
+  titulo: 'Metagenómica desde cero: análisis de 16S / 18S / ITS',
+  img: 'media/cursos/2026/c29.png',
+  descripcion: 'Este curso teórico-práctico está diseñado para estudiantes, tesistas, investigadores y profesionales que desean aprender paso a paso el análisis bioinformático de datos de secuenciación de amplicones, desde los archivos crudos hasta la caracterización e interpretación de comunidades microbianas. No es necesario contar con experiencia avanzada previa. Durante las sesiones abordaremos el flujo de análisis combinando fundamentos teóricos con ejercicios prácticos y herramientas ampliamente utilizadas en investigación.',
+  instructor: { ...INSTRUCTOR_JOSE, desc: 'Bioinformático, instructor y consultor especializado en análisis metagenómicos y datos ómicos.' },
+  fechas: '8, 10, 15 y 17 de Septiembre de 2026',
+  horario: ' 5:00 PM – 8:00 PM (CDMX)',
+  duracion: '12 horas · 4 sesiones de 3 hrs',
+  modalidad: 'En línea · Zoom',
+  incluye: [
+    'Constancia digital de participación.', 
+    '4 sesiones en vivo', 
+    'Acceso a las grabaciones', 
+    'Ejercicios prácticos guiados',
+    'Recursos y material didáctico',
+    'Comandos y recursos utilizados durante el curso'
+  ],
+
+  temario: [
+    'Fundamentos de secuenciación de nueva generación',
+    'Fundamentos de Linux aplicados a bioinformática',
+    'Archivos de secuenciación y formatos FASTQ',
+    'Control de calidad con FastQC, MultiQC y NanoPlot',
+    'Filtrado y trimming con Trimmomatic y NanoFilt',
+    'Alineamiento de lecturas con STAR',
+    'Procesamiento de datos de secuenciación Illumina',
+    'Análisis de lecturas largas de Oxford Nanopore',
+    'Ensamblado con Flye y Canu',
+    'Procesamiento y mejoramiento de ensamblados con Medaka'
+  ],
+  precios: {
+    columnas: ['Perfil', '🟢 1ª Preventa ', '🟡 Precio regular ', '🔴 Últimos días'],
+    filas: [
+      ['Licenciatura*', '$799 MXN / $40 USD', '$899 MXN / $45 USD', '--'],
+      ['Posgrado*', '$899 MXN / $45 USD', '$999 MXN / $50 USD', '--'],
+      ['Público general', '$1,249 MXN / $63 USD', '$1,399 MXN / $70 USD', '--']
+    ]
+  },
+  pago: PAGO_ESTANDAR,
+  listaInteres: null
+},
+   {
+  id: 'c28',
+  estado: 'finalizado',
+  titulo: 'Análisis de datos de secuenciación Illumina y Oxford Nanopore desde cero',
+  img: 'media/cursos/2026/c28.png',
+  descripcion: 'Este taller está dirigido a estudiantes, tesistas, investigadores y profesionales interesados en comenzar a analizar datos de secuenciación de lecturas cortas y largas mediante herramientas ampliamente utilizadas en bioinformática.',
+  instructor: { ...INSTRUCTOR_JOSE, desc: 'Bioinformático, instructor y consultor especializado en análisis metagenómicos y datos ómicos.' },
+  fechas: '28 y 29 de Agosto de 2026',
+  horario: '9:00 AM – 1:00 PM (CDMX)',
+  duracion: '8 horas · 2 sesiones de 4 hrs',
+  modalidad: 'En línea · Zoom',
+  incluye: 'Constancia digital de participación.',
+  temario: [
+    'Fundamentos de secuenciación de nueva generación',
+    'Fundamentos de Linux aplicados a bioinformática',
+    'Archivos de secuenciación y formatos FASTQ',
+    'Control de calidad con FastQC, MultiQC y NanoPlot',
+    'Filtrado y trimming con Trimmomatic y NanoFilt',
+    'Alineamiento de lecturas con STAR',
+    'Procesamiento de datos de secuenciación Illumina',
+    'Análisis de lecturas largas de Oxford Nanopore',
+    'Ensamblado con Flye y Canu',
+    'Procesamiento y mejoramiento de ensamblados con Medaka'
+  ],
+  precios: {
+    columnas: ['Perfil', '🟢 1ª Preventa ', '🟡 2ª Preventa ', '🔴 Últimos días'],
+    filas: [
+      ['Licenciatura*', '--', '--', '--'],
+      ['Posgrado*', '--', '--', '--'],
+      ['Público general', ' $499 MXN', ' $699 MXN', '--']
+    ]
+  },
+  pago: PAGO_ESTANDAR,
+  listaInteres: null
+},
+  {
+  id: 'c27',
+  estado: 'finalizado',
+  titulo: 'RNA-seq desde cero: análisis bioinformático del transcriptoma',
+  img: 'media/cursos/2026/c27.png',
+  descripcion: 'Este curso está dirigido a estudiantes, tesistas, investigadores y profesionales interesados en aprender el flujo de trabajo completo del análisis de RNA-seq, desde la obtención de los datos hasta la interpretación biológica de los resultados.',
+  instructor: { ...INSTRUCTOR_JOSE, desc: 'Bioinformático, instructor y consultor especializado en análisis metagenómicos y datos ómicos.' },
+  fechas: '18, 20, 25 y 27 de Agosto de 2026',
+  horario: '5:00 PM – 8:00 PM (CDMX)',
+  duracion: '12 horas · 4 sesiones de 3 hrs',
+  modalidad: 'En línea · Zoom',
+  incluye: 'Constancia digital de participación.',
+  temario: [
+    'Fundamentos de RNA-seq y análisis transcriptómico',
+    'Descarga y control de calidad de datos de secuenciación',
+    'Alineamiento y cuantificación de genes',
+    'Análisis de expresión diferencial en R',
+    'Visualización de resultados (PCA, Volcano Plot y Heatmap)',
+    'Enriquecimiento funcional (GO y KEGG)',
+    'Interpretación biológica de resultados'
+  ],
+  precios: {
+    columnas: ['Perfil', '🟢 1ª Preventa ', '🟡 2ª Preventa ', '🔴 Últimos días'],
+    filas: [
+      ['Licenciatura*', '--', '$799 MXN', '--'],
+      ['Posgrado*', '--', '$899 MXN', '--'],
+      ['Público general', '--', '$1,249 MXN', '--']
+    ]
+  },
+  pago: PAGO_ESTANDAR,
+  listaInteres: null
+},
+          {
+  id: 'c26',
+  estado: 'finalizado',
+  titulo: 'Análisis de enriquecimiento funcional desde cero',
+  img: 'media/cursos/2026/c26.png',
+  descripcion: 'Este curso está diseñado para estudiantes, tesistas, investigadores y profesionales que desean aprender a realizar e interpretar análisis de enriquecimiento funcional utilizando R y bases de datos biológicas como GO, KEGG y Reactome.',
+  instructor: { ...INSTRUCTOR_JOSE, desc: 'Bioinformático, instructor y consultor especializado en análisis metagenómicos y datos ómicos.' },
+  fechas: '28, 29, 30 y 31 de Julio de 2026',
+  horario: '9:00 AM – 12:00 PM (CDMX)',
+  duracion: '12 horas · 4 sesiones de 3 hrs',
+  modalidad: 'En línea · Zoom',
+  incluye: 'Constancia digital de participación.',
+  temario: [
+    'Fundamentos de R',
+    'Preparación y manejo de listas de genes',
+    'Análisis de enriquecimiento funcional basado en ontologías y vías: GO, KEGG y Reactome',
+    'Análisis de enriquecimiento basado en rankings: GSEA',
+    'Redes de interacción proteína–proteína',
+    'Redes de interacción miRNA–Gen'
+  ],
+  precios: {
+    columnas: ['Perfil', '🟢 1ª Preventa ', '🟡 2ª Preventa ', '🔴 Últimos días'],
+    filas: [
+      ['Licenciatura*', '$699 MXN', '$799 MXN', '$899 MXN'],
+      ['Posgrado*', '$799 MXN', '$899 MXN', '$999 MXN'],
+      ['Público general', '$1,099 MXN', '$1,249 MXN', '$1,399 MXN']
+    ]
+  },
+  pago: PAGO_ESTANDAR,
+  listaInteres: null
+},
+        {
+  id: 'c25',
+  estado: 'finalizado',
+  titulo: 'Bioestadística en R para datos biológicos y ómicos',
+  img: 'media/cursos/2026/c25.png',
+  descripcion: 'Este curso está diseñado para estudiantes, tesistas, investigadores y profesionales que desean comprender y aplicar herramientas estadísticas en R para el análisis e interpretación de datos biológicos. El enfoque será práctico, con ejemplos aplicados a contextos biológicos y ómicos, buscando que aprendas qué prueba estadística utilizar, cómo aplicarla en R y cómo interpretar correctamente los resultados para tesis, reportes, artículos o proyectos de investigación.',
+  instructor: { ...INSTRUCTOR_JOSE, desc: 'Bioinformático, instructor y consultor especializado en análisis metagenómicos y datos ómicos.' },
+  fechas: '21, 22, 23 y 24 de Julio de 2026',
+  horario: '9:00 AM – 12:00 PM (CDMX)',
+  duracion: '12 horas · 4 sesiones de 3 hrs',
+  modalidad: 'En línea · Zoom',
+  incluye: 'Constancia digital de participación.',
+  temario: [
+    'Fundamentos de bioestadística aplicada a datos biológicos',
+    'Introducción al análisis de datos en R',
+    'Estadística descriptiva y visualización de datos biológicos',
+    'Pruebas estadísticas para comparación de grupos',
+    'Correlación, regresión y asociación entre variables biológicas',
+    'Aplicaciones en datos ómicos e interpretación de resultados'
+  ],
+  precios: {
+    columnas: ['Perfil', '🟢 1ª Preventa ', '🟡 2ª Preventa ', '🔴 Últimos días'],
+    filas: [
+      ['Licenciatura*', '$699 MXN', '$799 MXN', '$899 MXN'],
+      ['Posgrado*', '$799 MXN', '$899 MXN', '$999 MXN'],
+      ['Público general', '$1,099 MXN', '$1,249 MXN', '$1,399 MXN']
+    ]
+  },
+  pago: PAGO_ESTANDAR,
+  listaInteres: 'https://forms.gle/cobd8LAWsWufyV1n9'
+},
+      {
+  id: 'c24',
+  estado: 'finalizado',
+  titulo: 'Introducción a  la programación en  en bioinformática Linux, R y Python desde cero',
+  img: 'media/cursos/2026/c24.png',
+  descripcion: '¿Quieres aprender a programar desde cero y entender cómo se utilizan Linux, R y Python en bioinformática para analizar datos biológicos y genómicos? Este curso está diseñado para quienes no tienen experiencia previa en programación, pero desean adquirir las bases necesarias para desenvolverse en análisis bioinformáticos reales, comprendiendo qué se hace, cómo se hace y por qué.',
+  instructor: { ...INSTRUCTOR_JOSE, desc: 'Bioinformático, instructor y consultor especializado en análisis metagenómicos y datos ómicos.' },
+  fechas: '14, 15, 16 y 17 de Julio 2026',
+  horario: '9:00 AM – 12:00 PM (CDMX)',
+  duracion: '16 horas · 4 sesiones de 4 hrs',
+  modalidad: 'En línea · Zoom',
+  incluye: ' Sesiones grabadas, Recursos y material didáctico, Ejercicios prácticos guiados, Introducción a buenas prácticas en programación científica, Constancia digital de participación.',
+  temario: [
+    'Fundamentos de programación aplicada a la bioinformática',
+    'Linux y uso de la línea de comandos',
+    'R para análisis de datos biológicos',
+    'Python para procesamiento de datos genómicos',
+    'ntegración de lenguajes de programación en flujos de trabajo bioinformáticos',
+    'Automatización básica de flujos de trabajo'
+  ],
+  precios: {
+    columnas: ['Perfil', '🟢 1ª Preventa ', '🟡 2ª Preventa ', '🔴 Últimos días'],
+    filas: [
+      ['Licenciatura*', '$760 MXN', '$855 MXN', '$950 MXN'],
+      ['Posgrado*', '$880 MXN', '$990 MXN', '$1,099 MXN'],
+      ['Público general', '$1,120 MXN', '$1,260 MXN', '$1,399 MXN']
+    ]
+  },
+  pago: PAGO_ESTANDAR,
+  listaInteres: null
+},
+    {
+  id: 'c23',
+  estado: 'finalizado',
+  titulo: 'Modelos de Inteligencia Artificial en Bioinformática',
+  img: 'media/cursos/2026/c23.png',
+  descripcion: 'Esta iniciativa busca acercar el aprendizaje de la inteligencia artificial aplicada a biología y medicina a estudiantes y profesionales de las ciencias biológicas, médicas, computacionales y áreas afines, sin necesidad de experiencia previa.',
+  instructor: { ...INSTRUCTOR_JOSE, desc: 'Bioinformático, instructor y consultor especializado en análisis metagenómicos y datos ómicos.' },
+  fechas: '8, 9, 10, 11 y 12 de Julio 2026',
+  horario: '9:00 AM – 2:00 PM (CDMX)',
+  duracion: '12 horas · 4 sesiones de 3 hrs',
+  modalidad: 'En línea · Zoom',
+  incluye: 'Constancia opcional adquiriendo nuestro paquete completo.',
+  temario: [
+    'Día 1 — Introducción a la IA en Bioinformática',
+    'Día 2 — Introducción práctica a Python',
+    'Día 3 — Machine Learning con scikit-learn',
+    'Día 4 — Aplicación de IA a datos biológicos reales',
+    'Día 5 — Proyecto colaborativo integrador'
+  ],
+  precios: {
+    columnas: ['Perfil', '🟢 1ª Preventa ', '🟡 2ª Preventa ', '🔴 Últimos días'],
+    filas: [
+      ['Licenciatura*', 'GRATUITO', 'GRATUITO', 'GRATUITO'],
+      ['Posgrado*', 'GRATUITO', 'GRATUITO', 'GRATUITO'],
+      ['Público general', 'GRATUITO', 'GRATUITO', 'GRATUITO']
+    ]
+  },
+  pago: PAGO_ESTANDAR,
+  listaInteres: null
+},
+  {
+  id: 'c22',
+  estado: 'finalizado',
   titulo: 'Metagenómica avanzada con Illumina y Oxford Nanopore',
   img: 'media/cursos/2026/c22.png',
   descripcion: 'Aprenderás a analizar datos metagenómicos utilizando tecnologías modernas como Illumina y Oxford Nanopore, desde el procesamiento de archivos FASTQ hasta la interpretación biológica de microbiomas complejos. Trabajaremos con datos reales y herramientas bioinformáticas actuales utilizadas en investigación.',
@@ -68,7 +375,7 @@ const CURSOS = [
   },
     {
     id: 'c20',
-    estado: 'activo',
+    estado: 'finalizado',
     titulo: 'Metagenómica 16S paso a paso con datos reales, sin necesidad de experiencia previa.',
     img: 'media/cursos/2026/c20.jpg',
     descripcion: 'En este curso intensivo aprenderás el flujo completo de análisis de datos metagenómicos (16S), desde archivos crudos hasta la interpretación biológica de resultados.',
@@ -698,13 +1005,13 @@ function buildCTAs(c) {
         <button class="modal-cta cta-whatsapp" onclick="window.open('https://wa.me/5215643236165','_blank')">
           <i class="fab fa-whatsapp"></i> Inscribirme por WhatsApp
         </button>
-        <button class="modal-cta cta-email" onclick="window.open('mailto:hola@genomicstracksolutions.com','_blank')">
-          <i class="fas fa-envelope"></i> Escribir por correo
+        <button class="modal-cta cta-email" onclick="window.open('https://www.paypal.com/paypalme/joseaovandor','_blank')">
+          <i class="fab fa-paypal"></i> Pagar via Paypal
         </button>
       </div>`;
   }
-  let btns = `<button class="modal-cta cta-email" onclick="window.open('mailto:hola@genomicstracksolutions.com','_blank')">
-    <i class="fas fa-envelope"></i> Notificarme de próxima edición
+  let btns = `<button class="modal-cta cta-email" onclick="window.open('https://www.paypal.com/paypalme/joseaovandor','_blank')">
+    <i class="fab fa-paypal"></i> Pagar via Paypal
   </button>`;
   if (c.listaInteres) {
     btns += `<button class="modal-cta cta-lista" onclick="window.open('${c.listaInteres}','_blank')">
@@ -741,6 +1048,12 @@ function renderCursos() {
       </div>`;
 
     // MODAL
+const incluyeHTML = c.incluye
+  ? `<div class="modal-section-title"><i class="fas fa-gift"></i> ¿Qué incluye?</div>
+     <div class="incluye-box">
+       <ul class="incluye-list">${(Array.isArray(c.incluye) ? c.incluye : [c.incluye]).map(i => `<li><i class="fas fa-check-circle"></i>${i}</li>`).join('')}</ul>
+     </div>`
+  : '';
     const temarioHTML = c.temario
       ? `<div class="modal-section-title"><i class="fas fa-list-ul"></i> Temario</div>
          <ul class="temario-list">${c.temario.map(t => `<li>${t}</li>`).join('')}</ul>`
@@ -775,9 +1088,7 @@ function renderCursos() {
               <div class="info-chip"><label>Modalidad</label><span>${c.modalidad}</span></div>
             </div>
 
-            <div class="modal-section-title"><i class="fas fa-gift"></i> ¿Qué incluye?</div>
-            <div class="incluye-box"><i class="fas fa-check-circle"></i>${c.incluye}</div>
-
+            ${incluyeHTML}
             ${temarioHTML}
             ${buildPrecios(c.precios)}
             ${buildPago(c.pago)}
