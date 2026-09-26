@@ -1,0 +1,12 @@
+{
+  "name": "genomicstrack-site",
+  "private": true,
+  "version": "2026.9.24",
+  "description": "GenomicsTrack Solutions website and private news proxy",
+  "engines": { "node": ">=20" },
+  "scripts": {
+    "start": "node server.cjs",
+    "dev": "node server.cjs",
+    "test": "node --test tests/catalog.test.cjs tests/contact.test.cjs tests/server.test.cjs"
+  }
+}

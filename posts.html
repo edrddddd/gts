@@ -1,125 +1,50 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es" class="no-js">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>GenomicsTrack Solutions</title>
-  <link rel="stylesheet" href="estilos.css" />
-  <link rel="stylesheet" href="publicacionesfb.css" />
-  <link rel="stylesheet" href="noticias.css" />
-  <script src="menu.js" defer></script> 
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
-  <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-  <div id="fb-root"></div>
-  <script async defer crossorigin="anonymous" src="https://connect.facebook.net/es_LA/sdk.js#xfbml=1&version=v23.0"></script>
-  <script src="contact-button.js"></script>
-  <link rel="stylesheet" href="contact-button.css">
-  <link rel="icon" href="/gts.ico" type="image/x-icon">
-  <link rel="shortcut icon" href="/gts.ico" type="image/x-icon">
-  
-
-
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Noticias y novedades | GenomicsTrack Solutions</title>
+  <meta name="description" content="Novedades, cursos y publicaciones de GenomicsTrack Solutions. Sigue nuestra comunidad de bioinformática y ciencias genómicas.">
+  <!-- SITE:HEAD -->
+<link rel="stylesheet" href="site.css?v=6be213ba47c3"><link rel="icon" href="gts.ico"><meta name="theme-color" content="#164e3e"><script src="site.js?v=845a4783f92d" defer></script><meta property="og:type" content="website"><meta property="og:locale" content="es_MX"><meta name="twitter:card" content="summary_large_image"><meta property="og:site_name" content="GenomicsTrack Solutions"><meta property="og:title" content="Noticias y novedades | GenomicsTrack Solutions"><meta property="og:description" content="Novedades, cursos y publicaciones de GenomicsTrack Solutions. Sigue nuestra comunidad de bioinformática y ciencias genómicas."><link rel="canonical" href="https://www.genomicstracksolutions.com/posts.html"><meta property="og:url" content="https://www.genomicstracksolutions.com/posts.html"><meta property="og:image" content="https://www.genomicstracksolutions.com/media/optimized/logos/fondo%20frase.webp">
+<!-- /SITE:HEAD -->
+  <link rel="stylesheet" href="news.css?v=dcf2d2a31631">
+  <script src="noticias.js?v=381d0531eec4" defer></script>
 </head>
-
 <body>
-
-<div id="loader">
-  <img src="media/logos/load.png" alt="Logo GenomicsTrack" />
-</div>
-
-  <header id="main-header" class="transparent">
-    <div class="header-contenido">
-      <div class="header-col left">
-        <a href="index.html" class="logo">
-          <img id="logo-img" src="media/logos/load2.png" alt="Logo GenomicsTrack" class="logo" />
-        </a>
+  <!-- SITE:HEADER -->
+<a class="skip-link" href="#main-content">Saltar al contenido</a><header class="site-header"><div class="container header-inner"><a class="brand" href="index.html" aria-label="GenomicsTrack Solutions · Inicio"><img src="media/optimized/logos/load3.webp" width="43" height="43" alt=""><span><strong>GenomicsTrack</strong><small>Solutions</small></span></a><button class="menu-button" id="menu-toggle" type="button" aria-label="Abrir menú de navegación" aria-expanded="false" aria-controls="site-navigation">Menú <span class="menu-glyph" aria-hidden="true"><span></span><span></span></span></button><nav class="site-nav" id="site-navigation" aria-label="Navegación principal"><a href="cursos.html">Cursos</a><a href="servicios.html">Servicios</a><a href="acercade.html">Nosotros</a><a href="posts.html" aria-current="page">Noticias</a><a class="button" href="contacto.html">Hablemos <span aria-hidden="true">↗</span></a></nav></div></header><div id="menu-backdrop" class="menu-backdrop" hidden></div>
+<!-- /SITE:HEADER -->
+  <main id="main-content">
+    <section class="page-hero">
+      <div class="container">
+        <p class="eyebrow">Nuestra comunidad</p>
+        <h1>La ciencia sigue.<br>Nosotros te contamos.</h1>
+        <p>Convocatorias, recursos y lo que está pasando en GenomicsTrack.</p>
+        <a class="button button-secondary" href="https://www.facebook.com/profile.php?id=645692701952356" target="_blank" rel="noopener noreferrer">Seguir en Facebook ↗</a>
       </div>
-      <div class="header-col center">
-        <nav id="main-nav">
-          <ul>
-            <li><a href="index.html">Inicio</a></li>
-            <li><a href="posts.html">Noticias</a></li>
-            <li><a href="cursos.html">Cursos</a></li>
-            <li><a href="contacto.html">Contacto</a></li>
-            <li><a href="acercade.html">Acerca</a></li>
-          </ul>
-        </nav>
+    </section>
+    <section class="section" aria-labelledby="news-title">
+      <div class="container">
+        <div class="section-heading">
+          <div><p class="eyebrow">Al día</p><h2 id="news-title">Últimas publicaciones</h2></div>
+          <p class="muted">Desde nuestra página de Facebook.</p>
+        </div>
+        <div class="news-status-wrap">
+          <p id="news-status" class="muted" role="status" aria-live="polite">Consulta nuestras novedades directamente en Facebook.</p>
+          <button id="news-retry" class="button button-secondary" type="button" hidden>Volver a intentar</button>
+        </div>
+        <div id="gt-grid-container" class="news-grid" aria-busy="false"></div>
+        <noscript><p class="notice">Activa JavaScript para ver las publicaciones aquí o visita nuestra página de Facebook.</p></noscript>
+        <div class="news-follow">
+          <p>Más conversaciones, nuevas ideas y próximos encuentros.</p>
+          <a class="text-link" href="https://www.facebook.com/profile.php?id=645692701952356" target="_blank" rel="noopener noreferrer">Ver todas las publicaciones en Facebook ↗</a>
+        </div>
       </div>
-      <div class="header-col right">
-        <button id="menu-toggle" class="menu-toggle"><i class="fas fa-bars"></i></button>
-      </div>
-    </div>
-  </header>
-  <section class="contenedor-frase">
-    <img src="media/logos/axy.png" alt="Fondo con frase" class="imagen-fondo2" />
-    <div class="frase-superpuesta2">
-      <font color="#ff8c00">NOTICIAS</font>
-    </div>
-  </section>
-  </section>
-  <main>
-    
-<section id="gt-feed">
-  <div class="gt-feed-header">
-    <h2>Últimas publicaciones</h2>
-    <div class="gt-accent-line"></div>
-    <p>Novedades y actualizaciones de GenomicsTrack Solutions</p>
-  </div>
-
-  <div id="gt-grid-container">
-    <!-- Estado de carga inicial -->
-    <div class="gt-loading" id="gt-loader">
-      <div class="gt-spinner"></div>
-      <span>Cargando publicaciones...</span>
-    </div>
-  </div>
-
-  <div class="gt-ver-todas">
-    <a
-      href="https://www.facebook.com/profile.php?id=645692701952356"
-      target="_blank"
-      rel="noopener noreferrer"
-      class="gt-btn"
-    >
-      <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" viewBox="0 0 24 24">
-        <path d="M24 12.073C24 5.405 18.627 0 12 0S0 5.405 0 12.073C0 18.1 4.388 23.094 10.125 24v-8.437H7.078v-3.49h3.047V9.41c0-3.025 1.792-4.697 4.533-4.697 1.312 0 2.686.236 2.686.236v2.97h-1.513c-1.491 0-1.956.93-1.956 1.883v2.27h3.328l-.532 3.49h-2.796V24C19.612 23.094 24 18.1 24 12.073z"/>
-      </svg>
-      Ver todas las publicaciones en Facebook
-    </a>
-  </div>
-</section>
-
-<script src="https://static.elfsight.com/platform/platform.js" defer></script>
-<div class="contact-icon" id="contactBtn" role="button" aria-label="Ir a contacto" tabindex="0">
-  <span class="tooltip-contacto" id="tooltipContacto">¿Necesitas ayuda?</span>
-  <i class="fa-solid fa-phone fa-shake"></i>
-</div>
-  <script src="/js/contact-button.js"></script>
-
+    </section>
   </main>
-  <footer>
-    <p>&copy; 2026 GenomicsTrack Solutions. Todos los derechos reservados.</p>
-    <div class="redes">
-      <a href="https://www.facebook.com/profile.php?id=61574893912022" target="_blank">
-        <i class="fa-brands fa-facebook"></i>
-      </a>
-      <a href="https://api.whatsapp.com/send?phone=%2B5215643236165&context=AffIR-qZ85KCQ-WQyJYthoqDW9X3a7QLGbCI3ZKR_ueger4SFzB6Fp0-BK6Kuq63gA1DMaQaivnvAFDDPiYgySaP-AXqrXriYjXkCawVjNZ1f107IOGNc2uwovRnyxldJeoVKU22uUT6wp6YJVCkfMiIeA&source=FB_Page&app=facebook&entry_point=page_cta&fbclid=IwY2xjawKQa2dleHRuA2FlbQIxMABicmlkETFxWG1DUFNPZWF2UE13NnV3AR7ngPdb3R60TfUKg-UZMyev0pNxMnfAvRc_xD85NZUtqodSbcaell6nK1mBDw_aem_HbKKU1F7v38Jhio9C_ezSA" target="_blank">
-        <i class="fa-brands fa-whatsapp"></i>
-      </a>
-      <a href="https://www.instagram.com/genomicstracksolutions/" target="_blank">
-        <i class="fa-brands fa-instagram"></i>
-      </a>
-            <a href="https://www.linkedin.com/company/genomicstrack-solutions/" target="_blank">
-        <i class="fa-brands fa-linkedin"></i>
-      </a>
-    </div>
-  </footer>
-  <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
-<script>
-  AOS.init();
-</script>
-<script src="noticias.js"></script>
+  <!-- SITE:FOOTER -->
+<footer class="site-footer"><div class="container"><div class="footer-top"><div class="footer-intro"><a class="brand" href="index.html" aria-label="GenomicsTrack Solutions · Inicio"><img src="media/optimized/logos/load2.webp" width="43" height="43" alt=""><span><strong>GenomicsTrack</strong><small>Solutions</small></span></a><p>Bioinformática para avanzar tu investigación.<br>Desde Latinoamérica, en colaboración contigo.</p></div><div class="footer-links"><h2>Explora</h2><a href="cursos.html">Cursos y formación</a><a href="servicios.html">Servicios bioinformáticos</a><a href="acercade.html">Acerca de nosotros</a><a href="posts.html">Noticias</a></div><div class="footer-links"><h2>Conversemos</h2><a href="contacto.html">Solicitar información</a><a href="pagos.html">Inscripciones y pagos</a><a href="mailto:hola@genomicstracksolutions.com">hola@genomicstracksolutions.com</a><a href="https://wa.me/5215643236165" target="_blank" rel="noopener noreferrer">WhatsApp ↗</a></div></div><div class="footer-bottom"><p>© 2026 GenomicsTrack Solutions.</p><div class="footer-social"><a href="https://www.facebook.com/profile.php?id=61574893912022" target="_blank" rel="noopener noreferrer">Facebook ↗</a><a href="https://www.instagram.com/genomicstracksolutions/" target="_blank" rel="noopener noreferrer">Instagram ↗</a><a href="https://www.linkedin.com/company/genomicstrack-solutions/" target="_blank" rel="noopener noreferrer">LinkedIn ↗</a></div></div></div></footer>
+<!-- /SITE:FOOTER -->
 </body>
 </html>
-

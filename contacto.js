@@ -1,1 +1,144 @@
-function _0x1c7a(){const _0x2f876d=['test','pais','style','Selecciona\x20un\x20área.','.error','forEach','5STsysK','push','<div\x20class=\x22error-box\x22>','tiempo','institucion','</div>','asunto','?text=','\x0a\x20\x20-\x20País:\x20','servicio','<br>','•\x20El\x20teléfono\x20solo\x20debe\x20contener\x20dígitos.','1376092CqufQO','813372UbudGY','\x0a\x20\x20-\x20Correo:\x20','37jWjGUu','País\x20requerido.','•\x20El\x20campo\x20\x22','red','\x22\x20es\x20obligatorio.','18130068OFWIQP','Asunto\x20requerido.','trim','correo','&body=','querySelectorAll','10YaldyB','5215643236165','\x0a\x20\x20-\x20Tiempo\x20estimado:\x20','1524966bhrojm','href','\x0a\x20\x20-\x20Teléfono:\x20','telefono','borderColor','location','\x0a\x20\x20-\x20Servicio:\x20','184OvKBnP','mailto:hola@genomicstracksolutions.com?subject=','error-','cargo','Cargo\x20requerido.','https://wa.me/','value','innerText','previousElementSibling','getElementById','\x0a\x20\x20','\x0a\x20\x20-\x20Mensaje:\x20','textContent','join','26194cSoseZ','innerHTML','\x0a\x20\x20-\x20Cargo\x20actual:\x20','area','\x0a\x20\x20-\x20Institución:\x20','Institución\x20requerida.','532485mTWPsl','171934gCAsmx','nombre','\x0a\x20\x20\x0a\x20\x20🧪\x20Información\x20del\x20proyecto\x0a\x20\x20-\x20Área\x20relacionada:\x20','mensaje','Mensaje\x20requerido.','Selecciona\x20un\x20servicio.','input,\x20select,\x20textarea'];_0x1c7a=function(){return _0x2f876d;};return _0x1c7a();}(function(_0xf3ca6e,_0x1d5286){const _0x24e7a7=_0x2586,_0x406130=_0xf3ca6e();while(!![]){try{const _0x48ad7e=parseInt(_0x24e7a7(0x207))/0x1*(-parseInt(_0x24e7a7(0x1e4))/0x2)+-parseInt(_0x24e7a7(0x205))/0x3+parseInt(_0x24e7a7(0x204))/0x4*(parseInt(_0x24e7a7(0x1f8))/0x5)+-parseInt(_0x24e7a7(0x215))/0x6+-parseInt(_0x24e7a7(0x1eb))/0x7*(parseInt(_0x24e7a7(0x1d6))/0x8)+parseInt(_0x24e7a7(0x1ea))/0x9*(parseInt(_0x24e7a7(0x212))/0xa)+parseInt(_0x24e7a7(0x20c))/0xb;if(_0x48ad7e===_0x1d5286)break;else _0x406130['push'](_0x406130['shift']());}catch(_0x506f57){_0x406130['push'](_0x406130['shift']());}}}(_0x1c7a,0x745a0));function mostrarError(_0x362259,_0xd791a){const _0x2cdf8c=_0x2586;document[_0x2cdf8c(0x1df)](_0x2cdf8c(0x1d8)+_0x362259)['textContent']=_0xd791a;}function _0x2586(_0xdc9c60,_0x320230){const _0x1c7a32=_0x1c7a();return _0x2586=function(_0x258644,_0x2a9eb7){_0x258644=_0x258644-0x1d2;let _0x220de5=_0x1c7a32[_0x258644];return _0x220de5;},_0x2586(_0xdc9c60,_0x320230);}function limpiarErrores(){const _0x521ff3=_0x2586,_0xb35564=document[_0x521ff3(0x211)](_0x521ff3(0x1f6));_0xb35564[_0x521ff3(0x1f7)](_0x5ddeeb=>_0x5ddeeb[_0x521ff3(0x1e2)]='');}function validarFormulario(){const _0x5a1d86=_0x2586;limpiarErrores();let _0x37a5b0=!![];const _0x19452c=document['getElementById'](_0x5a1d86(0x1ec))[_0x5a1d86(0x1dc)]['trim'](),_0x215c55=document[_0x5a1d86(0x1df)](_0x5a1d86(0x20f))['value']['trim'](),_0x297df1=document[_0x5a1d86(0x1df)](_0x5a1d86(0x1d2))[_0x5a1d86(0x1dc)]['trim'](),_0x328df2=document[_0x5a1d86(0x1df)](_0x5a1d86(0x1f3))[_0x5a1d86(0x1dc)][_0x5a1d86(0x20e)](),_0x437534=document['getElementById'](_0x5a1d86(0x1fc))[_0x5a1d86(0x1dc)][_0x5a1d86(0x20e)](),_0x30ec06=document[_0x5a1d86(0x1df)](_0x5a1d86(0x1d9))['value'][_0x5a1d86(0x20e)](),_0x20d3e6=document[_0x5a1d86(0x1df)](_0x5a1d86(0x1e7))[_0x5a1d86(0x1dc)][_0x5a1d86(0x20e)](),_0x428c6a=document[_0x5a1d86(0x1df)](_0x5a1d86(0x1fb))[_0x5a1d86(0x1dc)][_0x5a1d86(0x20e)](),_0x4b6e5b=document[_0x5a1d86(0x1df)]('asunto')[_0x5a1d86(0x1dc)]['trim'](),_0x4c773f=document[_0x5a1d86(0x1df)](_0x5a1d86(0x201))[_0x5a1d86(0x1dc)][_0x5a1d86(0x20e)](),_0xf11e01=document[_0x5a1d86(0x1df)](_0x5a1d86(0x1ee))[_0x5a1d86(0x1dc)][_0x5a1d86(0x20e)](),_0xaf4172=/^[^\s@]+@[^\s@]+\.[^\s@]+$/,_0x4c0266=/^\d{7,15}$/;if(!_0x19452c)mostrarError(_0x5a1d86(0x1ec),'Nombre\x20requerido.'),_0x37a5b0=![];if(!_0x215c55||!_0xaf4172[_0x5a1d86(0x1f2)](_0x215c55))mostrarError('correo','Correo\x20inválido.'),_0x37a5b0=![];if(!_0x297df1||!_0x4c0266[_0x5a1d86(0x1f2)](_0x297df1))mostrarError(_0x5a1d86(0x1d2),'Teléfono\x20inválido.'),_0x37a5b0=![];if(!_0x328df2)mostrarError('pais',_0x5a1d86(0x208)),_0x37a5b0=![];if(!_0x437534)mostrarError(_0x5a1d86(0x1fc),_0x5a1d86(0x1e9)),_0x37a5b0=![];if(!_0x30ec06)mostrarError('cargo',_0x5a1d86(0x1da)),_0x37a5b0=![];if(!_0x20d3e6)mostrarError('area',_0x5a1d86(0x1f5)),_0x37a5b0=![];if(!_0x428c6a)mostrarError(_0x5a1d86(0x1fb),'Selecciona\x20un\x20tiempo\x20estimado.'),_0x37a5b0=![];if(!_0x4b6e5b)mostrarError('asunto',_0x5a1d86(0x20d)),_0x37a5b0=![];if(!_0x4c773f)mostrarError('servicio',_0x5a1d86(0x1f0)),_0x37a5b0=![];if(!_0xf11e01)mostrarError(_0x5a1d86(0x1ee),_0x5a1d86(0x1ef)),_0x37a5b0=![];return _0x37a5b0;}function enviarCorreo(){const _0x220287=_0x2586;if(!validarFormulario())return;const _0x5c8b6f=document[_0x220287(0x1df)](_0x220287(0x1ec))['value'][_0x220287(0x20e)](),_0x1b0c6b=document[_0x220287(0x1df)](_0x220287(0x20f))['value']['trim'](),_0x4bff6b=document['getElementById']('telefono')[_0x220287(0x1dc)][_0x220287(0x20e)](),_0x2a7888=document[_0x220287(0x1df)]('pais')[_0x220287(0x1dc)]['trim'](),_0x45d838=document[_0x220287(0x1df)](_0x220287(0x1fc))['value'][_0x220287(0x20e)](),_0x246a79=document[_0x220287(0x1df)](_0x220287(0x1d9))[_0x220287(0x1dc)]['trim'](),_0x4ce30a=document[_0x220287(0x1df)]('area')[_0x220287(0x1dc)][_0x220287(0x20e)](),_0x20eaa8=document[_0x220287(0x1df)]('tiempo')['value']['trim'](),_0x3bc974=document[_0x220287(0x1df)](_0x220287(0x1fe))[_0x220287(0x1dc)][_0x220287(0x20e)](),_0xd64877=document[_0x220287(0x1df)]('servicio')[_0x220287(0x1dc)][_0x220287(0x20e)](),_0xe5a2d6=document['getElementById'](_0x220287(0x1ee))['value'][_0x220287(0x20e)](),_0x557b5d='\x0a\x20\x20🧬\x20Formulario\x20de\x20contacto\x20-\x20GenomicsTrack\x20Solutions\x20🧬\x0a\x20\x20\x0a\x20\x20👤\x20Datos\x20personales\x0a\x20\x20-\x20Nombre:\x20'+_0x5c8b6f+_0x220287(0x206)+_0x1b0c6b+_0x220287(0x217)+_0x4bff6b+_0x220287(0x200)+_0x2a7888+_0x220287(0x1e8)+_0x45d838+_0x220287(0x1e6)+_0x246a79+_0x220287(0x1ed)+_0x4ce30a+_0x220287(0x214)+_0x20eaa8+'\x0a\x20\x20\x0a\x20\x20📝\x20Detalle\x20del\x20contacto\x0a\x20\x20-\x20Asunto:\x20'+_0x3bc974+'\x0a\x20\x20-\x20Servicio:\x20'+_0xd64877+'\x0a\x20\x20-\x20Mensaje:\x20'+_0xe5a2d6+_0x220287(0x1e0),_0x32b8f1=_0x220287(0x1d7)+encodeURIComponent(_0x3bc974)+_0x220287(0x210)+encodeURIComponent(_0x557b5d);window[_0x220287(0x1d4)][_0x220287(0x216)]=_0x32b8f1;}function enviarWhatsApp(){const _0x58b53d=_0x2586;if(!validarFormulario())return;const _0x122194=document[_0x58b53d(0x1df)]('nombre')[_0x58b53d(0x1dc)][_0x58b53d(0x20e)](),_0x409589=document[_0x58b53d(0x1df)](_0x58b53d(0x20f))['value'][_0x58b53d(0x20e)](),_0x4e218f=document['getElementById']('telefono')[_0x58b53d(0x1dc)][_0x58b53d(0x20e)](),_0x3fab4b=document[_0x58b53d(0x1df)]('pais')[_0x58b53d(0x1dc)][_0x58b53d(0x20e)](),_0x45a7de=document['getElementById'](_0x58b53d(0x1fc))[_0x58b53d(0x1dc)]['trim'](),_0x2625ce=document[_0x58b53d(0x1df)]('cargo')[_0x58b53d(0x1dc)]['trim'](),_0x4cf003=document[_0x58b53d(0x1df)]('area')[_0x58b53d(0x1dc)][_0x58b53d(0x20e)](),_0x4a517f=document['getElementById'](_0x58b53d(0x1fb))[_0x58b53d(0x1dc)][_0x58b53d(0x20e)](),_0x6337f4=document[_0x58b53d(0x1df)](_0x58b53d(0x1fe))[_0x58b53d(0x1dc)]['trim'](),_0x136cf8=document[_0x58b53d(0x1df)]('servicio')['value'][_0x58b53d(0x20e)](),_0x590686=document['getElementById']('mensaje')[_0x58b53d(0x1dc)][_0x58b53d(0x20e)](),_0x407182='\x0a\x20\x20🧬\x20Formulario\x20de\x20contacto\x20-\x20GenomicsTrack\x20Solutions\x20🧬\x0a\x20\x20\x0a\x20\x20👤\x20Datos\x20personales\x0a\x20\x20-\x20Nombre:\x20'+_0x122194+_0x58b53d(0x206)+_0x409589+_0x58b53d(0x217)+_0x4e218f+_0x58b53d(0x200)+_0x3fab4b+_0x58b53d(0x1e8)+_0x45a7de+_0x58b53d(0x1e6)+_0x2625ce+'\x0a\x20\x20\x0a\x20\x20🧪\x20Información\x20del\x20proyecto\x0a\x20\x20-\x20Área\x20relacionada:\x20'+_0x4cf003+_0x58b53d(0x214)+_0x4a517f+'\x0a\x20\x20\x0a\x20\x20📝\x20Detalle\x20del\x20contacto\x0a\x20\x20-\x20Asunto:\x20'+_0x6337f4+_0x58b53d(0x1d5)+_0x136cf8+_0x58b53d(0x1e1)+_0x590686+_0x58b53d(0x1e0),_0x10581f=_0x58b53d(0x213),_0x1d6ee7=_0x58b53d(0x1db)+_0x10581f+_0x58b53d(0x1ff)+encodeURIComponent(_0x407182);window['open'](_0x1d6ee7,'_blank');}function validarFormulario(){const _0xfff05c=_0x2586,_0x1f65a1=[_0xfff05c(0x1ec),_0xfff05c(0x20f),_0xfff05c(0x1f3),_0xfff05c(0x1e7),_0xfff05c(0x1fb),_0xfff05c(0x201),'mensaje'];let _0x54c5d3=!![],_0x597e58=[];document[_0xfff05c(0x211)](_0xfff05c(0x1f1))[_0xfff05c(0x1f7)](_0x3e585b=>{const _0x121269=_0xfff05c;_0x3e585b[_0x121269(0x1f4)][_0x121269(0x1d3)]='';}),_0x1f65a1[_0xfff05c(0x1f7)](_0x4406ba=>{const _0x35fe4a=_0xfff05c,_0x8e7bcf=document['getElementById'](_0x4406ba);!_0x8e7bcf['value'][_0x35fe4a(0x20e)]()&&(_0x8e7bcf[_0x35fe4a(0x1f4)]['borderColor']=_0x35fe4a(0x20a),_0x597e58['push'](_0x35fe4a(0x209)+(_0x8e7bcf[_0x35fe4a(0x1de)]?.[_0x35fe4a(0x1dd)]||_0x4406ba)+_0x35fe4a(0x20b)),_0x54c5d3=![]);});const _0x37219b=document[_0xfff05c(0x1df)]('telefono')[_0xfff05c(0x1dc)][_0xfff05c(0x20e)]();_0x37219b&&!/^\d+$/[_0xfff05c(0x1f2)](_0x37219b)&&(document['getElementById'](_0xfff05c(0x1d2))[_0xfff05c(0x1f4)][_0xfff05c(0x1d3)]='red',_0x597e58[_0xfff05c(0x1f9)](_0xfff05c(0x203)),_0x54c5d3=![]);const _0x467241=document[_0xfff05c(0x1df)]('mensajes-error');if(!_0x54c5d3)return _0x467241[_0xfff05c(0x1e5)]=_0xfff05c(0x1fa)+_0x597e58[_0xfff05c(0x1e3)](_0xfff05c(0x202))+_0xfff05c(0x1fd),![];return _0x467241[_0xfff05c(0x1e5)]='',!![];}
+(function (root, factory) {
+  'use strict';
+  const api = factory();
+  if (typeof module === 'object' && module.exports) module.exports = api;
+  else root.ContactFlow = api;
+  if (typeof document !== 'undefined') api.init(document, root);
+})(typeof window !== 'undefined' ? window : globalThis, function () {
+  'use strict';
+  const EMAIL = 'hola@genomicstracksolutions.com';
+  const PHONE = '5215643236165';
+  const SERVICES = Object.freeze({ consultoria: 'Consultoría para mi proyecto', analisis: 'Análisis bioinformático', cursos: 'Cursos e inscripciones', capacitacion: 'Capacitación para mi equipo', pipelines: 'Scripts y pipelines', proyectos: 'Proyecto bioinformático', otro: 'Otra consulta' });
+  const clean = (value, max = 3000) => String(value || '').trim().slice(0, max);
+  function mexicoNow(now = new Date()) {
+    const parts = new Intl.DateTimeFormat('en-CA', { timeZone: 'America/Mexico_City', year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit', hourCycle: 'h23' }).formatToParts(now);
+    const values = Object.fromEntries(parts.map(part => [part.type, part.value]));
+    return { date: `${values.year}-${values.month}-${values.day}`, time: `${values.hour}:${values.minute}` };
+  }
+  function validDate(value) {
+    if (!/^\d{4}-\d{2}-\d{2}$/.test(value)) return false;
+    const date = new Date(`${value}T12:00:00Z`);
+    return Number.isFinite(date.getTime()) && date.toISOString().slice(0, 10) === value;
+  }
+  function readContext(search) {
+    const query = new URLSearchParams(search || '');
+    const service = clean(query.get('servicio'), 80).normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase();
+    const aliases = { consultoria: 'consultoria', consultoria_bioinformatica: 'consultoria', analisis: 'analisis', 'analisis bioinformatico': 'analisis', cursos: 'cursos', curso: 'cursos', capacitacion: 'capacitacion', capacitaciones: 'capacitacion', pipelines: 'pipelines', proyectos: 'proyectos', otro: 'otro' };
+    const course = clean(query.get('curso'), 80);
+    const date = clean(query.get('fecha'), 10);
+    const time = clean(query.get('hora'), 5);
+    return { curso: course, servicio: Object.hasOwn(aliases, service) ? aliases[service] : (course ? 'cursos' : (date || time ? 'consultoria' : '')), fecha: validDate(date) ? date : '', hora: /^([01]\d|2[0-3]):[0-5]\d$/.test(time) ? time : '', motivo: clean(query.get('motivo'), 1000), perfil: clean(query.get('perfil'), 100) };
+  }
+  function validate(values, now = new Date()) {
+    const errors = {};
+    const name = String(values.nombre || '').trim();
+    const email = String(values.correo || '').trim();
+    if (!name) errors.nombre = 'Escribe tu nombre.';
+    else if (name.length > 120) errors.nombre = 'Usa un máximo de 120 caracteres.';
+    if (!email || email.length > 254 || !/^[^\s@]+@[^\s@.]+(?:\.[^\s@.]+)+$/.test(email) || email.includes('..') || /^[.@]|\.@/.test(email)) errors.correo = 'Escribe un correo válido, por ejemplo nombre@institucion.mx.';
+    if (!Object.hasOwn(SERVICES, values.servicio)) errors.servicio = 'Selecciona el tipo de consulta.';
+    if (!clean(values.mensaje)) errors.mensaje = 'Cuéntanos brevemente qué necesitas.';
+    else if (String(values.mensaje).length > 3000) errors.mensaje = 'Usa un máximo de 3000 caracteres.';
+    if (values.servicio === 'consultoria' && (values.fecha || values.hora)) {
+      const current = mexicoNow(now);
+      if (!validDate(values.fecha || '')) errors.fecha = 'Elige una fecha válida para solicitar un horario.';
+      else if (values.fecha < current.date) errors.fecha = 'Elige hoy o una fecha futura.';
+      if (!/^([01]\d|2[0-3]):[0-5]\d$/.test(values.hora || '')) errors.hora = 'Indica una hora válida en formato de 24 horas (CDMX).';
+      else if (values.fecha === current.date && values.hora <= current.time) errors.hora = 'Elige una hora futura de Ciudad de México.';
+    }
+    return errors;
+  }
+  function courseLabel(context, catalog) {
+    const course = catalog && catalog.getById(context.curso);
+    return course ? course.titulo : context.curso;
+  }
+  function buildMessage(values, context = {}, catalog) {
+    const lines = ['Consulta · GenomicsTrack Solutions', '', `Nombre: ${clean(values.nombre, 120)}`, `Correo: ${clean(values.correo, 254)}`, `Servicio: ${SERVICES[values.servicio] || 'Otra consulta'}`];
+    if (clean(values.institucion)) lines.push(`Institución: ${clean(values.institucion, 160)}`);
+    if (context.curso) lines.push(`Curso: ${courseLabel(context, catalog)} (${context.curso})`);
+    if (context.perfil) lines.push(`Perfil: ${context.perfil}`);
+    if (context.motivo) lines.push(`Motivo de la consulta: ${context.motivo}`);
+    if (values.servicio === 'consultoria' && values.fecha && values.hora) lines.push(`Horario solicitado: ${values.fecha} a las ${values.hora} (Ciudad de México; sujeto a confirmación)`);
+    lines.push('', 'Mensaje:', clean(values.mensaje));
+    return lines.join('\n');
+  }
+  function shareLinks(message, context = {}, catalog) {
+    const subject = context.curso ? `Consulta: ${courseLabel(context, catalog)}` : 'Consulta · GenomicsTrack Solutions';
+    return { whatsapp: `https://wa.me/${PHONE}?text=${encodeURIComponent(message)}`, email: `mailto:${EMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(message)}` };
+  }
+  function init(doc, win) {
+    const form = doc.getElementById('formContacto');
+    if (!form) return;
+    const byId = id => doc.getElementById(id);
+    const context = readContext(win.location.search);
+    const catalog = win.CourseCatalog;
+    const fields = ['nombre', 'correo', 'servicio', 'institucion', 'fecha', 'hora', 'mensaje'];
+    const readValues = () => Object.fromEntries(fields.map(field => [field, byId(field).value.trim()]));
+    byId('servicio').value = context.servicio;
+    byId('fecha').value = context.fecha;
+    byId('fecha').min = mexicoNow().date;
+    byId('hora').value = context.hora;
+    if (context.motivo) byId('mensaje').value = context.motivo;
+    if (context.curso) {
+      byId('contact-context').textContent = `Tu consulta sobre: ${courseLabel(context, catalog)}${context.perfil ? ` · Perfil: ${context.perfil}` : ''}`;
+      byId('contact-context').hidden = false;
+    }
+    const updateSchedule = () => { byId('schedule-fields').hidden = byId('servicio').value !== 'consultoria'; };
+    updateSchedule();
+    byId('servicio').addEventListener('change', updateSchedule);
+    form.addEventListener('input', event => {
+      const error = byId(`error-${event.target.id}`);
+      if (error) { error.textContent = ''; event.target.removeAttribute('aria-invalid'); }
+    });
+    form.addEventListener('submit', event => {
+      event.preventDefault();
+      const values = readValues();
+      const errors = validate(values);
+      fields.forEach(field => {
+        const error = byId(`error-${field}`);
+        if (error) error.textContent = errors[field] || '';
+        if (errors[field]) byId(field).setAttribute('aria-invalid', 'true');
+        else byId(field).removeAttribute('aria-invalid');
+      });
+      const errorFields = Object.keys(errors);
+      byId('form-errors').hidden = !errorFields.length;
+      if (errorFields.length) {
+        byId('form-errors').textContent = 'Revisa los campos señalados antes de continuar.';
+        byId(errorFields[0]).focus();
+        return;
+      }
+      const message = buildMessage(values, context, catalog);
+      const links = shareLinks(message, context, catalog);
+      byId('message-preview').value = message;
+      byId('send-whatsapp').href = links.whatsapp;
+      byId('send-email').href = links.email;
+      byId('share-status').textContent = 'Abrir el canal o copiar el mensaje no confirma su envío.';
+      byId('contact-form-panel').hidden = true;
+      byId('contact-review').hidden = false;
+      byId('step-details').removeAttribute('aria-current');
+      byId('step-review').setAttribute('aria-current', 'step');
+      byId('contact-review').focus({ preventScroll: true });
+      byId('contact-review').scrollIntoView({ block: 'start', behavior: 'instant' });
+    });
+    byId('edit-message').addEventListener('click', () => {
+      byId('contact-review').hidden = true;
+      byId('contact-form-panel').hidden = false;
+      byId('step-review').removeAttribute('aria-current');
+      byId('step-details').setAttribute('aria-current', 'step');
+      byId('nombre').focus();
+    });
+    byId('copy-message').addEventListener('click', async () => {
+      try {
+        if (!win.navigator.clipboard) throw new Error('Clipboard unavailable');
+        await win.navigator.clipboard.writeText(byId('message-preview').value);
+        byId('share-status').textContent = 'Mensaje copiado. Pégalo y envíalo por tu canal preferido.';
+      } catch (_) {
+        byId('message-preview').focus();
+        byId('message-preview').select();
+        byId('share-status').textContent = 'Seleccionamos el mensaje. Usa la opción Copiar de tu dispositivo o Ctrl+C / Cmd+C.';
+      }
+    });
+    byId('contact-form-panel').hidden = false;
+  }
+  return { EMAIL, PHONE, SERVICES, mexicoNow, validDate, readContext, validate, buildMessage, shareLinks, init };
+});
