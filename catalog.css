@@ -19,6 +19,8 @@
 .course-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.35rem; }
 .course-card { position: relative; display: flex; flex-direction: column; min-width: 0; padding: clamp(1.4rem, 2.4vw, 2.25rem); background: #fff; border: 1px solid #dae2d8; border-radius: 16px; transition: border-color .18s ease, box-shadow .18s ease; }
 .course-card:hover { border-color: #a1bba8; box-shadow: 0 10px 32px rgb(22 78 62 / 5%); }
+.course-card-poster { display: block; margin-bottom: 1.5rem; border-radius: 9px; overflow: hidden; background: #edf1e8; }
+.course-card-poster img { display: block; width: 100%; height: auto; object-fit: contain; }
 .course-card-top { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: .6rem; margin-bottom: 1.4rem; }
 .course-category { font-size: .72rem; text-transform: uppercase; letter-spacing: .12em; color: #4f715c; font-weight: 750; }
 .course-status { font-size: .72rem; font-weight: 650; display: inline-flex; align-items: center; gap: .4rem; border-radius: 5px; padding: .3rem .55rem; line-height: 1.35; width: fit-content; }
@@ -45,7 +47,11 @@
 .catalog-guidance-inner { display: flex; align-items: center; justify-content: space-between; gap: 2rem; }
 .catalog-guidance-inner p:not(.eyebrow) { max-width: 680px; color: #526b5c; line-height: 1.7; }
 .catalog-guidance-inner .button { flex-shrink: 0; }
-.course-detail-hero { padding-block: 2.5rem 4rem; }
+.course-detail-hero { padding-block: 2.5rem 2rem; }
+.course-section-links { display: flex; flex-wrap: wrap; gap: .6rem; margin-top: 2rem; }
+.course-section-links a { display: inline-flex; align-items: center; min-height: 44px; padding: .6rem 1rem; border: 1px solid #bbcdbb; border-radius: 7px; background: #fff; color: #164e3e; font-size: .88rem; font-weight: 650; text-decoration: none; }
+.course-section-links a:hover { background: #e0ebdc; }
+.course-program { padding-top: 3rem; }
 .course-back { display: inline-flex; align-items: center; gap: .6rem; font-size: .85rem; margin-bottom: 3rem; }
 .course-detail-heading { display: grid; grid-template-columns: minmax(0, 1fr) minmax(280px, 350px); gap: clamp(2rem, 5vw, 6rem); align-items: start; }
 .course-detail-heading h1 { font-size: clamp(2.2rem, 4.25vw, 4.3rem); line-height: 1.12; letter-spacing: -.045em; margin-block: 1rem 1.7rem; }
@@ -77,13 +83,13 @@
 .course-info-card .course-meta { margin-block: 1.5rem; }
 .course-info-card .button { display: flex; justify-content: center; text-align: center; width: 100%; margin-block: 1rem; }
 .course-info-card > .text-link { font-size: .82rem; }
-.course-poster { margin-top: 1.4rem; font-size: .87rem; color: #4f6758; }
-.course-poster summary, .course-prices summary { padding: .9rem 0; cursor: pointer; font-weight: 600; }
-.course-poster img { display: block; width: 100%; height: auto; border-radius: 9px; margin-block: 1rem; }
+.course-poster { margin: 0 0 1.4rem; font-size: .87rem; color: #4f6758; }
+.course-poster img { display: block; width: 100%; height: auto; border-radius: 9px; margin-bottom: .85rem; }
 .course-poster p { font-size: .8rem; }
-.course-tuition { background: #edf1e8; }
+.course-tuition { min-width: 0; }
+.course-detail-content { min-width: 0; }
 .course-tuition h2 { font-size: clamp(1.8rem, 3vw, 2.5rem); margin-block: .75rem 1.6rem; }
-.course-prices { border-block: 1px solid #cad7c8; }
+.course-prices { min-width: 0; }
 .course-prices > .muted { font-size: .9rem; line-height: 1.6; }
 .course-table-scroll { overflow-x: auto; width: 100%; margin-block: 1rem; }
 .course-table-scroll:focus { outline: 2px solid #477a55; outline-offset: 3px; }
@@ -97,7 +103,10 @@
   .course-detail-heading, .course-detail-layout { grid-template-columns: 1fr; }
   .course-edition-card { max-width: 100%; }
   .course-detail-heading { gap: 1.5rem; }
-  .course-detail-aside { display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr); gap: 1.5rem; align-items: start; }
+  .course-detail-aside { display: contents; }
+  .course-poster, .course-source { grid-row: auto; }
+  .course-poster { order: -2; max-width: 600px; margin-inline: auto; }
+  .course-source { order: -1; }
   .catalog-guidance-inner { align-items: flex-start; flex-direction: column; }
 }
 @media (max-width: 640px) {
@@ -112,7 +121,6 @@
   .course-card { padding: 1.35rem; }
   .course-card h2 { font-size: 1.5rem; }
   .course-detail-heading h1 { font-size: clamp(2.1rem, 8.5vw, 3rem); }
-  .course-detail-aside { display: block; }
   .course-back { margin-bottom: 2rem; }
   .course-edition-card { padding: 1.4rem; }
 }

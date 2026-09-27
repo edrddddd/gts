@@ -68,14 +68,23 @@
 .payment-context .button { width: 100%; justify-content: center; text-align: center; margin-top: 20px; }
 .payment-context .text-link { display: inline-block; margin-top: 18px; }
 .payment-context .notice { font-size: 14px; }
-.payment-methods { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; margin: 30px 0; }
-.payment-method { border: 1px solid #dbe5e3; border-radius: 10px; padding: 18px 14px; }
-.payment-method strong { display: block; color: #183b3d; }
-.payment-method span { display: block; color: #63726f; font-size: 12px; margin-top: 6px; }
+.payment-methods { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; margin: 24px 0 16px; }
+.payment-method { min-width: 0; border: 1px solid #dbe5e3; border-radius: 12px; padding: 22px 18px; background: #fff; }
+.payment-method-label { margin: 0 0 10px; color: #63726f; font-size: 12px; line-height: 1.5; }
+.payment-method h4 { margin: 0; color: #183b3d; font-size: 21px; }
+.payment-method dl { margin: 20px 0 0; }
+.payment-method dl > div + div { margin-top: 16px; }
+.payment-method dt { margin-bottom: 6px; color: #63726f; font-size: 12px; }
+.payment-method dd { margin: 0; color: #183b3d; font-size: 14px; line-height: 1.6; overflow-wrap: anywhere; }
+.payment-account { display: block; padding: 9px 8px; border-radius: 5px; background: #edf3ed; color: #123f3c; font-size: 14px; font-variant-numeric: tabular-nums; user-select: all; -webkit-user-select: all; }
+.payment-method-paypal { grid-column: 1 / -1; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 18px; }
+.payment-method-paypal > div { flex: 1 1 240px; }
+.payment-method-paypal p:not(.payment-method-label) { margin: 10px 0 0; color: #63726f; font-size: 13px; line-height: 1.6; }
+.payment-method-paypal .button { font-size: 14px; }
 .payment-steps { counter-reset: payment; padding: 0; margin: 28px 0; list-style: none; }
 .payment-steps li { display: grid; grid-template-columns: 40px minmax(0, 1fr); gap: 16px; padding: 0 0 28px; }
 .payment-steps li::before { counter-increment: payment; content: counter(payment, decimal-leading-zero); display: grid; place-items: center; width: 36px; height: 36px; background: #eaf2e9; color: #0c685a; border-radius: 50%; font-size: 13px; font-weight: 700; }
 .payment-steps h3 { margin: 3px 0 8px; font-size: 19px; }
 .payment-steps p { margin: 0; font-size: 15px; color: #63726f; line-height: 1.7; }
 @media (max-width: 900px) { .flow-layout, .payment-layout { grid-template-columns: minmax(0, 1fr); gap: 30px; } .flow-sidebar { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 24px; } .flow-faq { gap: 30px; } }
-@media (max-width: 600px) { .flow-fields, .flow-sidebar, .flow-faq { grid-template-columns: minmax(0, 1fr); } .flow-fields { gap: 18px; } .flow-progress { gap: 14px; } .flow-progress li { font-size: 12px; } .flow-progress span { margin-right: 3px; width: 24px; height: 24px; } .flow-form { padding: 23px 20px; } .flow-schedule { padding: 15px; } .flow-actions { flex-direction: column; align-items: stretch; } .flow-actions .button { justify-content: center; text-align: center; } .payment-context { padding: 24px 20px; } .payment-methods { grid-template-columns: minmax(0, 1fr); } .payment-method { display: flex; align-items: center; justify-content: space-between; gap: 14px; } .payment-method span { margin: 0; } }
+@media (max-width: 600px) { .flow-fields, .flow-sidebar, .flow-faq { grid-template-columns: minmax(0, 1fr); } .flow-fields { gap: 18px; } .flow-progress { gap: 14px; } .flow-progress li { font-size: 12px; } .flow-progress span { margin-right: 3px; width: 24px; height: 24px; } .flow-form { padding: 23px 20px; } .flow-schedule { padding: 15px; } .flow-actions { flex-direction: column; align-items: stretch; } .flow-actions .button { justify-content: center; text-align: center; } .payment-context { padding: 24px 20px; } .payment-methods { grid-template-columns: minmax(0, 1fr); } .payment-method-paypal .button { width: 100%; justify-content: center; } }

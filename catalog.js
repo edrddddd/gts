@@ -23,6 +23,15 @@
     const course = catalog.getById(detail.dataset.courseDetail);
     if (!course) return;
     const state = catalog.getStatus(course);
+    // Keep the selected course through shared header/footer links as well as CTAs.
+    document.querySelectorAll('a[href]').forEach(link => {
+      const url = new URL(link.href, location.href);
+      if (url.origin !== location.origin || !/\/(contacto|pagos)\.html$/.test(url.pathname)) return;
+      url.searchParams.set('curso', course.id);
+      url.searchParams.set('servicio', 'cursos');
+      if (!url.searchParams.has('motivo')) url.searchParams.set('motivo', motives[state]);
+      link.href = url.pathname + url.search + url.hash;
+    });
     detail.querySelectorAll('[data-course-status]').forEach(el => updateStatus(el, state));
     detail.querySelectorAll('[data-course-notice]').forEach(el => { el.textContent = notices[state]; });
     detail.querySelectorAll('[data-course-cta]').forEach(link => {

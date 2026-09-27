@@ -35,6 +35,12 @@
           <form id="formContacto" novalidate>
             <div id="form-errors" class="flow-error-summary" role="alert" tabindex="-1" hidden></div>
             <div class="flow-fields">
+              <div id="contact-course-field" class="flow-field flow-field-wide" hidden>
+                <label for="contact-course">Curso seleccionado</label>
+                <textarea id="contact-course" name="curso-seleccionado" rows="2" readonly aria-describedby="contact-course-edition"></textarea>
+                <p id="contact-course-edition" class="flow-hint"></p>
+                <a id="contact-course-detail" class="text-link" href="cursos.html" hidden>Volver a la información del curso ↗</a>
+              </div>
               <div class="flow-field">
                 <label for="nombre">Nombre completo <span aria-hidden="true">*</span></label>
                 <input id="nombre" name="nombre" autocomplete="name" maxlength="120" required aria-describedby="error-nombre">
@@ -102,8 +108,8 @@
         <div class="flow-contact-card">
           <p class="eyebrow">Contacto directo</p><h2>Personas detrás<br>de tus datos.</h2>
           <p>Compartamos el contexto de tu proyecto para encontrar el punto de partida.</p>
-          <a class="flow-channel" href="mailto:hola@genomicstracksolutions.com"><span>Correo electrónico</span><strong>hola@genomicstracksolutions.com</strong><span aria-hidden="true">↗</span></a>
-          <a class="flow-channel" href="https://wa.me/5215643236165" target="_blank" rel="noopener noreferrer"><span>WhatsApp</span><strong>+52 1 56 4323 6165</strong><span aria-hidden="true">↗</span></a>
+          <a class="flow-channel" data-course-channel="email" href="mailto:hola@genomicstracksolutions.com"><span>Correo electrónico</span><strong>hola@genomicstracksolutions.com</strong><span aria-hidden="true">↗</span></a>
+          <a class="flow-channel" data-course-channel="whatsapp" href="https://wa.me/5215643236165" target="_blank" rel="noopener noreferrer"><span>WhatsApp</span><strong>+52 1 56 4323 6165</strong><span aria-hidden="true">↗</span></a>
           <p class="flow-timezone">Horarios de referencia: Ciudad de México.</p>
         </div>
         <div class="flow-expectations"><h3>¿Qué sigue?</h3><ol class="flow-steps">

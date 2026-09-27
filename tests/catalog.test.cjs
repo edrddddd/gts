@@ -71,7 +71,8 @@ test('verified course corrections preserve source links without invented prices'
   assert.equal(catalog.getById('c30').inicio, '2026-09-19');
   assert.equal(catalog.getById('c30').fin, '2026-09-27');
   assert.equal(catalog.getStatus(catalog.getById('c30'), '2026-09-28'), 'finalizado');
-  assert.equal(catalog.getById('c30').cartelVigente, false);
+  assert.equal(catalog.getById('c30').cartelVigente, true);
+  assert.ok(catalog.getById('c30').img, 'The corrected September edition has its own published poster');
   const meta = catalog.getById('c29');
   assert.equal(meta.temario.length, 9);
   assert.match(meta.temario[0], /16S, 18S e ITS/);
@@ -97,4 +98,57 @@ test('the catalog works as a browser global without CommonJS', () => {
   assert.equal(context.CourseCatalog.courses.length, 33);
   assert.equal(context.CourseCatalog.labelStatus('en-curso'), 'En curso');
   assert.equal(context.CourseCatalog.getStatus(context.CourseCatalog.getById('c30'), '2026-09-24'), 'en-curso');
+});
+
+function readableText(html) {
+  return html.replace(/<[^>]*>/g, ' ')
+    .replace(/&nbsp;/g, ' ').replace(/&quot;/g, '"').replace(/&#(?:0*39|x0*27);/gi, "'")
+    .replace(/&lt;/g, '<').replace(/&gt;/g, '>').replace(/&amp;/g, '&')
+    .replace(/\s+/g, ' ').trim();
+}
+
+function initiallyVisible(html) {
+  // A collapsed details block was hiding the published syllabus and prices.
+  return html.replace(/<details\b[^>]*>[\s\S]*?<\/details>/gi, '');
+}
+
+test('every published syllabus and pricing stage is visible without expanding details', () => {
+  for (const course of source) {
+    const html = fs.readFileSync(path.join(root, 'cursos', course.id + '.html'), 'utf8');
+    const visible = initiallyVisible(html);
+    if (Array.isArray(course.temario) && course.temario.length) {
+      assert.match(visible, /<h2[^>]*>Temario del curso<\/h2>/, course.id);
+      const topics = [...visible.matchAll(/<li\b[^>]*>([\s\S]*?)<\/li>/gi)].map(match => readableText(match[1]));
+      for (const topic of course.temario) {
+        assert.ok(topics.includes(readableText(topic)), `${course.id}: visible topic ${topic}`);
+      }
+    }
+    const rows = course.precios && course.precios.filas;
+    const tables = [...visible.matchAll(/<table\b[^>]*>([\s\S]*?)<\/table>/gi)];
+    if (Array.isArray(rows) && rows.length) {
+      assert.match(visible, /<h2[^>]*>Precios por etapa<\/h2>/, course.id);
+      assert.equal(tables.length, 1, `${course.id}: one visible pricing table`);
+      const actual = [...tables[0][1].matchAll(/<tr\b[^>]*>([\s\S]*?)<\/tr>/gi)].map(row =>
+        [...row[1].matchAll(/<t[dh]\b[^>]*>([\s\S]*?)<\/t[dh]>/gi)].map(cell => readableText(cell[1])));
+      const expected = [course.precios.columnas, ...rows].map(row => row.map(value => value === '--' ? 'No publicado' : readableText(String(value))));
+      assert.deepEqual(actual, expected, `${course.id}: preserve all published profiles, stages and prices`);
+    } else {
+      assert.equal(tables.length, 0, `${course.id}: do not invent prices without published rows`);
+    }
+  }
+});
+
+test('published course posters are visible in the catalog cards and individual pages', () => {
+  const catalogHtml = fs.readFileSync(path.join(root, 'cursos.html'), 'utf8');
+  const cards = [...catalogHtml.matchAll(/<article\b[^>]*>[\s\S]*?<\/article>/gi)].map(match => match[0]);
+  for (const course of source.filter(item => item.img && item.cartelVigente !== false)) {
+    const detail = initiallyVisible(fs.readFileSync(path.join(root, 'cursos', course.id + '.html'), 'utf8'));
+    const poster = detail.match(/<figure\b[^>]*class="[^"]*\bcourse-poster\b[^"]*"[^>]*>[\s\S]*?<\/figure>/i);
+    assert.ok(poster, `${course.id}: a poster visible without opening details`);
+    assert.match(poster[0], /<img\b[^>]*src="[^"\s][^"]*"/, course.id);
+    const card = cards.find(item => item.includes(`cursos/${course.id}.html`));
+    assert.ok(card, `${course.id}: a course catalog card`);
+    assert.match(card, /class="[^"]*\bcourse-card-poster\b/, `${course.id}: poster in catalog card`);
+    assert.match(card, /<img\b[^>]*src="[^"\s][^"]*"/, course.id);
+  }
 });

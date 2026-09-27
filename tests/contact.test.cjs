@@ -86,3 +86,87 @@ test('unknown course reference is retained without accepting query prices', () =
   assert.match(link.searchParams.get('motivo'), /Duda de acceso/);
   assert.equal(payments.paymentState({ precios: { filas: [['Posgrado*', '--']] } }, 'falso', { getStatus: () => 'en-curso' }).profile, '');
 });
+
+test('a course consultation keeps its edition, profile and motive through the payment guide', () => {
+  const catalog = require('../catalog-data.js');
+  for (const id of ['c31', 'c32', 'c33', 'c1']) {
+    const context = contact.readContext(`?curso=${id}&perfil=Posgrado&motivo=Consulta%20de%20inscripci%C3%B3n`);
+    const guide = new URL(contact.paymentUrl(context), 'https://example.test/');
+    assert.equal(guide.searchParams.get('curso'), id);
+    assert.equal(guide.searchParams.get('perfil'), 'Posgrado');
+    const returned = new URL(payments.contactUrl(payments.paymentState(catalog.getById(id), 'Posgrado', catalog), context), 'https://example.test/');
+    const restored = contact.readContext(returned.search);
+    assert.equal(restored.curso, id);
+    assert.equal(restored.perfil, 'Posgrado');
+    assert.equal(restored.motivo, context.motivo);
+  }
+  assert.equal(contact.paymentUrl({}), 'pagos.html');
+  assert.equal(contact.readContext('?curso=%20C32%20').curso, 'c32');
+});
+
+function flowDocument(ids) {
+  function element(tag = 'div') {
+    let currentValue = '';
+    return {
+      tag, children: [], hidden: true, textContent: '', attributes: {}, listeners: {},
+      get value() { return currentValue; },
+      set value(value) {
+        const options = this.children.flatMap(child => child.tag === 'optgroup' ? child.children : [child]);
+        currentValue = tag === 'select' && !options.some(option => option.value === value) ? '' : value;
+      },
+      append(child) { this.children.push(child); },
+      replaceChildren() { this.children = []; currentValue = ''; },
+      setAttribute(key, value) { this.attributes[key] = value; },
+      getAttribute(key) { return this.attributes[key]; },
+      removeAttribute(key) { delete this.attributes[key]; },
+      addEventListener(type, callback) { this.listeners[type] = callback; },
+      focus() {}, scrollIntoView() {}
+    };
+  }
+  const elements = Object.fromEntries(ids.map(id => [id, element(id === 'payment-course' || id === 'payment-profile' ? 'select' : 'div')]));
+  const queries = {};
+  return { elements, queries, getElementById: id => elements[id], createElement: element, querySelectorAll: selector => queries[selector] || [] };
+}
+
+test('payment page selects an incoming course before interaction and updates every consultation link', () => {
+  const original = require('../catalog-data.js');
+  const catalog = { ...original, getStatus: course => original.getStatus(course, '2026-09-27') };
+  for (const id of ['c31', 'c32', 'c33', 'c1']) {
+    const doc = flowDocument(['payment-course', 'payment-profile', 'payment-notice', 'payment-missing', 'payment-course-name', 'payment-course-status', 'payment-amount', 'payment-contact', 'payment-course-link']);
+    const footer = doc.createElement('a');
+    doc.queries['a[href^="contacto.html"]'] = [footer];
+    payments.init(doc, { CourseCatalog: catalog, location: { search: `?curso=${id}&perfil=Posgrado&motivo=Quiero%20inscribirme` } });
+    assert.equal(doc.elements['payment-course'].value, id);
+    assert.equal(doc.elements['payment-profile'].value, 'Posgrado');
+    assert.equal(doc.elements['payment-course-name'].textContent, catalog.getById(id).titulo);
+    assert.equal(new URL(footer.href, 'https://example.test/').searchParams.get('curso'), id);
+    assert.deepEqual(doc.elements['payment-course'].children.map(group => group.label), ['Próximas ediciones', 'En curso', 'Histórico · ediciones finalizadas']);
+    assert.deepEqual(doc.elements['payment-course'].children[0].children.map(option => option.value), ['c32', 'c33']);
+    doc.elements['payment-course'].value = 'c30';
+    doc.elements['payment-course'].listeners.change();
+    assert.equal(new URL(footer.href, 'https://example.test/').searchParams.get('curso'), 'c30');
+    assert.equal(doc.elements['payment-course-name'].textContent, catalog.getById('c30').titulo);
+  }
+});
+
+test('contact page displays the selected course and retains it in payment and direct contact links', () => {
+  const catalog = require('../catalog-data.js');
+  const ids = ['formContacto', 'nombre', 'correo', 'servicio', 'institucion', 'fecha', 'hora', 'mensaje', 'contact-context', 'contact-course-field', 'contact-course', 'contact-course-edition', 'contact-course-detail', 'schedule-fields', 'contact-form-panel', 'edit-message', 'copy-message'];
+  const doc = flowDocument(ids);
+  const guide = doc.createElement('a');
+  const direct = doc.createElement('a');
+  direct.setAttribute('data-course-channel', 'whatsapp');
+  doc.queries['a[href="pagos.html"]'] = [guide];
+  doc.queries['[data-course-channel]'] = [direct];
+  contact.init(doc, { CourseCatalog: catalog, location: { search: '?curso=c33&perfil=Posgrado&motivo=Quiero%20inscribirme' } });
+  assert.equal(doc.elements['contact-course'].value, catalog.getById('c33').titulo);
+  assert.equal(doc.elements['contact-course-field'].hidden, false);
+  assert.equal(doc.elements.servicio.value, 'cursos');
+  assert.match(doc.elements['contact-course-edition'].textContent, /octubre de 2026/);
+  assert.equal(new URL(guide.href, 'https://example.test/').searchParams.get('curso'), 'c33');
+  assert.equal(new URL(guide.href, 'https://example.test/').searchParams.get('perfil'), 'Posgrado');
+  const directMessage = new URL(direct.href).searchParams.get('text');
+  assert.match(directMessage, /RNA-seq.*\(c33\)/);
+  assert.match(directMessage, /Perfil: Posgrado/);
+  assert.match(directMessage, /Quiero inscribirme/);
+});

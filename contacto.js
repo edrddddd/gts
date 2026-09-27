@@ -24,7 +24,8 @@
     const query = new URLSearchParams(search || '');
     const service = clean(query.get('servicio'), 80).normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase();
     const aliases = { consultoria: 'consultoria', consultoria_bioinformatica: 'consultoria', analisis: 'analisis', 'analisis bioinformatico': 'analisis', cursos: 'cursos', curso: 'cursos', capacitacion: 'capacitacion', capacitaciones: 'capacitacion', pipelines: 'pipelines', proyectos: 'proyectos', otro: 'otro' };
-    const course = clean(query.get('curso'), 80);
+    const reference = clean(query.get('curso'), 300);
+    const course = /^c\d+$/i.test(reference) ? reference.toLowerCase() : reference;
     const date = clean(query.get('fecha'), 10);
     const time = clean(query.get('hora'), 5);
     return { curso: course, servicio: Object.hasOwn(aliases, service) ? aliases[service] : (course ? 'cursos' : (date || time ? 'consultoria' : '')), fecha: validDate(date) ? date : '', hora: /^([01]\d|2[0-3]):[0-5]\d$/.test(time) ? time : '', motivo: clean(query.get('motivo'), 1000), perfil: clean(query.get('perfil'), 100) };
@@ -66,6 +67,13 @@
     const subject = context.curso ? `Consulta: ${courseLabel(context, catalog)}` : 'Consulta · GenomicsTrack Solutions';
     return { whatsapp: `https://wa.me/${PHONE}?text=${encodeURIComponent(message)}`, email: `mailto:${EMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(message)}` };
   }
+  function paymentUrl(context = {}) {
+    const query = new URLSearchParams();
+    for (const key of ['curso', 'perfil', 'motivo']) {
+      if (context[key]) query.set(key, context[key]);
+    }
+    return 'pagos.html' + (query.size ? '?' + query.toString() : '');
+  }
   function init(doc, win) {
     const form = doc.getElementById('formContacto');
     if (!form) return;
@@ -80,8 +88,20 @@
     byId('hora').value = context.hora;
     if (context.motivo) byId('mensaje').value = context.motivo;
     if (context.curso) {
-      byId('contact-context').textContent = `Tu consulta sobre: ${courseLabel(context, catalog)}${context.perfil ? ` · Perfil: ${context.perfil}` : ''}`;
+      const course = catalog && catalog.getById(context.curso);
+      byId('contact-context').textContent = `Conservamos el curso que seleccionaste${context.perfil ? ` · Perfil: ${context.perfil}` : ''}.`;
       byId('contact-context').hidden = false;
+      byId('contact-course-field').hidden = false;
+      byId('contact-course').value = courseLabel(context, catalog);
+      byId('contact-course-edition').textContent = course ? `Edición: ${course.fechas}` : `Referencia del curso: ${context.curso}`;
+      byId('contact-course-detail').hidden = !course;
+      if (course) byId('contact-course-detail').href = `cursos/${encodeURIComponent(course.id)}.html`;
+      doc.querySelectorAll('a[href="pagos.html"]').forEach(link => { link.href = paymentUrl(context); });
+      const directMessage = [`Hola, quiero información sobre ${courseLabel(context, catalog)} (${context.curso}).`, context.perfil ? `Perfil: ${context.perfil}` : '', context.motivo].filter(Boolean).join('\n');
+      const directLinks = shareLinks(directMessage, context, catalog);
+      doc.querySelectorAll('[data-course-channel]').forEach(link => {
+        link.href = directLinks[link.getAttribute('data-course-channel')];
+      });
     }
     const updateSchedule = () => { byId('schedule-fields').hidden = byId('servicio').value !== 'consultoria'; };
     updateSchedule();
@@ -140,5 +160,5 @@
     });
     byId('contact-form-panel').hidden = false;
   }
-  return { EMAIL, PHONE, SERVICES, mexicoNow, validDate, readContext, validate, buildMessage, shareLinks, init };
+  return { EMAIL, PHONE, SERVICES, mexicoNow, validDate, readContext, validate, buildMessage, shareLinks, paymentUrl, init };
 });

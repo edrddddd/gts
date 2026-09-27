@@ -52,10 +52,22 @@ def badge(state):
     return f'<span class="badge course-status status-{state}" data-course-status>{LABELS[state]}</span>'
 
 
-def card(course, today):
+def course_image(course, manifest, prefix=""):
+    original = course.get("img", "")
+    if not original or not course.get("cartelVigente", True):
+        return ""
+    img = manifest.get(original, {})
+    dimensions = f' width="{img["width"]}" height="{img["height"]}"' if img.get("width") and img.get("height") else ""
+    return f'<img src="{prefix}{esc(img.get("src", original))}" alt="Cartel informativo de {esc(course["titulo"])}" loading="lazy" decoding="async"{dimensions}>'
+
+
+def card(course, today, manifest):
     state = status(course, today)
     inactive = ' hidden' if state == "finalizado" else ""
+    image = course_image(course, manifest)
+    poster = f'<a class="course-card-poster" href="cursos/{course["id"]}.html" aria-label="Ver cartel y detalles de {esc(course["titulo"])}">{image}</a>' if image else ""
     return f'''<article class="course-card card" data-course-id="{course['id']}"{inactive}>
+      {poster}
       <div class="course-card-top"><span class="course-category">{esc(course['categoria'])}</span>{badge(state)}</div>
       <h2><a href="cursos/{course['id']}.html">{esc(course['titulo'])}</a></h2>
       <p class="course-description">{esc(course['descripcion'])}</p>
@@ -93,12 +105,12 @@ def page(title, content, depth=0, body_attrs=""):
 '''
 
 
-def catalog(courses, today):
+def catalog(courses, today, manifest):
     active_count = sum(status(c, today) != "finalizado" for c in courses)
     categories = sorted({c["categoria"] for c in courses})
     options = "".join(f'<option value="{esc(c)}">{esc(c)}</option>' for c in categories)
     archive = "".join(f'<li><a href="cursos/{c["id"]}.html">{esc(c["titulo"])} · {c["inicio"][:4]}</a></li>' for c in courses if status(c, today) == "finalizado")
-    cards = "\n".join(card(c, today) for c in courses)
+    cards = "\n".join(card(c, today, manifest) for c in courses)
     return page("Cursos de bioinformática", f'''<main id="main-content">
     <section class="page-hero catalog-hero"><div class="container">
       <p class="eyebrow">APRENDE. ANALIZA. APLICA.</p>
@@ -149,15 +161,15 @@ def instructors(course):
 
 def price_table(course, state):
     prices = course.get("precios")
-    if not prices or not any("$" in str(value) for row in prices.get("filas", []) for value in row[1:]):
-        return '<p>El precio de una nueva inscripción se confirma directamente con el equipo según la edición y tu perfil.</p>'
+    if not prices or not prices.get("filas") or not any(str(value).strip() for row in prices["filas"] for value in row):
+        return '<p>Esta edición no tiene una tabla de precios publicada. Consulta el importe y las condiciones con el equipo.</p>'
     columns = prices["columnas"]
     headers = "".join(f'<th scope="col">{esc(c.strip())}</th>' for c in columns)
     rows = []
     for row in prices["filas"]:
         padded = (row + ["—"] * len(columns))[:len(columns)]
         rows.append("<tr>" + "".join(f'<{"th scope=" + chr(34) + "row" + chr(34) if i == 0 else "td"}>{esc(v.strip()) if v.strip() and v.strip() != "--" else "No publicado"}</{"th" if i == 0 else "td"}>' for i, v in enumerate(padded)) + "</tr>")
-    return f'''<details class="course-prices"><summary>Consultar tarifas publicadas de esta edición</summary><p class="muted" data-price-notice>Tarifas de referencia de esta edición; las promociones publicadas pueden haber finalizado. Confirma el importe vigente antes de pagar.</p><div class="course-table-scroll" tabindex="0" role="region" aria-label="Tarifas por perfil; desplaza horizontalmente para ver todas las columnas"><table><caption data-price-caption>{'Tarifas históricas · edición finalizada' if state == 'finalizado' else 'Tarifas publicadas · confirmar vigencia'}</caption><thead><tr>{headers}</tr></thead><tbody>{''.join(rows)}</tbody></table></div><p class="muted">Los importes en USD y las condiciones de cada promoción corresponden a la publicación original. Consulta los requisitos del perfil de estudiante con el equipo.</p></details>'''
+    return f'''<div class="course-prices"><p class="muted" data-price-notice>Tarifas de referencia de esta edición; las promociones publicadas pueden haber finalizado. Confirma el importe vigente antes de pagar.</p><div class="course-table-scroll" tabindex="0" role="region" aria-label="Precios por etapa y perfil; desplaza horizontalmente para ver todas las columnas"><table><caption data-price-caption>{'Tarifas históricas · edición finalizada' if state == 'finalizado' else 'Tarifas publicadas · confirmar vigencia'}</caption><thead><tr>{headers}</tr></thead><tbody>{''.join(rows)}</tbody></table></div><p class="muted">Los importes en USD y las condiciones de cada promoción corresponden a la publicación original. Consulta los requisitos del perfil de estudiante con el equipo.</p></div>'''
 
 
 def detail(course, today, manifest):
@@ -165,26 +177,25 @@ def detail(course, today, manifest):
     syllabus = course.get("temario", [])
     topics = '<ol class="course-syllabus">' + "".join(f'<li><span>{esc(t)}</span></li>' for t in syllabus) + '</ol>' if syllabus else f'<div class="notice"><p>{esc(course.get("temarioNota", "Solicita el temario actualizado al equipo para conocer los contenidos de la próxima edición."))}</p></div>'
     includes = "".join(f'<li>{esc(item)}</li>' for item in course.get("incluye", []))
-    img = manifest.get(course["img"], {})
-    src = img.get("src", course["img"])
-    dimensions = f' width="{img["width"]}" height="{img["height"]}"' if img.get("width") and img.get("height") else ""
-    poster = f'<details class="course-poster"><summary>Ver cartel de esta edición</summary><img src="../{esc(src)}" alt="Cartel de {esc(course["titulo"])}" loading="lazy" decoding="async"{dimensions}><p class="muted">El cartel corresponde a la edición indicada. Consulta disponibilidad y condiciones actuales con el equipo.</p></details>' if src and course.get('cartelVigente', True) else ''
+    image = course_image(course, manifest, "../")
+    poster = f'<figure class="course-poster" id="cartel"><a href="../{esc(course["img"])}" target="_blank" rel="noopener noreferrer" aria-label="Ampliar cartel de {esc(course["titulo"])}">{image}</a><figcaption><a class="text-link" href="../{esc(course["img"])}" target="_blank" rel="noopener noreferrer">Ampliar cartel ↗</a></figcaption></figure>' if image else ''
     if course.get('fuente'):
         poster += f'<p class="course-source"><a class="text-link" href="{esc(course["fuente"])}" target="_blank" rel="noopener noreferrer">Ver convocatoria original ↗</a></p>'
     return page(course["titulo"], f'''<main id="main-content" data-course-detail="{course['id']}">
     <section class="page-hero course-detail-hero"><div class="container">
       <a class="course-back text-link" href="../cursos.html"><span aria-hidden="true">←</span> Explorar todos los cursos</a>
       <div class="course-detail-heading"><div><p class="eyebrow">{esc(course['categoria'])} · {esc(course['modalidad'])}</p><h1>{esc(course['titulo'])}</h1><p class="course-detail-intro">{esc(course['descripcion'])}</p></div><div class="course-edition-card">{badge(state)}<p class="eyebrow">ESTA EDICIÓN</p><p class="edition-dates">{esc(course['fechas'])}</p><p>{esc(course['horario'])}</p><p class="edition-duration">{esc(course['duracion'])}</p><a class="button" data-course-cta href="{esc(contact_link(course, state, '../'))}">{cta_label(state)}</a><p class="edition-note" data-course-notice>{notice(state)}</p></div></div>
+      <nav class="course-section-links" aria-label="Información del curso"><a href="#temario">Temario</a><a href="#precios">Precios por etapa</a><a href="#inscripcion">Inscripción y pago</a></nav>
     </div></section>
-    <section class="section"><div class="container course-detail-layout">
+    <section class="section course-program"><div class="container course-detail-layout">
       <div class="course-detail-content">
-        <section aria-labelledby="syllabus-heading"><p class="eyebrow">EL RECORRIDO</p><h2 id="syllabus-heading">Qué aprenderás</h2>{topics}</section>
+        <section id="temario" aria-labelledby="syllabus-heading"><p class="eyebrow">QUÉ APRENDERÁS</p><h2 id="syllabus-heading">Temario del curso</h2>{topics}</section>
+        <section id="precios" class="course-tuition" aria-labelledby="price-heading"><p class="eyebrow">INFORMACIÓN DE LA EDICIÓN</p><h2 id="price-heading">Precios por etapa</h2>{price_table(course, state)}<p><a class="text-link" href="{esc(contact_link(course, state, '../'))}">Consultar inscripción y tarifas ↗</a></p></section>
         <section aria-labelledby="includes-heading"><p class="eyebrow">RECURSOS PARA APRENDER</p><h2 id="includes-heading">Esta edición incluye</h2><ul class="course-includes">{includes}</ul></section>
         <section aria-labelledby="instructor-heading"><p class="eyebrow">CONOCE A TUS INSTRUCTORES</p><h2 id="instructor-heading">Experiencia que acompaña</h2>{instructors(course)}</section>
       </div>
-      <aside class="course-detail-aside" aria-label="Información para participar"><div class="card course-info-card"><p class="eyebrow">ANTES DE INSCRIBIRTE</p><h2>Todo empieza con una conversación.</h2><p data-course-notice>{notice(state)}</p><dl class="course-meta"><div><dt>Nivel</dt><dd>{esc(course['nivel'])}</dd></div><div><dt>Zona horaria</dt><dd>Ciudad de México</dd></div></dl><a class="button button-secondary" data-course-cta href="{esc(contact_link(course, state, '../'))}">{cta_label(state)}</a><a class="text-link" href="../pagos.html?curso={course['id']}">Cómo confirmar tu inscripción ↗</a></div>{poster}</aside>
+      <aside class="course-detail-aside" aria-label="Cartel e información para participar">{poster}<div class="card course-info-card" id="inscripcion"><p class="eyebrow">INSCRIPCIÓN</p><h2>Información para inscribirte.</h2><p data-course-notice>{notice(state)}</p><dl class="course-meta"><div><dt>Nivel</dt><dd>{esc(course['nivel'])}</dd></div><div><dt>Zona horaria</dt><dd>Ciudad de México</dd></div></dl><a class="button button-secondary" data-course-cta href="{esc(contact_link(course, state, '../'))}">{cta_label(state)}</a><a class="text-link" href="../pagos.html?curso={course['id']}">Cuentas y opciones de pago ↗</a></div></aside>
     </div></section>
-    <section class="section course-tuition"><div class="container"><p class="eyebrow">INFORMACIÓN DE LA EDICIÓN</p><h2>Precios y condiciones</h2>{price_table(course, state)}<p><a class="text-link" href="{esc(contact_link(course, state, '../'))}">Solicitar información actualizada ↗</a></p></div></section>
   </main>''', depth=1)
 
 
@@ -233,7 +244,7 @@ def main():
     payload = json.dumps(courses, ensure_ascii=False, separators=(",", ":"))
     wrapper = "// Generated from data/cursos.json by scripts/build_courses.py.\n(function(root,factory){if(typeof module==='object'&&module.exports){module.exports=factory();}else{root.CourseCatalog=factory();}})(typeof globalThis!=='undefined'?globalThis:this,function(){\n  'use strict';\n  const courses = "
     (ROOT / "catalog-data.js").write_text(wrapper + payload + ";\n" + API, encoding="utf-8")
-    (ROOT / "cursos.html").write_text(catalog(courses, today), encoding="utf-8")
+    (ROOT / "cursos.html").write_text(catalog(courses, today, manifest), encoding="utf-8")
     (ROOT / "cursos").mkdir(exist_ok=True)
     for course in courses:
         (ROOT / "cursos" / (course["id"] + ".html")).write_text(detail(course, today, manifest), encoding="utf-8")

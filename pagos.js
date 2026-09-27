@@ -25,9 +25,23 @@
     if (state.course) query.set('curso', state.course.id);
     else if (originalContext.curso) query.set('curso', originalContext.curso);
     if (state.profile) query.set('perfil', state.profile);
+    else if (!state.course && originalContext.perfil) query.set('perfil', originalContext.perfil);
     const reason = state.status === 'finalizado' ? 'Quiero información sobre una próxima edición y su inscripción.' : 'Quiero confirmar disponibilidad, importe y datos de pago para mi inscripción.';
-    query.set('motivo', originalContext.motivo ? `${originalContext.motivo}\n${reason}` : reason);
+    query.set('motivo', originalContext.motivo || reason);
     return `contacto.html?${query.toString()}`;
+  }
+  function courseGroups(catalog) {
+    const groups = [
+      { status: 'inscripcion', label: 'Próximas ediciones', courses: [] },
+      { status: 'en-curso', label: 'En curso', courses: [] },
+      { status: 'finalizado', label: 'Histórico · ediciones finalizadas', courses: [] }
+    ];
+    catalog.courses.forEach(course => {
+      const group = groups.find(item => item.status === catalog.getStatus(course));
+      if (group) group.courses.push(course);
+    });
+    groups.forEach(group => group.courses.sort((a, b) => group.status === 'inscripcion' ? a.inicio.localeCompare(b.inicio) : b.inicio.localeCompare(a.inicio)));
+    return groups.filter(group => group.courses.length);
   }
   function init(doc, win) {
     const courseSelect = doc.getElementById('payment-course');
@@ -39,14 +53,20 @@
       return;
     }
     const query = new URLSearchParams(win.location.search);
-    const originalContext = { curso: String(query.get('curso') || '').slice(0, 80), motivo: String(query.get('motivo') || '').slice(0, 1000) };
-    catalog.courses.forEach(course => {
-      const option = doc.createElement('option');
-      option.value = course.id;
-      const start = new Date(`${course.inicio}T12:00:00Z`);
-      const edition = new Intl.DateTimeFormat('es-MX', { month: 'long', year: 'numeric', timeZone: 'America/Mexico_City' }).format(start);
-      option.textContent = `${course.titulo} · ${edition}`;
-      courseSelect.append(option);
+    const reference = String(query.get('curso') || '').trim().slice(0, 300);
+    const originalContext = { curso: /^c\d+$/i.test(reference) ? reference.toLowerCase() : reference, perfil: String(query.get('perfil') || '').replace(/\*/g, '').trim().slice(0, 100), motivo: String(query.get('motivo') || '').slice(0, 1000) };
+    courseGroups(catalog).forEach(group => {
+      const optgroup = doc.createElement('optgroup');
+      optgroup.label = group.label;
+      group.courses.forEach(course => {
+        const option = doc.createElement('option');
+        option.value = course.id;
+        const start = new Date(`${course.inicio}T12:00:00Z`);
+        const edition = new Intl.DateTimeFormat('es-MX', { month: 'long', year: 'numeric', timeZone: 'America/Mexico_City' }).format(start);
+        option.textContent = `${course.titulo} · ${edition}`;
+        optgroup.append(option);
+      });
+      courseSelect.append(optgroup);
     });
     const initialCourse = catalog.getById(originalContext.curso);
     if (initialCourse) courseSelect.value = initialCourse.id;
@@ -74,19 +94,23 @@
       byId('payment-course-status').textContent = course ? catalog.labelStatus(state.status) : 'Consulta el catálogo';
       byId('payment-amount').textContent = state.amount;
       byId('payment-notice').textContent = state.notice;
-      byId('payment-contact').href = contactUrl(state, originalContext);
+      const contactHref = contactUrl(state, originalContext);
+      byId('payment-contact').href = contactHref;
+      doc.querySelectorAll('a[href^="contacto.html"]').forEach(link => { link.href = contactHref; });
       byId('payment-course-link').hidden = !course;
       if (course) byId('payment-course-link').href = `cursos/${encodeURIComponent(course.id)}.html`;
     }
-    updateProfiles(String(query.get('perfil') || '').replace(/\*/g, '').trim());
+    updateProfiles(originalContext.perfil);
     render();
     courseSelect.addEventListener('change', () => {
       originalContext.curso = courseSelect.value;
+      originalContext.perfil = '';
+      originalContext.motivo = '';
       byId('payment-missing').hidden = true;
       updateProfiles(byId('payment-profile').value);
       render();
     });
     byId('payment-profile').addEventListener('change', render);
   }
-  return { profilesFor, paymentState, contactUrl, init };
+  return { profilesFor, paymentState, contactUrl, courseGroups, init };
 });
