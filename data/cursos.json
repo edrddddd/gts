@@ -190,11 +190,6 @@
         "nombre": "José A. Ovando-Ricardez",
         "cv": "https://sites.google.com/view/joseantonioovandoricardez",
         "desc": "Bioinformático, investigador y formador especializado en genómica, transcriptómica, bioestadística aplicada y análisis de datos ómicos."
-      },
-      {
-        "nombre": "Josué Guzmán Linares",
-        "cv": "https://drive.google.com/file/d/1ssk3K8dxYXWjtlS_KNMSCFnbsWYiWhID/view?usp=sharing",
-        "desc": "Ingeniero en Biotecnología y bioinformático con experiencia en el análisis de datos NGS, particularmente RNA-seq, ChIP-seq y ATAC-seq."
       }
     ],
     "fechas": "19, 20, 26 y 27 de septiembre de 2026",
@@ -1607,11 +1602,6 @@
         "nombre": "José A. Ovando-Ricardez",
         "cv": "https://sites.google.com/view/joseantonioovandoricardez",
         "desc": "Especialista en transcriptómica y análisis ómico, con experiencia en docencia y proyectos reales en ciencias biomédicas y genómicas."
-      },
-      {
-        "nombre": "Josué Guzmán-Lináres",
-        "desc": "Bioinformático con experiencia en análisis de datos NGS: RNA-Seq, ChIP-Seq y ATAC-Seq.",
-        "cv": null
       }
     ],
     "fechas": "16, 18, 23, 25 y 30 de Septiembre 2025",

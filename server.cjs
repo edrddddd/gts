@@ -9,7 +9,7 @@ const coursePages = require('./course-renderer.cjs');
 
 const PUBLIC_FILES = new Set([
   'index.html', 'cursos.html', 'contacto.html', 'acercade.html', 'servicios.html',
-  'posts.html', 'pagos.html', 'site.css', 'site.js', 'news.css', 'noticias.js',
+  'posts.html', 'pagos.html', 'aviso-privacidad.html', 'site.css', 'site.js', 'news.css', 'noticias.js',
   'catalog.css', 'catalog-data.js', 'catalog.js', 'home.js', 'contact-flow.css',
   'contacto.js', 'pagos.js', 'gts.ico', 'robots.txt', 'sitemap.xml',
   'data/cursos.json', 'data/image-manifest.json', 'admin.html', 'admin.css', 'admin.js'

@@ -12,8 +12,8 @@ test('all 33 courses are generated from the canonical data without losing profil
   assert.deepEqual(catalog.courses, source);
   assert.equal(catalog.courses.length, 33);
   assert.equal(new Set(source.map(c => c.id)).size, 33);
-  assert.equal(catalog.getById('c30').instructor[1].nombre, 'Josué Guzmán Linares');
-  assert.equal(catalog.getById('c8').instructor.length, 2);
+  assert.equal(catalog.getById('c30').instructor.length, 1);
+  assert.equal(catalog.getById('c8').instructor.length, 1);
   assert.equal(catalog.getById('unknown'), undefined);
   source.forEach(course => {
     assert.match(course.inicio, /^\d{4}-\d{2}-\d{2}$/);

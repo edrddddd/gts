@@ -8,7 +8,7 @@ ROOT = Path(__file__).resolve().parents[1]
 def main():
     sources = list((ROOT / 'media/cursos').rglob('*'))
     sources += [ROOT / 'media/logos' / name for name in ['fondo frase.png', 'load2.png', 'load3.png']]
-    sources += [ROOT / 'media/equipodetrabajo' / name for name in ['ceo.jpg', 'Josué Guzmán Linares.jpg']]
+    sources += [ROOT / 'media/equipodetrabajo' / 'ceo.jpg']
     manifest = {}
     for source in sources:
         if source.suffix.lower() not in {'.png', '.jpg', '.jpeg'} or not source.is_file():
