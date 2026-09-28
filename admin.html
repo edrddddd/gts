@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow, noarchive">
+  <meta name="description" content="Panel privado para crear, editar y publicar los cursos de GenomicsTrack Solutions.">
+  <meta name="theme-color" content="#164e3e">
+  <title>Administrar cursos | GenomicsTrack Solutions</title>
+  <link rel="icon" href="/gts.ico">
+  <link rel="stylesheet" href="/site.css">
+  <link rel="stylesheet" href="/admin.css">
+  <script src="/admin.js" defer></script>
+</head>
+<body class="admin-body">
+  <a class="skip-link" href="#main-content">Saltar al editor</a>
+  <header class="admin-header">
+    <a class="brand" href="/index.html"><img src="/media/optimized/logos/load3.webp" width="43" height="43" alt=""><span><strong>GenomicsTrack</strong><small>Solutions</small></span></a>
+    <span class="admin-label">Administración de cursos</span>
+    <nav id="site-navigation" class="admin-header-actions" aria-label="Administración"><a href="/cursos.html" class="site-link">Ver catálogo <span aria-hidden="true">↗</span></a><button id="logout-button" type="button" class="button button-secondary button-small" hidden>Cerrar sesión</button></nav>
+  </header>
+  <main id="main-content">
+    <h1 class="sr-only">Administración de cursos</h1>
+    <noscript><p class="notice">Activa JavaScript para utilizar el panel de administración.</p></noscript>
+    <p class="loading-state" id="loading-state" role="status">Comprobando acceso…</p>
+    <section class="login-card" id="login-panel" hidden aria-labelledby="login-title">
+      <span class="eyebrow">Espacio de administración</span>
+      <h2 id="login-title">Tus cursos,<br>en un solo lugar.</h2>
+      <p class="muted">Crea una nueva edición, prepara sus contenidos y publícala en el catálogo.</p>
+      <div id="setup-notice" class="notice" hidden>Configura tu acceso con <code>npm run admin:setup</code> y reinicia el servidor. Consulta el archivo <code>README_ADMINISTRACION.md</code> en el proyecto para ver las instrucciones.</div>
+      <form id="login-form">
+        <label class="field">Contraseña de administración<input id="admin-password" name="password" type="password" autocomplete="current-password" required maxlength="256"></label>
+        <button class="button" id="login-button" type="submit">Entrar al panel <span aria-hidden="true">→</span></button>
+      </form>
+      <p id="login-message" class="form-message" role="status" aria-live="polite"></p>
+    </section>
+    <div class="admin-layout" id="admin-panel" hidden>
+      <aside class="course-sidebar" aria-labelledby="sidebar-title">
+        <div class="sidebar-heading"><h2 id="sidebar-title">Cursos</h2><span id="course-count" class="count-badge">0</span></div>
+        <button id="new-course" type="button" class="button new-course"><span aria-hidden="true">＋</span> Nuevo curso</button>
+        <label class="field search-field"><span>Buscar curso</span><input id="course-search" type="search" placeholder="Título o categoría" autocomplete="off"></label>
+        <label class="field"><span class="sr-only">Filtrar por publicación</span><select id="course-filter"><option value="all">Todos los cursos</option><option value="draft">Borradores</option><option value="published">Publicados</option></select></label>
+        <p class="sidebar-note" id="list-message" role="status"></p>
+        <nav id="course-list" class="course-list" aria-label="Cursos disponibles para editar"></nav>
+        <button id="reload-courses" type="button" class="quiet-button">Actualizar lista</button>
+      </aside>
+      <section class="editor-area" aria-labelledby="editor-title">
+        <div class="editor-heading"><div><span class="eyebrow">Catálogo de formación</span><h2 id="editor-title">Nuevo curso</h2><p id="editor-description">Prepara el contenido a tu ritmo y publícalo cuando esté listo.</p></div><span class="badge" id="editor-status">Sin guardar</span></div>
+        <p id="editor-message" class="form-message" role="status" aria-live="polite" tabindex="-1"></p>
+        <div class="editor-grid">
+          <form id="course-form" novalidate>
+            <fieldset id="editor-fields" class="editor-fields">
+              <section class="editor-card" aria-labelledby="general-title">
+                <div class="section-title"><span class="section-number">01</span><div><h2 id="general-title">Información general</h2><p>Lo primero que conocerán tus estudiantes.</p></div></div>
+                <label class="field">Título del curso <span class="required-label">Obligatorio</span><input name="titulo" id="course-title" maxlength="200" required placeholder="Ej. Análisis de datos biológicos con R"></label>
+                <label class="field">Descripción<textarea name="descripcion" rows="4" maxlength="6000" placeholder="Qué aprenderán y a quién está dirigido el curso."></textarea></label>
+                <div class="field-grid"><label class="field">Categoría<input name="categoria" list="category-options" maxlength="100" placeholder="Ej. Bioinformática"></label><label class="field">Nivel<input name="nivel" maxlength="100" placeholder="Ej. Desde cero"></label></div>
+                <datalist id="category-options"><option value="Bioinformática"><option value="Programación"><option value="Genómica"><option value="Transcriptómica"><option value="Metagenómica"><option value="Estadística"><option value="Epigenómica"><option value="Análisis funcional"><option value="Inteligencia artificial"></datalist>
+              </section>
+              <section class="editor-card" aria-labelledby="dates-title">
+                <div class="section-title"><span class="section-number">02</span><div><h2 id="dates-title">Fechas y formato</h2><p>Las fechas de inicio y fin determinan la vigencia en el catálogo.</p></div></div>
+                <div class="field-grid"><label class="field">Fecha de inicio<input name="inicio" type="date" min="2000-01-01" max="2099-12-31"></label><label class="field">Fecha de finalización<input name="fin" type="date" min="2000-01-01" max="2099-12-31"></label></div>
+                <label class="field">Fechas de las sesiones<input name="fechas" maxlength="500" placeholder="Ej. 6, 8, 13 y 15 de octubre de 2026"></label>
+                <div class="field-grid"><label class="field">Horario<input name="horario" maxlength="500" placeholder="Ej. 17:00 a 20:00 h (CDMX)"></label><label class="field">Duración<input name="duracion" maxlength="200" placeholder="Ej. 12 horas · 4 sesiones"></label></div>
+                <label class="field">Modalidad<input name="modalidad" maxlength="200" placeholder="Ej. 100 % en línea"></label>
+              </section>
+              <section class="editor-card" aria-labelledby="contents-title">
+                <div class="section-title"><span class="section-number">03</span><div><h2 id="contents-title">Contenido del curso</h2><p>Escribe un elemento por línea, sin viñetas ni numeración.</p></div></div>
+                <label class="field">Temario<textarea name="temario" rows="7" placeholder="Introducción al análisis de datos&#10;Preparación y exploración de datos&#10;Visualización de resultados"></textarea></label>
+                <label class="field">El curso incluye<textarea name="incluye" rows="5" placeholder="Sesiones grabadas&#10;Material didáctico&#10;Constancia digital"></textarea></label>
+              </section>
+              <section class="editor-card" aria-labelledby="instructors-title">
+                <div class="section-title"><span class="section-number">04</span><div><h2 id="instructors-title">Instructores</h2><p>Presenta a las personas que imparten el curso.</p></div></div>
+                <div id="instructors-list" class="instructors-list"></div>
+                <button id="add-instructor" type="button" class="button button-secondary button-small">＋ Añadir instructor</button>
+              </section>
+              <section class="editor-card" aria-labelledby="prices-title">
+                <div class="section-title"><span class="section-number">05</span><div><h2 id="prices-title">Precio e inscripciones</h2><p>Puedes indicar un precio general y una tabla por etapas.</p></div></div>
+                <label class="field">Precio general<input name="precio" maxlength="200" placeholder="Ej. $1,200 MXN" aria-describedby="price-hint"><span id="price-hint" class="field-hint">Si lo dejas vacío, se mostrará «-».</span></label>
+                <label class="checkbox-field"><input id="use-price-table" type="checkbox"> Añadir precios por etapa y perfil</label>
+                <div id="price-table-editor" hidden>
+                  <p class="field-hint">Edita los nombres de las etapas y los perfiles. Las celdas de precio vacías se mostrarán como «-».</p>
+                  <div class="table-scroll"><table id="price-table" class="price-editor-table"><caption class="sr-only">Precios por etapa y perfil</caption><thead id="price-table-head"></thead><tbody id="price-table-body"></tbody></table></div>
+                  <div class="table-actions"><button id="add-stage" type="button" class="button button-secondary button-small">＋ Añadir etapa</button><button id="add-profile" type="button" class="button button-secondary button-small">＋ Añadir perfil</button></div>
+                </div>
+              </section>
+              <section class="editor-card" aria-labelledby="banner-title">
+                <div class="section-title"><span class="section-number">06</span><div><h2 id="banner-title">Banner del curso</h2><p>La imagen que se verá en el catálogo y en la ficha.</p></div></div>
+                <label class="file-drop" for="banner-file"><span class="upload-symbol" aria-hidden="true">↑</span><strong>Seleccionar imagen</strong><span>PNG, JPG o WebP · Hasta 5 MB</span><input id="banner-file" type="file" accept="image/png,image/jpeg,image/webp" aria-describedby="banner-message"></label>
+                <p id="banner-message" class="field-hint" role="status">Puedes guardar el borrador antes de añadir el banner.</p>
+                <button id="reset-banner" type="button" class="quiet-button" hidden>Descartar imagen seleccionada</button>
+              </section>
+            </fieldset>
+            <div class="save-bar"><p id="save-state">Tus cambios se guardan al pulsar un botón.</p><div class="save-actions"><button id="save-draft" class="button button-secondary" type="submit" value="draft">Guardar borrador</button><button id="publish-course" class="button" type="submit" value="published">Publicar curso <span aria-hidden="true">↗</span></button></div><a id="view-course" class="text-link" hidden>Ver ficha publicada <span aria-hidden="true">↗</span></a></div>
+          </form>
+          <aside class="preview-area" aria-labelledby="preview-heading">
+            <div class="preview-heading"><h2 id="preview-heading">Vista previa</h2><span>Así se verá tu curso</span></div>
+            <article class="preview-card"><div class="preview-media"><img id="preview-banner" alt="Vista previa del banner del curso" hidden><div id="preview-placeholder"><span aria-hidden="true">▧</span><p>El banner de tu curso<br>aparecerá aquí</p></div></div><div class="preview-content"><span class="eyebrow" id="preview-category">Categoría del curso</span><h3 id="preview-title">El próximo curso empieza aquí.</h3><p id="preview-description">Añade una descripción para contar qué aprenderán tus estudiantes.</p><dl id="preview-meta"></dl><div id="preview-instructors"></div><div id="preview-syllabus"></div><div id="preview-includes"></div><div id="preview-prices"></div></div></article>
+            <p class="preview-note">Vista orientativa. Publicar actualizará la ficha y el catálogo del sitio.</p>
+          </aside>
+        </div>
+      </section>
+    </div>
+  </main>
+</body>
+</html>

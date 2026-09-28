@@ -20,7 +20,7 @@
     };
     return { course, status, profile: profilesFor(course).includes(profile) ? profile : '', amount: 'Por confirmar con el equipo', canPay: false, notice: messages[status] || 'Selecciona un curso para consultar disponibilidad y recibir instrucciones.' };
   }
-  function contactUrl(state, originalContext = {}) {
+  function contactQuery(state, originalContext = {}) {
     const query = new URLSearchParams({ servicio: 'cursos' });
     if (state.course) query.set('curso', state.course.id);
     else if (originalContext.curso) query.set('curso', originalContext.curso);
@@ -28,7 +28,22 @@
     else if (!state.course && originalContext.perfil) query.set('perfil', originalContext.perfil);
     const reason = state.status === 'finalizado' ? 'Quiero información sobre una próxima edición y su inscripción.' : 'Quiero confirmar disponibilidad, importe y datos de pago para mi inscripción.';
     query.set('motivo', originalContext.motivo || reason);
-    return `contacto.html?${query.toString()}`;
+    return query;
+  }
+  function contactUrl(state, originalContext = {}) {
+    return `contacto.html?${contactQuery(state, originalContext).toString()}`;
+  }
+  function directContactLinks(state, originalContext = {}) {
+    const query = contactQuery(state, originalContext);
+    const reference = query.get('curso');
+    const title = state.course ? state.course.titulo : reference;
+    const lines = ['Hola, quiero consultar sobre una inscripción.'];
+    if (reference) lines.push(`Curso: ${title} (${reference})`);
+    if (query.get('perfil')) lines.push(`Perfil: ${query.get('perfil')}`);
+    lines.push(`Motivo de la consulta: ${query.get('motivo')}`);
+    const message = encodeURIComponent(lines.join('\n'));
+    const subject = encodeURIComponent(title ? `Consulta de inscripción: ${title}` : 'Consulta de inscripción · GenomicsTrack Solutions');
+    return { whatsapp: `https://wa.me/5215643236165?text=${message}`, email: `mailto:hola@genomicstracksolutions.com?subject=${subject}&body=${message}` };
   }
   function courseGroups(catalog) {
     const groups = [
@@ -97,6 +112,12 @@
       const contactHref = contactUrl(state, originalContext);
       byId('payment-contact').href = contactHref;
       doc.querySelectorAll('a[href^="contacto.html"]').forEach(link => { link.href = contactHref; });
+      const directLinks = directContactLinks(state, originalContext);
+      doc.querySelectorAll('[data-payment-channel]').forEach(link => {
+        link.href = directLinks[link.getAttribute('data-payment-channel')];
+      });
+      doc.querySelectorAll('.site-footer a[href^="https://wa.me/5215643236165"]').forEach(link => { link.href = directLinks.whatsapp; });
+      doc.querySelectorAll('.site-footer a[href^="mailto:hola@genomicstracksolutions.com"]').forEach(link => { link.href = directLinks.email; });
       byId('payment-course-link').hidden = !course;
       if (course) byId('payment-course-link').href = `cursos/${encodeURIComponent(course.id)}.html`;
     }
@@ -112,5 +133,5 @@
     });
     byId('payment-profile').addEventListener('change', render);
   }
-  return { profilesFor, paymentState, contactUrl, courseGroups, init };
+  return { profilesFor, paymentState, contactUrl, directContactLinks, courseGroups, init };
 });

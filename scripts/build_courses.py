@@ -75,9 +75,9 @@ def card(course, today, manifest):
         <div><dt>Fechas</dt><dd>{esc(course['fechas'])}</dd></div>
         <div><dt>Duración</dt><dd>{esc(course['duracion'])}</dd></div>
         <div><dt>Nivel</dt><dd>{esc(course['nivel'])}</dd></div>
-        <div><dt>Precio</dt><dd data-card-price>{'Tarifas históricas en la ficha' if state == 'finalizado' else 'Consultar precio y disponibilidad'}</dd></div>
+        <div><dt>Precio</dt><dd data-card-price>{esc(price_summary(course))}</dd></div>
       </dl>
-      <div class="course-card-bottom"><span class="muted">{esc(course['modalidad'])}</span><a class="text-link" href="cursos/{course['id']}.html" aria-label="Ver detalles: {esc(course['titulo'])}">Ver curso <span aria-hidden="true">↗</span></a></div>
+      <div class="course-card-bottom"><span class="muted">{esc(course['modalidad'])}</span><a class="text-link" href="cursos/{course['id']}.html" aria-label="Ver detalles: {esc(course['titulo'])}">Temario y precios <span aria-hidden="true">↗</span></a></div>
     </article>'''
 
 
@@ -159,16 +159,25 @@ def instructors(course):
     return "".join(rendered)
 
 
+def price_summary(course):
+    if str(course.get("precio", "")).strip():
+        return course["precio"].strip()
+    prices = course.get("precios") or {}
+    return "Ver precios por etapa en la ficha" if any("$" in str(value) for row in prices.get("filas", []) for value in row) else "-"
+
+
 def price_table(course, state):
     prices = course.get("precios")
     if not prices or not prices.get("filas") or not any(str(value).strip() for row in prices["filas"] for value in row):
-        return '<p>Esta edición no tiene una tabla de precios publicada. Consulta el importe y las condiciones con el equipo.</p>'
+        if course.get("precioNota"):
+            return f'<p class="notice">{esc(course["precioNota"])}</p>'
+        return f'<p class="course-base-price">Precio: <strong>{esc(course.get("precio") or "-")}</strong></p>'
     columns = prices["columnas"]
     headers = "".join(f'<th scope="col">{esc(c.strip())}</th>' for c in columns)
     rows = []
     for row in prices["filas"]:
         padded = (row + ["—"] * len(columns))[:len(columns)]
-        rows.append("<tr>" + "".join(f'<{"th scope=" + chr(34) + "row" + chr(34) if i == 0 else "td"}>{esc(v.strip()) if v.strip() and v.strip() != "--" else "No publicado"}</{"th" if i == 0 else "td"}>' for i, v in enumerate(padded)) + "</tr>")
+        rows.append("<tr>" + "".join(f'<{"th scope=" + chr(34) + "row" + chr(34) if i == 0 else "td"}>{esc(v.strip()) if v.strip() and v.strip() != "--" else "-"}</{"th" if i == 0 else "td"}>' for i, v in enumerate(padded)) + "</tr>")
     return f'''<div class="course-prices"><p class="muted" data-price-notice>Tarifas de referencia de esta edición; las promociones publicadas pueden haber finalizado. Confirma el importe vigente antes de pagar.</p><div class="course-table-scroll" tabindex="0" role="region" aria-label="Precios por etapa y perfil; desplaza horizontalmente para ver todas las columnas"><table><caption data-price-caption>{'Tarifas históricas · edición finalizada' if state == 'finalizado' else 'Tarifas publicadas · confirmar vigencia'}</caption><thead><tr>{headers}</tr></thead><tbody>{''.join(rows)}</tbody></table></div><p class="muted">Los importes en USD y las condiciones de cada promoción corresponden a la publicación original. Consulta los requisitos del perfil de estudiante con el equipo.</p></div>'''
 
 

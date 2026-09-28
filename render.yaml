@@ -1,0 +1,31 @@
+services:
+  - type: web
+    name: genomicstrack
+    runtime: node
+    plan: 0.5c-512mb
+    numInstances: 1
+    buildCommand: npm test
+    startCommand: npm start
+    healthCheckPath: /admin.html
+    autoDeployTrigger: off
+    disk:
+      name: cursos-y-banners
+      mountPath: /var/data
+      sizeGB: 1
+    envVars:
+      - key: NODE_VERSION
+        value: "22"
+      - key: HOST
+        value: 0.0.0.0
+      - key: ADMIN_DATA_DIR
+        value: /var/data/genomicstrack
+      - key: ADMIN_ORIGIN
+        sync: false
+      - key: ADMIN_PASSWORD_HASH
+        sync: false
+      - key: META_ACCESS_TOKEN
+        sync: false
+      - key: META_PAGE_ID
+        value: "645692701952356"
+      - key: META_API_VERSION
+        value: v23.0

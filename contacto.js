@@ -102,6 +102,8 @@
       doc.querySelectorAll('[data-course-channel]').forEach(link => {
         link.href = directLinks[link.getAttribute('data-course-channel')];
       });
+      doc.querySelectorAll('.site-footer a[href^="https://wa.me/5215643236165"]').forEach(link => { link.href = directLinks.whatsapp; });
+      doc.querySelectorAll('.site-footer a[href^="mailto:hola@genomicstracksolutions.com"]').forEach(link => { link.href = directLinks.email; });
     }
     const updateSchedule = () => { byId('schedule-fields').hidden = byId('servicio').value !== 'consultoria'; };
     updateSchedule();

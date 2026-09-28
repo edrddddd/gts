@@ -44,13 +44,16 @@ def featured():
     current = upcoming or [c for c in courses if c.get('fin', '') >= today]
     selected = sorted(current, key=lambda c:c.get('inicio',''))[:3] if current else sorted(courses, key=lambda c:c.get('fin',''), reverse=True)[:3]
     cards = []
+    manifest = json.loads((ROOT / 'data/image-manifest.json').read_text(encoding='utf-8'))
     for c in selected:
         status = 'Finalizado' if c.get('fin','') < today else ('En curso' if c.get('inicio','') <= today else 'Próxima edición')
         src = c.get('img','')
         converted = 'media/optimized/'+str(Path(src).relative_to('media').with_suffix('.webp')).replace('\\','/') if src.startswith('media/') else src
         if (ROOT/converted).exists(): src = converted
         if src and c.get('cartelVigente', True):
-            cover = f'<img src="{escape(src,quote=True)}" width="640" height="380" loading="lazy" decoding="async" alt="Cartel de {escape(c["titulo"],quote=True)}">'
+            img = manifest.get(c.get('img', ''), {})
+            dimensions = f' width="{img["width"]}" height="{img["height"]}"' if img.get('width') and img.get('height') else ''
+            cover = f'<img src="{escape(src,quote=True)}"{dimensions} loading="lazy" decoding="async" alt="Cartel de {escape(c["titulo"],quote=True)}">'
         else:
             label = escape(c.get('etiquetaVisual', c.get('categoria', 'Bioinformática')))
             cover = f'<div class="featured-cover" aria-hidden="true"><strong>{label}</strong><span>GenomicsTrack / Formación</span>{icon("data")}</div>'
@@ -144,7 +147,7 @@ def sync_shell():
         path.write_text(text,encoding='utf-8')
     if CONFIG.get('url','').startswith('https://'):
         base=CONFIG['url'].rstrip('/')
-        urls=''.join(f'<url><loc>{escape(base+"/"+p.relative_to(ROOT).as_posix())}</loc></url>' for p in pages)
+        urls=''.join(f'<url><loc>{escape(base+"/"+p.relative_to(ROOT).as_posix())}</loc></url>' for p in pages if p.name != 'admin.html')
         (ROOT/'sitemap.xml').write_text('<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">'+urls+'</urlset>',encoding='utf-8')
         (ROOT/'robots.txt').write_text('User-agent: *\nAllow: /\nSitemap: '+base+'/sitemap.xml\n',encoding='utf-8')
 

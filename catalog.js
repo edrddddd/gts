@@ -85,7 +85,8 @@
         element.hidden = !matches;
         element.querySelectorAll('[data-course-status]').forEach(el => updateStatus(el, current));
         const price = element.querySelector('[data-card-price]');
-        if (price) price.textContent = current === 'finalizado' ? 'Tarifas históricas en la ficha' : 'Consultar precio y disponibilidad';
+        const hasPrices = course.precios?.filas?.some(row => row.some(value => String(value).includes('$')));
+        if (price) price.textContent = String(course.precio || '').trim() || (hasPrices ? 'Ver precios por etapa en la ficha' : '-');
         if (matches) total += 1;
       });
       tabs.querySelectorAll('[data-filter]').forEach(button => button.setAttribute('aria-pressed', String(button.dataset.filter === state)));

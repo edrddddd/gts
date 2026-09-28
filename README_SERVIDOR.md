@@ -1,6 +1,8 @@
 # Servidor de GenomicsTrack
 
-El sitio mantiene su HTML, CSS y JavaScript estáticos. Las noticias usan `GET /api/noticias`, un pequeño servidor Node que consulta Meta sin entregar la credencial al navegador. No hay dependencias que instalar.
+El sitio conserva sus plantillas HTML, CSS y JavaScript. El servidor Node entrega el catálogo con los cursos publicados desde el panel de administración y consulta las noticias mediante `GET /api/noticias`, sin entregar la credencial al navegador. No hay dependencias que instalar.
+
+Para crear cursos y preparar el almacenamiento persistente en Render, consulta [README_ADMINISTRACION.md](README_ADMINISTRACION.md). El panel se abre en `/admin.html`; primero configura su contraseña con `npm run admin:setup`.
 
 ## Ejecutar localmente
 

@@ -66,7 +66,8 @@ test('verified course corrections preserve source links without invented prices'
   assert.doesNotMatch(course.descripcion, /amplicones|comunidades microbianas/);
   assert.equal(course.temario.length, 8);
   assert.match(course.temario[0], /bioestadística/);
-  assert.ok(course.precios.filas.every(row => row.slice(1).every(value => value === '--')));
+  assert.ok(course.precios.filas.every(row => row.slice(1).every(value => value === '-')));
+  for (const id of ['c31', 'c32', 'c33']) assert.equal(catalog.getById(id).precio, '-');
   assert.match(course.fuente, /122203410122829797$/);
   assert.equal(catalog.getById('c30').inicio, '2026-09-19');
   assert.equal(catalog.getById('c30').fin, '2026-09-27');
@@ -125,12 +126,14 @@ test('every published syllabus and pricing stage is visible without expanding de
     }
     const rows = course.precios && course.precios.filas;
     const tables = [...visible.matchAll(/<table\b[^>]*>([\s\S]*?)<\/table>/gi)];
-    if (Array.isArray(rows) && rows.length) {
+    if (Array.isArray(rows) && rows.some(row => row.some(value => String(value).trim()))) {
       assert.match(visible, /<h2[^>]*>Precios por etapa<\/h2>/, course.id);
       assert.equal(tables.length, 1, `${course.id}: one visible pricing table`);
       const actual = [...tables[0][1].matchAll(/<tr\b[^>]*>([\s\S]*?)<\/tr>/gi)].map(row =>
         [...row[1].matchAll(/<t[dh]\b[^>]*>([\s\S]*?)<\/t[dh]>/gi)].map(cell => readableText(cell[1])));
-      const expected = [course.precios.columnas, ...rows].map(row => row.map(value => value === '--' ? 'No publicado' : readableText(String(value))));
+      const columns = course.precios.columnas;
+      const normalizedRows = rows.map(row => [...row, ...Array(columns.length).fill('—')].slice(0, columns.length));
+      const expected = [columns, ...normalizedRows].map(row => row.map(value => !String(value).trim() || value === '--' ? '-' : readableText(String(value))));
       assert.deepEqual(actual, expected, `${course.id}: preserve all published profiles, stages and prices`);
     } else {
       assert.equal(tables.length, 0, `${course.id}: do not invent prices without published rows`);

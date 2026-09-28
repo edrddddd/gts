@@ -19,7 +19,7 @@
     ],
     "fuente": "https://www.facebook.com/122182068602829797/posts/122204155094829797",
     "formulario": "https://forms.gle/VywBCFCjdrExFded7",
-    "img": "",
+    "img": "media/cursos/2026/c33.jpg",
     "instructor": {
       "nombre": "José A. Ovando-Ricardez",
       "cv": "https://sites.google.com/view/joseantonioovandoricardez",
@@ -38,7 +38,12 @@
     "zonaHoraria": "America/Mexico_City",
     "precios": null,
     "inscripcionConfirmada": false,
-    "verificado": "2026-09-25"
+    "verificado": "2026-09-27",
+    "cartelVigente": true,
+    "cartelFuente": "https://www.facebook.com/122182068602829797/posts/122204155094829797",
+    "precioNota": "",
+    "precioFuente": "https://www.facebook.com/122182068602829797/posts/122204155094829797",
+    "precio": "-"
   },
   {
     "id": "c32",
@@ -59,7 +64,7 @@
     ],
     "fuente": "https://www.facebook.com/122182068602829797/posts/122204154542829797",
     "formulario": "https://forms.gle/mm8BSbbQZgpHoK8Y9",
-    "img": "",
+    "img": "media/cursos/2026/c32.jpg",
     "instructor": {
       "nombre": "José A. Ovando-Ricardez",
       "cv": "https://sites.google.com/view/joseantonioovandoricardez",
@@ -78,12 +83,17 @@
     "zonaHoraria": "America/Mexico_City",
     "precios": null,
     "inscripcionConfirmada": false,
-    "verificado": "2026-09-25"
+    "verificado": "2026-09-27",
+    "cartelVigente": true,
+    "cartelFuente": "https://www.facebook.com/122182068602829797/posts/122204154542829797",
+    "precioNota": "",
+    "precioFuente": "https://www.facebook.com/122182068602829797/posts/122204154542829797",
+    "precio": "-"
   },
   {
     "id": "c31",
     "titulo": "Bioestadística en R para datos biológicos y ómicos",
-    "img": "media/cursos/2026/c31.png",
+    "img": "media/cursos/2026/c31-actualizado.jpg",
     "descripcion": "Curso de bioestadística con ejercicios prácticos guiados en R, visualización de datos biológicos y aplicaciones en datos ómicos. Incluye recursos didácticos, sesiones grabadas y constancia digital de participación.",
     "instructor": {
       "nombre": "José A. Ovando-Ricardez",
@@ -122,21 +132,21 @@
       "filas": [
         [
           "Licenciatura*",
-          "--",
-          "--",
-          "--"
+          "-",
+          "-",
+          "-"
         ],
         [
           "Posgrado*",
-          "--",
-          "--",
-          "--"
+          "-",
+          "-",
+          "-"
         ],
         [
           "Público general",
-          "--",
-          "--",
-          "--"
+          "-",
+          "-",
+          "-"
         ]
       ]
     },
@@ -163,12 +173,17 @@
     "nivel": "Consultar requisitos",
     "inscripcionConfirmada": false,
     "fuente": "https://www.facebook.com/122182068602829797/posts/122203410122829797",
-    "verificado": "2026-09-25"
+    "verificado": "2026-09-27",
+    "cartelVigente": true,
+    "cartelFuente": "https://www.facebook.com/122182068602829797/posts/122203410122829797",
+    "precioNota": "",
+    "precioFuente": "https://www.facebook.com/122182068602829797/posts/122203410122829797",
+    "precio": "-"
   },
   {
     "id": "c30",
     "titulo": "Análisis bioinformático del epigenoma desde cero",
-    "img": "media/cursos/2026/c30.png",
+    "img": "media/cursos/2026/c30-actualizado.jpg",
     "descripcion": "Aprende a procesar, visualizar e interpretar datos de ChIP-seq, CUT&RUN, ATAC-seq y metilación del ADN. Cuatro sesiones con práctica guiada, desde el control de calidad hasta la interpretación de resultados.",
     "instructor": [
       {
@@ -255,9 +270,12 @@
     "categoria": "Epigenómica",
     "nivel": "Desde cero",
     "inscripcionConfirmada": false,
-    "cartelVigente": false,
+    "cartelVigente": true,
     "fuente": "https://www.facebook.com/122182068602829797/posts/122203409918829797",
-    "verificado": "2026-09-25"
+    "verificado": "2026-09-27",
+    "cartelFuente": "https://www.facebook.com/122182068602829797/posts/122203409918829797",
+    "precioNota": "El cartel actualizado indica: ¡Solicita información! Promociones y becas disponibles para estudiantes. Las etapas de la tabla conservan sus fechas publicadas.",
+    "precioFuente": "https://www.facebook.com/122182068602829797/posts/122203409918829797"
   },
   {
     "id": "c29",
@@ -934,7 +952,12 @@
     "zonaHoraria": "America/Mexico_City",
     "categoria": "Transcriptómica",
     "nivel": "Consultar requisitos",
-    "inscripcionConfirmada": false
+    "inscripcionConfirmada": false,
+    "precioNota": "Edición gratuita",
+    "precioFuente": "media/cursos/2026/c21.jpg",
+    "temarioNota": "El cartel de esta edición no publica un temario detallado.",
+    "temarioFuente": "media/cursos/2026/c21.jpg",
+    "precio": "Gratuito"
   },
   {
     "id": "c20",
@@ -1238,7 +1261,10 @@
     "zonaHoraria": "America/Mexico_City",
     "categoria": "Transcriptómica",
     "nivel": "Desde cero",
-    "inscripcionConfirmada": false
+    "inscripcionConfirmada": false,
+    "precioNota": "Edición gratuita",
+    "precioFuente": "media/cursos/cursos 1/minicurso-transcriptomica.jpg",
+    "precio": "Gratuito"
   },
   {
     "id": "c14",
@@ -1268,7 +1294,10 @@
     "zonaHoraria": "America/Mexico_City",
     "categoria": "Bioinformática",
     "nivel": "Desde cero",
-    "inscripcionConfirmada": false
+    "inscripcionConfirmada": false,
+    "precioNota": "Edición gratuita",
+    "precioFuente": "media/cursos/cursos 1/como iniciar en la bioinfo.jpg",
+    "precio": "Gratuito"
   },
   {
     "id": "c13",
@@ -1563,7 +1592,10 @@
     "zonaHoraria": "America/Mexico_City",
     "categoria": "Metagenómica",
     "nivel": "Consultar requisitos",
-    "inscripcionConfirmada": false
+    "inscripcionConfirmada": false,
+    "precioNota": "Edición gratuita",
+    "precioFuente": "media/cursos/cursos 1/metagenomica_intro.jpg",
+    "precio": "Gratuito"
   },
   {
     "id": "c8",
@@ -1880,17 +1912,19 @@
       "desc": "Bioinformático, instructor y consultor especializado en análisis de datos ómicos."
     },
     "fechas": "10, 11, 17 y 18 de Enero 2026",
-    "horario": "A confirmar",
-    "duracion": "4 sesiones",
+    "horario": "9:00 AM a 12:00 PM",
+    "duracion": "12 horas · 4 sesiones de 3 horas",
     "modalidad": "En línea · Zoom",
     "incluye": [
       "Constancia digital, grabaciones y materiales."
     ],
     "temario": [
-      "Análisis del microbioma mediante secuenciación masiva",
-      "Herramientas bioinformáticas modernas para metagenómica",
-      "Control de calidad y procesamiento de datos",
-      "Análisis taxonómico y funcional"
+      "Fundamentos del análisis metagenómico",
+      "Procesamiento y control de calidad de lecturas",
+      "Ensamblaje de metagenomas",
+      "Binificación y asignación taxonómica",
+      "Anotación funcional y análisis metabólico",
+      "Visualización y análisis estadístico en R"
     ],
     "precios": null,
     "pago": null,
@@ -1901,7 +1935,10 @@
     "zonaHoraria": "America/Mexico_City",
     "categoria": "Metagenómica",
     "nivel": "Desde cero",
-    "inscripcionConfirmada": false
+    "inscripcionConfirmada": false,
+    "precioNota": "¡Solicita información! Promociones y becas disponibles para estudiantes.",
+    "precioFuente": "media/cursos/2026/Metagenómica desde cero (Análisis del Microbioma).jpg",
+    "temarioFuente": "media/cursos/2026/Metagenómica desde cero (Análisis del Microbioma).jpg"
   },
   {
     "id": "c3",

@@ -8,3 +8,5 @@ Thumbs.db
 __pycache__/
 *.pyc
 dist/
+.admin-data/
+.admin-test-data/

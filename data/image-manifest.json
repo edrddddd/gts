@@ -90,6 +90,13 @@
     "bytes": 52388,
     "originalBytes": 610651
   },
+  "media/cursos/2026/c30-actualizado.jpg": {
+    "src": "media/optimized/cursos/2026/c30-actualizado.webp",
+    "width": 720,
+    "height": 720,
+    "bytes": 93474,
+    "originalBytes": 125470
+  },
   "media/cursos/2026/c30.png": {
     "src": "media/optimized/cursos/2026/c30.webp",
     "width": 941,
@@ -97,12 +104,33 @@
     "bytes": 112820,
     "originalBytes": 1237228
   },
+  "media/cursos/2026/c31-actualizado.jpg": {
+    "src": "media/optimized/cursos/2026/c31-actualizado.webp",
+    "width": 720,
+    "height": 720,
+    "bytes": 95374,
+    "originalBytes": 123359
+  },
   "media/cursos/2026/c31.png": {
     "src": "media/optimized/cursos/2026/c31.webp",
     "width": 945,
     "height": 941,
     "bytes": 116860,
     "originalBytes": 1211583
+  },
+  "media/cursos/2026/c32.jpg": {
+    "src": "media/optimized/cursos/2026/c32.webp",
+    "width": 720,
+    "height": 720,
+    "bytes": 95716,
+    "originalBytes": 129306
+  },
+  "media/cursos/2026/c33.jpg": {
+    "src": "media/optimized/cursos/2026/c33.webp",
+    "width": 720,
+    "height": 720,
+    "bytes": 92080,
+    "originalBytes": 124401
   },
   "media/cursos/2026/Introducción a la programación en bioinformática Linux, R y Python!.jpg": {
     "src": "media/optimized/cursos/2026/Introducción a la programación en bioinformática Linux, R y Python!.webp",

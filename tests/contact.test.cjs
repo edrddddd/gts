@@ -155,9 +155,13 @@ test('contact page displays the selected course and retains it in payment and di
   const doc = flowDocument(ids);
   const guide = doc.createElement('a');
   const direct = doc.createElement('a');
+  const footerWhatsapp = doc.createElement('a');
+  const footerEmail = doc.createElement('a');
   direct.setAttribute('data-course-channel', 'whatsapp');
   doc.queries['a[href="pagos.html"]'] = [guide];
   doc.queries['[data-course-channel]'] = [direct];
+  doc.queries['.site-footer a[href^="https://wa.me/5215643236165"]'] = [footerWhatsapp];
+  doc.queries['.site-footer a[href^="mailto:hola@genomicstracksolutions.com"]'] = [footerEmail];
   contact.init(doc, { CourseCatalog: catalog, location: { search: '?curso=c33&perfil=Posgrado&motivo=Quiero%20inscribirme' } });
   assert.equal(doc.elements['contact-course'].value, catalog.getById('c33').titulo);
   assert.equal(doc.elements['contact-course-field'].hidden, false);
@@ -169,4 +173,60 @@ test('contact page displays the selected course and retains it in payment and di
   assert.match(directMessage, /RNA-seq.*\(c33\)/);
   assert.match(directMessage, /Perfil: Posgrado/);
   assert.match(directMessage, /Quiero inscribirme/);
+  assert.equal(new URL(footerWhatsapp.href).searchParams.get('text'), directMessage);
+  assert.equal(new URL(footerEmail.href).searchParams.get('body'), directMessage);
+  assert.equal(new URL(footerEmail.href).pathname, contact.EMAIL);
+});
+
+test('payment direct channels and footer retain context and follow course and profile changes', () => {
+  const original = require('../catalog-data.js');
+  const catalog = { ...original, getStatus: course => original.getStatus(course, '2026-09-27') };
+  const doc = flowDocument(['payment-course', 'payment-profile', 'payment-notice', 'payment-missing', 'payment-course-name', 'payment-course-status', 'payment-amount', 'payment-contact', 'payment-course-link']);
+  const whatsapp = doc.createElement('a');
+  const email = doc.createElement('a');
+  const footerWhatsapp = doc.createElement('a');
+  const footerEmail = doc.createElement('a');
+  whatsapp.setAttribute('data-payment-channel', 'whatsapp');
+  email.setAttribute('data-payment-channel', 'email');
+  doc.queries['[data-payment-channel]'] = [whatsapp, email];
+  doc.queries['.site-footer a[href^="https://wa.me/5215643236165"]'] = [footerWhatsapp];
+  doc.queries['.site-footer a[href^="mailto:hola@genomicstracksolutions.com"]'] = [footerEmail];
+  payments.init(doc, { CourseCatalog: catalog, location: { search: '?curso=c33&perfil=Posgrado&motivo=Inscripci%C3%B3n%20%26%20requisitos' } });
+  function message() {
+    const value = new URL(whatsapp.href).searchParams.get('text');
+    assert.equal(new URL(whatsapp.href).pathname, '/5215643236165');
+    assert.equal(new URL(email.href).pathname, contact.EMAIL);
+    assert.equal(new URL(email.href).searchParams.get('body'), value);
+    assert.equal(footerWhatsapp.href, whatsapp.href);
+    assert.equal(footerEmail.href, email.href);
+    return value;
+  }
+  assert.match(message(), /RNA-seq.*\(c33\)/);
+  assert.match(message(), /Perfil: Posgrado/);
+  assert.match(message(), /Inscripción & requisitos/);
+  doc.elements['payment-profile'].value = 'Público general';
+  doc.elements['payment-profile'].listeners.change();
+  assert.match(message(), /Perfil: Público general/);
+  assert.doesNotMatch(message(), /Perfil: Posgrado/);
+  doc.elements['payment-course'].value = 'c1';
+  doc.elements['payment-course'].listeners.change();
+  assert.ok(message().includes(`Curso: ${catalog.getById('c1').titulo} (c1)`));
+  assert.match(message(), /próxima edición/);
+  assert.doesNotMatch(message(), /\(c33\)|Inscripción & requisitos|ya pagué|he pagado|realicé el pago/i);
+  const html = require('node:fs').readFileSync(require('node:path').join(__dirname, '..', 'pagos.html'), 'utf8');
+  assert.match(html, /<a\b[^>]*data-payment-channel="whatsapp"[^>]*href="https:\/\/wa\.me\/5215643236165"/);
+  assert.match(html, /<a\b[^>]*data-payment-channel="email"[^>]*href="mailto:hola@genomicstracksolutions\.com"/);
+});
+
+test('payment direct channels retain an unknown course reference without claiming a payment occurred', () => {
+  const state = payments.paymentState(null, '', {});
+  const links = payments.directContactLinks(state, { curso: 'edición especial', perfil: 'Posgrado', motivo: 'Consultar requisitos & acceso' });
+  const message = new URL(links.whatsapp).searchParams.get('text');
+  assert.match(message, /Curso: edición especial \(edición especial\)/);
+  assert.match(message, /Perfil: Posgrado/);
+  assert.match(message, /Consultar requisitos & acceso/);
+  assert.equal(new URL(links.email).searchParams.get('body'), message);
+  const defaultMessage = new URL(payments.directContactLinks(state).whatsapp).searchParams.get('text');
+  assert.match(defaultMessage, /Quiero confirmar disponibilidad, importe y datos de pago/);
+  assert.doesNotMatch(defaultMessage, /ya pagué|he pagado|realicé el pago/i);
 });

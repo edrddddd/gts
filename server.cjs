@@ -4,13 +4,15 @@ const http = require('node:http');
 const fs = require('node:fs');
 const fsp = require('node:fs/promises');
 const path = require('node:path');
+const { createAdmin } = require('./admin-server.cjs');
+const coursePages = require('./course-renderer.cjs');
 
 const PUBLIC_FILES = new Set([
   'index.html', 'cursos.html', 'contacto.html', 'acercade.html', 'servicios.html',
   'posts.html', 'pagos.html', 'site.css', 'site.js', 'news.css', 'noticias.js',
   'catalog.css', 'catalog-data.js', 'catalog.js', 'home.js', 'contact-flow.css',
   'contacto.js', 'pagos.js', 'gts.ico', 'robots.txt', 'sitemap.xml',
-  'data/cursos.json', 'data/image-manifest.json'
+  'data/cursos.json', 'data/image-manifest.json', 'admin.html', 'admin.css', 'admin.js'
 ]);
 const MEDIA_EXTENSIONS = new Set(['.png', '.jpg', '.jpeg', '.webp', '.avif', '.gif', '.svg', '.ico', '.pdf', '.mp4', '.woff', '.woff2']);
 const MIME = {
@@ -22,27 +24,33 @@ const MIME = {
   '.svg': 'image/svg+xml', '.ico': 'image/x-icon', '.pdf': 'application/pdf',
   '.mp4': 'video/mp4', '.woff': 'font/woff', '.woff2': 'font/woff2'
 };
-const ENV_KEYS = new Set(['META_ACCESS_TOKEN', 'META_PAGE_ID', 'META_API_VERSION', 'HOST', 'PORT']);
+const ENV_KEYS = new Set(['META_ACCESS_TOKEN', 'META_PAGE_ID', 'META_API_VERSION', 'HOST', 'PORT', 'ADMIN_PASSWORD_HASH', 'ADMIN_ORIGIN', 'ADMIN_DATA_DIR']);
 const PUBLIC_ERROR = 'Las publicaciones no están disponibles en este momento. Puedes consultarlas en Facebook.';
 
 function loadConfig(root = __dirname, environment = process.env) {
   const values = {};
-  try {
-    for (const line of fs.readFileSync(path.join(root, '.env.local'), 'utf8').split(/\r?\n/)) {
+  for (const filename of ['.env.local', '.env.admin']) {
+   try {
+    for (const line of fs.readFileSync(path.join(root, filename), 'utf8').split(/\r?\n/)) {
       const match = line.trim().match(/^([A-Z_]+)\s*=\s*(.*)$/);
       if (!match || !ENV_KEYS.has(match[1])) continue;
+      if (filename === '.env.admin' && !match[1].startsWith('ADMIN_')) continue;
       let value = match[2].trim();
       if ((value.startsWith('"') && value.endsWith('"')) || (value.startsWith("'") && value.endsWith("'"))) value = value.slice(1, -1);
       values[match[1]] = value;
     }
-  } catch (error) {
+   } catch (error) {
     if (error.code !== 'ENOENT') throw new Error('No se pudo leer la configuración local.');
+   }
   }
   for (const key of ENV_KEYS) if (environment[key] !== undefined) values[key] = environment[key];
   return {
     accessToken: values.META_ACCESS_TOKEN || '', pageId: values.META_PAGE_ID || '',
     apiVersion: values.META_API_VERSION || 'v23.0',
-    host: values.HOST || '127.0.0.1', port: Number(values.PORT || 8765)
+    host: values.HOST || '127.0.0.1', port: Number(values.PORT || 8765),
+    adminPasswordHash: values.ADMIN_PASSWORD_HASH || '',
+    adminOrigin: values.ADMIN_ORIGIN || '',
+    adminDataDir: values.ADMIN_DATA_DIR ? path.resolve(root, values.ADMIN_DATA_DIR) : path.join(root, '.admin-data')
   };
 }
 
@@ -96,6 +104,41 @@ function sendNotFound(response, headOnly = false) {
 
 function createSiteServer({ root = __dirname, config = loadConfig(root), fetchImpl = globalThis.fetch, now = Date.now, cacheTtlMs = 15 * 60 * 1000, timeoutMs = 8000 } = {}) {
   const rootPath = fs.realpathSync(root);
+  const admin = createAdmin({ root: rootPath, config, now });
+  const hasCatalog = fs.existsSync(path.join(rootPath, 'data/cursos.json'));
+  const readPublicTemplate = relative => fsp.readFile(path.join(rootPath, relative), 'utf8');
+  async function optionalJson(relative, fallback) {
+    try { return JSON.parse(await readPublicTemplate(relative)); }
+    catch (error) { if (error.code === 'ENOENT') return fallback; throw error; }
+  }
+  async function renderCourseRoute(rawPath, response, headOnly) {
+    const detailMatch = /^\/cursos\/(c\d+)\.html$/.exec(rawPath);
+    const routes = ['/', '/index.html', '/cursos.html', '/catalog-data.js', '/data/cursos.json', '/sitemap.xml'];
+    if (!hasCatalog || (!detailMatch && !routes.includes(rawPath))) return false;
+    const courses = await admin.getPublishedCourses();
+    const manifest = await optionalJson('data/image-manifest.json', {});
+    let body;
+    let type = 'text/html; charset=utf-8';
+    if (detailMatch) {
+      const course = courses.find(item => item.id === detailMatch[1]);
+      if (!course) { sendNotFound(response, headOnly); return true; }
+      body = coursePages.renderDetailPage(await readPublicTemplate('cursos/c1.html'), course, manifest);
+    } else if (rawPath === '/data/cursos.json') {
+      body = JSON.stringify(courses); type = MIME['.json'];
+    } else if (rawPath === '/catalog-data.js') {
+      body = coursePages.renderCatalogData(await readPublicTemplate('catalog-data.js'), courses); type = MIME['.js'];
+    } else if (rawPath === '/cursos.html') {
+      body = coursePages.renderCatalogPage(await readPublicTemplate('cursos.html'), courses, manifest);
+    } else if (rawPath === '/sitemap.xml') {
+      const site = await optionalJson('site.config.json', {});
+      body = coursePages.renderSitemap(await readPublicTemplate('sitemap.xml'), courses, site.url || ''); type = MIME['.xml'];
+    } else {
+      body = coursePages.renderHomePage(await readPublicTemplate('index.html'), courses, manifest);
+    }
+    response.writeHead(200, { 'Content-Type': type, 'Cache-Control': 'no-cache' });
+    response.end(headOnly ? undefined : body);
+    return true;
+  }
   let cache = null;
   let pending = null;
 
@@ -123,6 +166,7 @@ function createSiteServer({ root = __dirname, config = loadConfig(root), fetchIm
     response.setHeader('X-Frame-Options', 'SAMEORIGIN');
     try {
       const rawPath = (request.url || '/').split('?')[0];
+      if (await admin.handle(request, response)) return;
       if (rawPath === '/api/noticias') {
         if (request.method !== 'GET') { response.setHeader('Allow', 'GET'); sendJson(response, 405, { error: 'Método no permitido.' }); return; }
         let stale = false;
@@ -140,8 +184,23 @@ function createSiteServer({ root = __dirname, config = loadConfig(root), fetchIm
         sendJson(response, 405, { error: 'Método no permitido.' });
         return;
       }
+      if (rawPath === '/admin' || rawPath === '/admin/') {
+        response.writeHead(302, { Location: '/admin.html', 'Cache-Control': 'no-store' });
+        response.end(); return;
+      }
+      if (rawPath.startsWith('/media/admin/')) {
+        const banner = await admin.getBanner(rawPath);
+        if (!banner) { sendNotFound(response, request.method === 'HEAD'); return; }
+        response.writeHead(200, { 'Content-Type': MIME[path.extname(rawPath)], 'Cache-Control': 'no-cache' });
+        response.end(request.method === 'HEAD' ? undefined : banner); return;
+      }
+      // Route normalized aliases through the same catalog checks; unpublished
+      // overrides must never fall back to an older static course page.
+      const publicRelative = publicPath(request.url || '/');
+      if (publicRelative && await renderCourseRoute('/' + publicRelative, response, request.method === 'HEAD')) return;
       const relative = publicPath(request.url || '/');
       if (!relative) { sendNotFound(response, request.method === 'HEAD'); return; }
+      if (relative.startsWith('media/admin/')) { sendNotFound(response, request.method === 'HEAD'); return; }
       let realFile;
       try {
         realFile = await fsp.realpath(path.join(rootPath, relative));
@@ -153,7 +212,8 @@ function createSiteServer({ root = __dirname, config = loadConfig(root), fetchIm
       const body = request.method === 'HEAD' ? null : await fsp.readFile(realFile);
       response.writeHead(200, {
         'Content-Type': MIME[path.extname(realFile).toLowerCase()] || 'application/octet-stream',
-        'Cache-Control': relative.startsWith('media/') ? 'public, max-age=86400' : 'no-cache'
+        'Cache-Control': relative.startsWith('admin.') ? 'no-store' : relative.startsWith('media/') ? 'public, max-age=86400' : 'no-cache',
+        ...(relative.startsWith('admin.') ? { 'X-Robots-Tag': 'noindex, nofollow', 'Content-Security-Policy': "default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' blob: data:; connect-src 'self'; object-src 'none'; base-uri 'self'; frame-ancestors 'none'; form-action 'self'" } : {})
       });
       response.end(body);
     } catch {

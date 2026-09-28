@@ -34,7 +34,7 @@ def main():
         for ref in page.refs:
             url=urlsplit(ref)
             if url.scheme or url.netloc: continue
-            target=(path.parent / unquote(url.path)).resolve() if url.path else path
+            target=((ROOT / unquote(url.path).lstrip('/')) if url.path.startswith('/') else (path.parent / unquote(url.path))).resolve() if url.path else path
             if not target.is_relative_to(ROOT): errors.append(f'{label}: path outside site: {ref}'); continue
             if not target.is_file(): errors.append(f'{label}: missing resource: {ref}'); continue
             if url.fragment and target in parsed and unquote(url.fragment) not in parsed[target].ids:
